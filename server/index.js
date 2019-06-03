@@ -20,9 +20,9 @@ app
 
     server.use('/api', workoutRoutes);
 
-    server.get('/refences/:slug', (req, res) => {
+    server.get('/refences/:id', (req, res) => {
       let actualPage = '/reference';
-      let queryParams = { title: req.params.slug };
+      let queryParams = { title: req.params.id };
       app.render(req, res, actualPage, queryParams);
     });
 
