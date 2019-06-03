@@ -1,19 +1,28 @@
 import Navbar from '../components/Navbar/Navbar';
+import Link from 'next/link';
 
 // importing app level SCSS
 import '../scss/styles.scss';
 
-const Index = () => (
+const Index = (props) => (
   <section>
-    <Head>
-      {/* This could eventually be handy for letting the user know when 
-      they are in the workout side of the app or user side*/}
-      HangTrainer Landing page
-    </Head>
     <h1>HangTrainer</h1>
     <Navbar />
     <p>Welcome to HangTrainer, Sign up and start tracking your Hangs!</p>
+    <Link as={`/references/${props.slug}`} href={`/reference?title=${props.title}`}>
+      <a title="learn about hang board workouts">HangBoard references</a>
+    </Link>
   </section>
-)
+);
+
+Index.getInitialProps = async function(props) {
+  let title = 'Training Beta';
+  let slug = title.split(" ").join("-");
+
+  return {
+    title,
+    slug
+  };
+};
 
 export default Index;

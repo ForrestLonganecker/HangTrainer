@@ -22,7 +22,7 @@ class Navbar extends Component {
             <a title="About HangTrainer">About</a>
           </Link>
           <Link href="/api">
-            <a title="Our API">API</a>
+            <a title="My API">API</a>
           </Link>
         </section>
       </nav>
