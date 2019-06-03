@@ -1,10 +1,13 @@
-import Header from '../compoonents/Header';
+import Navbar from '../components/Navbar';
 
-export default function About() {
-  return (
-    <Layout>
-      <h1>HangTrainer</h1>
-      <p>About page</p>
-    </Layout>
-  );
-}
+const About = () => (
+  <section>
+    <h1>About HangTrainer</h1>
+    <Navbar />
+    <p>This app is made to help climbers chart 
+    progress towards their ultimate goals more easily.</p>
+    <h3>Rock on!</h3>
+  </section>
+)
+
+export default About;
