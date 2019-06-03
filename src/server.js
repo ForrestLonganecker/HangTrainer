@@ -1,53 +1,30 @@
 const express = require('express');
 const next = require('next');
-const http = require('http');
-const apiApp = require('./app.js');
+const appApi = require('./app.js');
 
 const dev = process.env.NODE_ENV !== 'production';
 const port = parseInt(process.env.PORT, 10) || 8000;
 const app = next({ dev });
 const nextRequestHandler = app.getRequestHandler();
 
-app.prepare()
-.then(() => {
-  const server = express();
+app
+  .prepare()
+  .then(() => {
+    const server = express();
+    
+    server.use(appApi);
 
-  server.get('*', (req, res) => {
-    return nextRequestHandler(req, res);
-  });
+    server.get('*', (req, res) => {
+      console.log('FROM SERVER: ', req);
+      return app.render(req, res, req.url, params);
+    });
 
-  server.listen(port, (err) => {
-    if (err) throw err;
-
-    // apiApp(server);
-
-    console.log(`Running on localhost:${port}`);
+    server.listen(port, (err) => {
+      if (err) throw err;
+      console.log(`Running on localhost:${port}`);
+    })
   })
-})
-.catch(ex => {
-  console.error(ex.stack);
-  process.exit(1);
-});
-
-// const app = require('./app');
-// const http = require('http');
-// const server = http.createServer(app);
-// const port = normalizePort(process.env.PORT || '3000');
-// app.set('port', port);
-
-// server.listen(port);
-
-// function normalizePort(val) {
-//   const port = parseInt(val, 10);
-//   if(isNaN(port)) {
-//     return val;
-//   }
-//   if(port >= 0) {
-//     return port;
-//   }
-//   return false;
-// }
-
-// server.on('listening', () => {
-//   console.log(`server is listening for requests on port: ${server.address().port}`);
-// });
+  .catch(ex => {
+    console.error(ex.stack);
+    process.exit(1);
+  });
