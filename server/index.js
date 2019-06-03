@@ -1,5 +1,6 @@
 const express = require('express');
 const next = require('next');
+const logger = require('morgan');
 
 // checks to see if we are in production environment:
 const PORT = process.env.PORT || 3000;
@@ -14,17 +15,17 @@ app
     const server = express();
     const workoutRoutes = require('./routes/workouts.js')
 
-    // server.get('/api/workouts', (req, res) => {
-    //   return res.end('Work it!');
-    // })
+    // use workout routes: can make this into server.use(routeConfig) as more routes are needed
+    server.use(workoutRoutes);
+    server.use(logger(':method :url :status :res[content-length] - :response-time ms'));
 
-    server.use('/api', workoutRoutes);
+    // cannot get dynamic routes to work
 
-    server.get('/refences/:id', (req, res) => {
-      let actualPage = '/reference';
-      let queryParams = { title: req.params.id };
-      app.render(req, res, actualPage, queryParams);
-    });
+    // server.get('/refences/:id', (req, res) => {
+    //   let actualPage = '/reference';
+    //   let queryParams = { title: req.params.id };
+    //   app.render(req, res, actualPage, queryParams);
+    // });
 
     server.get("*", (req, res) => {
       return handle(req, res);

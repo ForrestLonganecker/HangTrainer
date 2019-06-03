@@ -8,7 +8,6 @@ export default class MyDocument extends Document {
     return (
       <html>
         <Head>
-          <title>HangTrainer</title>
         </Head>
         <body>
           <Main />
