@@ -26,6 +26,6 @@ const Index = (props) => (
   //   title,
   //   id
   // };
-};
+// };
 
 export default Index;
