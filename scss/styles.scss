@@ -1,0 +1,12 @@
+// importing variables from _vars file
+@import '_vars.scss';
+
+nav {
+  padding: 10px;
+}
+
+a {
+  text-decoration: none;
+  color: $green;
+  padding: 5px;
+}

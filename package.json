@@ -1,0 +1,36 @@
+{
+  "name": "hang-trainer",
+  "version": "1.0.0",
+  "description": "Hangboard training app",
+  "main": "src/server.js",
+  "scripts": {
+    "test": "export NODE_ENV=test && jasmine",
+    "dev": "nodemon server/index.js",
+    "build": "next build",
+    "start": "NODE_ENV=production node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ForrestLonganecker/HangTrainer.git"
+  },
+  "author": "Forrest Longanecker",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ForrestLonganecker/HangTrainer/issues"
+  },
+  "homepage": "https://github.com/ForrestLonganecker/HangTrainer#readme",
+  "devDependencies": {
+    "jasmine": "^3.4.0",
+    "morgan": "^1.9.1",
+    "request": "^2.88.0"
+  },
+  "dependencies": {
+    "@zeit/next-sass": "^1.0.1",
+    "dotenv": "^8.0.0",
+    "express": "^4.17.1",
+    "next": "^8.1.0",
+    "node-sass": "^4.12.0",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
+  }
+}
