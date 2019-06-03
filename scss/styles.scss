@@ -1,4 +1,5 @@
-$green: green;
+// importing variables from _vars file
+@import '_vars.scss';
 
 nav {
   padding: 10px;
@@ -7,4 +8,5 @@ nav {
 a {
   text-decoration: none;
   color: $green;
+  padding: 5px;
 }
