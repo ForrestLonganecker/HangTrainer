@@ -17,7 +17,7 @@ app
 
     // use workout routes: can make this into server.use(routeConfig) as more routes are needed
     server.use(workoutRoutes);
-    server.use(logger(':method :url :status :res[content-length] - :response-time ms'));
+    server.use(logger('dev'));
 
     // cannot get dynamic routes to work
 
