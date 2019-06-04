@@ -13,14 +13,13 @@ app
   .prepare()
   .then(() => {
     const server = express();
-    const workoutRoutes = require('./routes/workouts.js')
+    const routeConfig = require('./config/route-config.js')
 
-    // use workout routes: can make this into server.use(routeConfig) as more routes are needed
-    server.use(workoutRoutes);
+    routeConfig.init(server);
     server.use(logger('dev'));
 
     // cannot get dynamic routes to work
-
+    // 
     // server.get('/refences/:id', (req, res) => {
     //   let actualPage = '/reference';
     //   let queryParams = { title: req.params.id };
