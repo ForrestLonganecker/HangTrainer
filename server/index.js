@@ -1,6 +1,5 @@
 const express = require('express');
 const next = require('next');
-const logger = require('morgan');
 
 // checks to see if we are in production environment:
 const PORT = process.env.PORT || 3000;
@@ -14,9 +13,10 @@ app
   .then(() => {
     const server = express();
     const routeConfig = require('./config/route-config.js')
+    const serverConfig = require('./config/server-config.js')
 
     routeConfig.init(server);
-    server.use(logger('dev'));
+    serverConfig.init(server);
 
     // cannot get dynamic routes to work
     // 
