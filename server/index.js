@@ -5,6 +5,7 @@ const next = require('next');
 const PORT = process.env.PORT || 3000;
 const dev = process.env.NODE_ENV !== 'production';
 
+// starts the next.js client-side app
 const app = next({ dev });
 const handle = app.getRequestHandler();
 
@@ -12,9 +13,12 @@ app
   .prepare()
   .then(() => {
     const server = express();
+    // imports all routes for the server-side app
     const routeConfig = require('./config/route-config.js')
+    // imports middleware for the server-side app
     const serverConfig = require('./config/server-config.js')
 
+    // initializes all imported routes + middleware
     routeConfig.init(server);
     serverConfig.init(server);
 
