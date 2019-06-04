@@ -1,4 +1,5 @@
 const sequelize = require('../../server/db/models/index').sequelize;
+const User = require('../../server/db/models').User;
 
 describe('User', () => {
 
