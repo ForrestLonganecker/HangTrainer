@@ -1,3 +1,5 @@
+// this is where all routes are imported and put in use by the server-side app
+
 module.exports = {
   init(server){
 
