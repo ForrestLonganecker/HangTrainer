@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
 
-router.get('/workouts', (req, res) => {
-  return res.end('Work it!! from the express server!')
-});
+const workoutController = require('../controllers/workoutController');
+
+router.get('/workouts', workoutController.index);
 
 module.exports = router;
