@@ -24,6 +24,9 @@ class Navbar extends Component {
           <Link href="/workouts">
             <a title="Public Workouts">Workouts</a>
           </Link>
+          <Link href="/signUp">
+            <a title="Sign up">Sign up</a>
+          </Link>
         </section>
       </nav>
     )
