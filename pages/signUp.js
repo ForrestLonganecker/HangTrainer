@@ -28,16 +28,14 @@ const SignUp = () => {
       data: newUser
     }));
 
-    axios({
-      method: 'post',
-      url: '/users/create',
-      data: newUser
+    axios.post('/users/create', {
+      params: newUser
     })
     .then((res) => {
-      console.log(res);
+      console.log('{SIGNUP PAGE} RES: ', res);
     })
     .catch((err) => {
-      console.log(err);
+      console.log('{SIGNUP PAGE} ERR: ', err);
     });
   }
   
