@@ -14,23 +14,17 @@ const SignUp = () => {
   const submitUserSignUp = (e) => {
     // prevents this script from running automatically, now will run only upon call
     e.preventDefault();
-    const newUser = {
+    let data = {
       email: email,
       password: password,
       passwordConfirmation: passwordConf
-    };
+    }
   
     // console.log('{SIGNUP PAGE 1} BEFORE AXIOS', newUser);
 
-    console.log(    axios({
-      method: 'post',
-      url: '/users/create',
-      data: newUser
-    }));
+    console.log(axios.post('/users/create', data ));
 
-    axios.post('/users/create', {
-      params: newUser
-    })
+    axios.post('/users/create', data )
     .then((res) => {
       console.log('{SIGNUP PAGE} RES: ', res);
     })

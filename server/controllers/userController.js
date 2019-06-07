@@ -7,7 +7,8 @@ module.exports = {
     res.send('Sign up');
   },
   create(req, res, next){
-    console.log('{USER CONTROLLER 1} REQ: ', req.query);
+    console.log('{USER CONTROLLER 1} REQ: ', req.data);
+    console.log('{USER CONTROLLER 1} REQ: ', req.params);
     let newUser = {
       email: req.body.newUser.email,
       password: req.body.password,
