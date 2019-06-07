@@ -10,10 +10,18 @@ class Navbar extends Component {
     this.props = props
   }
 
+  displayUser(){
+    if(currentUser){
+      return(currentUser.email);
+    } else {
+      return('Sign up and Hang ON!');
+    }
+  }
+
   render() {
     return (
       <nav>
-        <mark className="badge">Hang ON!</mark>
+        <mark className="badge">Hang on!</mark>
         <section>
           <Link href="/">
             <a title="HangTrainer Home">Home</a>

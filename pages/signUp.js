@@ -19,18 +19,18 @@ const SignUp = () => {
       password: password,
       passwordConfirmation: passwordConf
     }
-    console.log(data);
-  
-    // console.log('{SIGNUP PAGE 1} BEFORE AXIOS', newUser);
 
-    console.log(axios.post('http://localhost:3000/users/create', data ));
+    console.log(axios.post('/users/create', data ));
 
-    axios.post('http://localhost:3000/users/create', data )
+    axios.post('/users/create', data )
     .then((res) => {
+      // routes the client side back to /index page
       console.log('{SIGNUP PAGE} RES: ', res);
+      if(res.data == 'Success!') window.location = '/';
     })
     .catch((err) => {
       console.log('{SIGNUP PAGE} ERR: ', err);
+      window.location = '/signUp';
     });
   }
   
