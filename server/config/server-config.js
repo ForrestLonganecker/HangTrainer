@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const logger = require('morgan');
 const session = require('express-session');
 const passportConfig = require('../config/passport-config');
+const express = require('express');
 
 module.exports = {
   init(server){
@@ -14,7 +15,8 @@ module.exports = {
       saveUninitialized: false,
       cookie: { maxAge: 1.21e+9 }
     }));
-    server.use(bodyParser.urlencoded({ extended: true }));
+    server.use(bodyParser.json());
+    server.use(express.json());
     passportConfig.init(server);
     server.use((req, res, next) => {
       res.locals.currentUser = req.user;

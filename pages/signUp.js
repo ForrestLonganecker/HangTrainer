@@ -19,12 +19,13 @@ const SignUp = () => {
       password: password,
       passwordConfirmation: passwordConf
     }
+    console.log(data);
   
     // console.log('{SIGNUP PAGE 1} BEFORE AXIOS', newUser);
 
-    console.log(axios.post('/users/create', data ));
+    console.log(axios.post('http://localhost:3000/users/create', data ));
 
-    axios.post('/users/create', data )
+    axios.post('http://localhost:3000/users/create', data )
     .then((res) => {
       console.log('{SIGNUP PAGE} RES: ', res);
     })

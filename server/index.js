@@ -13,14 +13,14 @@ app
   .prepare()
   .then(() => {
     const server = express();
-    // imports all routes for the server-side app
-    const routeConfig = require('./config/route-config.js')
     // imports middleware for the server-side app
     const serverConfig = require('./config/server-config.js')
+    // imports all routes for the server-side app
+    const routeConfig = require('./config/route-config.js')
 
     // initializes all imported routes + middleware
-    routeConfig.init(server);
     serverConfig.init(server);
+    routeConfig.init(server);
 
     // cannot get dynamic routes to work
     // 
