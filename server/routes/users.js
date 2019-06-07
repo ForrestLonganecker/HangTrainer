@@ -7,7 +7,9 @@ const userController = require('../controllers/userController');
 // causes Navbar only to lose global styles, it does keep component specific
 // files ie: direct imports from within Navbar.js itself
 // router.get('/signUp', userController.signUp);
+router.get('/users/signOut', userController.signOut);
 
 router.post('/users/create', userController.create);
+router.post('/users/signIn', userController.signIn);
 
 module.exports = router;

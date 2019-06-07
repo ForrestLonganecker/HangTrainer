@@ -29,5 +29,18 @@ module.exports = {
         })
       }
     })
+  },
+  signIn(req, res, next){
+    passport.authenticate('local')(req, res, () => {
+      if(!req.user){
+        res.send('FAILED TO SIGN IN');
+      } else {
+        res.send('SUCCESSFULLY SIGNED IN');
+      }
+    })
+  },
+  signOut(req, res, next){
+    req.logout();
+    res.send('SUCCESSFULLY SIGNED OUT');
   }
 }
