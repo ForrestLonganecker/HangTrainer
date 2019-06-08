@@ -20,7 +20,13 @@ const SignUp = () => {
       passwordConfirmation: passwordConf
     }
 
-    console.log(axios.post('/users/create', data ));
+    // console.log(data);
+
+    // console.log(axios.post('/users/create', data ));
+
+    axios(
+      
+    )
 
     axios.post('/users/create', data )
     .then((res) => {
@@ -43,19 +49,19 @@ const SignUp = () => {
       <form onSubmit={handleSignUp} htmlFor="user sign up form">
         <section>
           <label htmlFor="email entry">Email</label>
-          <input value={email} onChange={e => setEmail(e.target.value)} />
+          <input defaultValue="Enter email" onChange={e => setEmail(e.target.value)} />
           <small>email address must be a valid address</small>
         </section>
   
         <section>
           <label htmlFor="password entry">Password</label>
-          <input value={password} onChange={e => setPassword(e.target.value)} />
+          <input type="password" onChange={e => setPassword(e.target.value)} />
           <small>password must match confirmation below</small>
         </section>
   
         <section>
           <label htmlFor="password confirmation entry">Password confirmation</label>
-          <input value={passwordConf} onChange={e => setPasswordConf(e.target.value)} />
+          <input type="password" onChange={e => setPasswordConf(e.target.value)} />
         </section>
   
         <input type="submit" value="Sign up" />

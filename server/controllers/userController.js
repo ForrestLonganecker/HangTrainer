@@ -25,17 +25,20 @@ module.exports = {
         passport.authenticate('local')(req, res, () => {
           // need to find a way to pass this to the front end
           // req.flash('notice', 'You have successfully signed in!');
-          res.end('Success!');
+          res.send(res, 200, {token: process.env.cookieSecret});
         })
       }
     })
   },
   signIn(req, res, next){
     passport.authenticate('local')(req, res, () => {
+      console.log('{USER CONTROLLER} SIGN IN REQ.USER', req.user);
       if(!req.user){
-        res.send('FAILED TO SIGN IN');
+        // if error(no user logged in)
+        res.send(res, res.status, res.statusText);
       } else {
-        res.send('SUCCESSFULLY SIGNED IN');
+        // if successful pass the cookie to front end
+        res.send(res, 200, {token: process.env.cookieSecret});
       }
     })
   },

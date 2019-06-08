@@ -19,7 +19,9 @@ module.exports = {
     server.use(express.json());
     passportConfig.init(server);
     server.use((req, res, next) => {
+      console.log('{FROM SERVER-CONFIG 1} REQ.USER: ', req.user);
       res.locals.currentUser = req.user;
+      console.log('{FROM SERVER-CONFIG 2} RES.LOCALS.CURRENTUSER: ', res.locals.currentUser);
       next();
     })
   }

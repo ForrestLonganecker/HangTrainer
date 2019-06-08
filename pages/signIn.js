@@ -18,7 +18,7 @@ const SignIn = () => {
       password: password,
     }
 
-    console.log(axios.post('/users/signIn', data ));
+    // console.log(axios.post('/users/signIn', data ));
 
     axios.post('/users/signIn', data )
     .then((res) => {
