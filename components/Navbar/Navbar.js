@@ -23,18 +23,21 @@ class Navbar extends Component {
     // prevents this script from running automatically, now will run only upon call
     e.preventDefault();
 
-    console.log(axios.get('/users/signOut'));
+    // console.log(axios.get('/users/signOut'));
 
     axios.get('/users/signOut')
     .then((res) => {
-      // routes the client side back to /index page
-      console.log('{SIGNUP PAGE} RES: ', res);
-      // if(res.data == 'Success!') window.location = '/';
-    })
-    .catch((err) => {
-      console.log('{SIGNUP PAGE} ERR: ', err);
-      // window.location = '/';
+      if(res.status == 200){
+        window.location = '/';
+        console.log('YOU HAVE SIGNED OUT SUCCESSFULLY!');
+      } else {
+        console.log('SOMETHING WENT WRONG: ', res.status);
+      }
     });
+    // .catch((err) => {
+    //   console.log('{SIGNUP PAGE} ERR: ', err);
+    //   // window.location = '/';
+    // });
   }
 
   render() {

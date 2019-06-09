@@ -24,12 +24,16 @@ const SignIn = () => {
     .then((res) => {
       console.log('{SIGNUP PAGE} RES: ', res);
       // routes the client side back to /index page
-      if(res.status == 200) window.location = '/';
-    })
-    .catch((err) => {
-      console.log('{SIGNUP PAGE} ERR: ', err);
-      window.location = '/signIn';
+      if(res.status == 200){
+        window.location = '/';
+      } else {
+        console.log('SOMETHING WENT WTRONG: ', res.statusCode)
+      }
     });
+    // .catch((err) => {
+    //   console.log('{SIGNUP PAGE} ERR: ', err);
+    //   window.location = '/signIn';
+    // });
   }
   
   return (

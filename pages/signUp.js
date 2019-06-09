@@ -24,20 +24,20 @@ const SignUp = () => {
 
     // console.log(axios.post('/users/create', data ));
 
-    axios(
-      
-    )
-
     axios.post('/users/create', data )
     .then((res) => {
       // routes the client side back to /index page
-      console.log('{SIGNUP PAGE} RES: ', res);
-      if(res.data == 'Success!') window.location = '/';
+      console.log('{SIGNUP PAGE} RES.DATA(req.user): ', res.data);
+      if(res.status == 200){
+        window.location = '/';
+      } else {
+        console.log('{SIGNUP PAGE} ERROR WHEN CREATING USER: ', res.status)
+      }
     })
-    .catch((err) => {
-      console.log('{SIGNUP PAGE} ERR: ', err);
-      window.location = '/signUp';
-    });
+    // .catch((err) => {
+    //   console.log('{SIGNUP PAGE} ERR: ', err);
+    //   window.location = '/signUp';
+    // });
   }
   
   return (

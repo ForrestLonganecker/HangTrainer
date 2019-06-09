@@ -19,31 +19,39 @@ module.exports = {
         console.log('{USER CONTROLLER 2} IF ERR: ', );
         // need to find a way to pass this to the front end
         // req.flash('error', err);
+
         res.send(err);
       } else {
         console.log('{USER CONTROLLER 3} ELSE AUTH: ', );
         passport.authenticate('local')(req, res, () => {
           // need to find a way to pass this to the front end
           // req.flash('notice', 'You have successfully signed in!');
-          res.send(res, 200, {token: process.env.cookieSecret});
+          res.send(req.user);
         })
       }
     })
   },
   signIn(req, res, next){
     passport.authenticate('local')(req, res, () => {
-      console.log('{USER CONTROLLER} SIGN IN REQ.USER', req.user);
+      console.log('{USER CONTROLLER} SIGN IN REQ.USER: ', req.user.email);
       if(!req.user){
         // if error(no user logged in)
-        res.send(res, res.status, res.statusText);
+        console.log('{USERCONTROLLER} !REQ.USER: ', res.statusCode);
+        res.send(res);
       } else {
         // if successful pass the cookie to front end
-        res.send(res, 200, {token: process.env.cookieSecret});
+        console.log('{USERCONTROLLER} AUTHENTICATED: ', res.statusCode);
+        res.send(req.user);
       }
     })
   },
   signOut(req, res, next){
-    req.logout();
-    res.send('SUCCESSFULLY SIGNED OUT');
+    if(req.user){
+      console.log('SUCCESSFULLY SIGNED OUT');
+      req.logout();
+      res.send('SUCCESSFULLY SIGNED OUT');
+    } else {
+      console.log('NO REQ.USER FOUND', req.user);
+    }
   }
 }
