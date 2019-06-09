@@ -1,6 +1,7 @@
 import Navbar from '../components/Navbar/Navbar';
 import axios from 'axios';
 import { useState } from 'react';
+import authHelper from '../server/auth/helpers';
 
 // https://github.com/jimmylee/next-postgres/blob/3206c567e874c0438202fb84fab0f45809659f7c/components/CommentPreview.js#L45
 
@@ -13,9 +14,13 @@ const SignIn = () => {
   const handleSignIn = (e) => {
     // prevents this script from running automatically, now will run only upon call
     e.preventDefault();
+
+    // let hashedPassword = authHelper.encryptPass(password);
+
     let data = {
       email: email,
       password: password,
+      // password: hashedPassword,
     }
 
     // console.log(axios.post('/users/signIn', data ));
@@ -50,7 +55,7 @@ const SignIn = () => {
   
         <section>
           <label htmlFor="password entry">Password</label>
-          <input value={password} onChange={e => setPassword(e.target.value)} />
+          <input type="password" onChange={e => setPassword(e.target.value)} />
         </section>
   
         <input type="submit" value="Sign in" />

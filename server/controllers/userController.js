@@ -31,8 +31,8 @@ module.exports = {
     })
   },
   signIn(req, res, next){
+    console.log('{USER CONTROLLER - SIGN IN} REQ.BODY: ', req.body);
     passport.authenticate('local')(req, res, () => {
-      console.log('{USER CONTROLLER - SIGN IN} REQ.USER: ', req.user.email);
       if(!req.user){
         // if error(no user logged in)
         console.log('{USERCONTROLLER - SIGN IN} IF !REQ.USER: ', res.statusCode);

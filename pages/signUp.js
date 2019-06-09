@@ -16,11 +16,12 @@ const SignUp = () => {
     // prevents this script from running automatically, now will run only upon call
     e.preventDefault();
 
-    const hashedPassword = authHelper.encryptPass(password);
+    // let hashedPassword = authHelper.encryptPass(password);
 
     let data = {
       email: email,
-      password: hashedPassword,
+      // password: hashedPassword,
+      password: password,
     }
 
     // console.log(data);
@@ -52,7 +53,7 @@ const SignUp = () => {
       <form onSubmit={handleSignUp} htmlFor="user sign up form">
         <section>
           <label htmlFor="email entry">Email</label>
-          <input defaultValue="Enter email" onChange={e => setEmail(e.target.value)} />
+          <input type="text" onChange={e => setEmail(e.target.value)} />
           <small>email address must be a valid address</small>
         </section>
   
