@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/ForrestLonganecker/HangTrainer#readme",
   "devDependencies": {
+    "@types/next": "^8.0.5",
     "jasmine": "^3.4.0",
     "morgan": "^1.9.1",
     "request": "^2.88.0"

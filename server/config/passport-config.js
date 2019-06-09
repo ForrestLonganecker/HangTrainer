@@ -15,9 +15,14 @@ module.exports = {
       .then((user) => {
         console.log('{PASSPORT-CONFIG} USER.EMAIL: ', user.email);
         if(!user || !authHelper.comparePass(password, user.password)) {
+          console.log('{PASSPORT-CONFIG} !USER OR !AUTHHELPER.COMPAREPASS', !user, !authHelper.comparePass(password, user.password));
+          console.log('USER: ', user);
+          console.log('PASSWORD: ', password);
+          console.log('USER.PASSWORD: ', user.password);
           return done(null, false, {message: 'Invalid email or password'});
         }
         // this puts user object in req.session.passport.user = {id: ...}
+        console.log('{PASSPORT-CONFIG} USER AUTHENTICATED')
         return done(null, user);
       })
     }));

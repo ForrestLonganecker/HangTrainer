@@ -1,5 +1,6 @@
 import Navbar from '../components/Navbar/Navbar';
 import Link from 'next/link';
+import axios from 'axios';
 
 // importing app level SCSS
 import '../scss/styles.scss';
@@ -15,6 +16,15 @@ const Index = (props) => (
 </Link>*/}
   </section>
   );
+
+
+// get initial props looking for user info to pass down to navbar for conditional rendering
+  // Index.getInitialProps = async (props) => {
+  //   axios.get('/')
+  //   .then((res) => {
+  //     const userInfo = res.
+  //   })
+  // }
 
   // can't get dynamic routes to work
 

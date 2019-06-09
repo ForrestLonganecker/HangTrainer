@@ -1,6 +1,7 @@
 import Navbar from '../components/Navbar/Navbar';
 import axios from 'axios';
 import { useState } from 'react';
+import authHelper from '../server/auth/helpers';
 
 // https://github.com/jimmylee/next-postgres/blob/3206c567e874c0438202fb84fab0f45809659f7c/components/CommentPreview.js#L45
 
@@ -14,10 +15,12 @@ const SignUp = () => {
   const handleSignUp = (e) => {
     // prevents this script from running automatically, now will run only upon call
     e.preventDefault();
+
+    const hashedPassword = authHelper.encryptPass(password);
+
     let data = {
       email: email,
-      password: password,
-      passwordConfirmation: passwordConf
+      password: hashedPassword,
     }
 
     // console.log(data);

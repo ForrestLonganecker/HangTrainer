@@ -7,22 +7,21 @@ module.exports = {
   //   res.send('Sign up');
   // },
   create(req, res, next){
-    // console.log('{USER CONTROLLER 1} REQ.BODY: ', req.body);
+    console.log('{USER CONTROLLER CREATE 1} REQ.BODY: ', req.body);
     let newUser = {
       email: req.body.email,
       password: req.body.password,
-      // move password confirmation/ bcrypt to frontend 
-      passwordConfirmation: req.body.passwordConfirmation
     };
+    console.log('{USER CONTROLLER CREATE 2} NEWUSER: ', newUser);
     userQueries.createUser(newUser, (err, user) => {
       if(err){
-        console.log('{USER CONTROLLER 2} IF ERR: ', );
+        console.log('{USER CONTROLLER CREATE 3} IF ERR: ', err);
         // need to find a way to pass this to the front end
         // req.flash('error', err);
 
         res.send(err);
       } else {
-        console.log('{USER CONTROLLER 3} ELSE AUTH: ', );
+        console.log('{USER CONTROLLER CREATE 4} ELSE AUTH: ', req.body);
         passport.authenticate('local')(req, res, () => {
           // need to find a way to pass this to the front end
           // req.flash('notice', 'You have successfully signed in!');
@@ -33,14 +32,14 @@ module.exports = {
   },
   signIn(req, res, next){
     passport.authenticate('local')(req, res, () => {
-      console.log('{USER CONTROLLER} SIGN IN REQ.USER: ', req.user.email);
+      console.log('{USER CONTROLLER - SIGN IN} REQ.USER: ', req.user.email);
       if(!req.user){
         // if error(no user logged in)
-        console.log('{USERCONTROLLER} !REQ.USER: ', res.statusCode);
+        console.log('{USERCONTROLLER - SIGN IN} IF !REQ.USER: ', res.statusCode);
         res.send(res);
       } else {
         // if successful pass the cookie to front end
-        console.log('{USERCONTROLLER} AUTHENTICATED: ', res.statusCode);
+        console.log('{USERCONTROLLER - SIGN IN} AUTHENTION SUCCESS: ', res.statusCode);
         res.send(req.user);
       }
     })
