@@ -19,12 +19,19 @@ const Index = (props) => (
 
 
 // get initial props looking for user info to pass down to navbar for conditional rendering
-  // Index.getInitialProps = async (props) => {
-  //   axios.get('/')
-  //   .then((res) => {
-  //     const userInfo = res.
-  //   })
-  // }
+  Index.getInitialProps = async (props) => {
+    axios.get('http://localhost:3000/static/index')
+    .then((res) => {
+      console.log('{INDEX.JS} RES.DATA: ', res.data);
+      const userInfo = { user: res.data }; 
+      console.log('{INDEX.JS} USERINFO: ', userInfo);
+      // console.log('{INDEX.JS} PROPS: ', props);
+      // console.log('{INDEX.JS} REQ: ', req);
+      console.log('{INDEX.JS} TYPEOF(USERINFO): ', typeof(userInfo));
+      // possibly returning undefined instead of an object?
+      return { userInfo };
+    })
+  }
 
   // can't get dynamic routes to work
 
