@@ -1,12 +1,15 @@
 // importing variables from _vars file
+// for some reason when signUp route is removed from userController this css is
+// not rendered upon refresh, I have moved it into the component specific css file
+// which does work Navbar.scss
 @import '_vars.scss';
 
-nav {
-  padding: 10px;
-}
+// nav {
+//   padding: 10px;
+// }
 
-a {
-  text-decoration: none;
-  color: $green;
-  padding: 5px;
-}
+// a {
+//   text-decoration: none;
+//   color: $green;
+//   padding: 5px;
+// }
