@@ -1,4 +1,5 @@
 import Navbar from '../components/Navbar/Navbar';
+import Landing from '../components/Landing/Landing';
 import { useState } from 'react';
 import axios from 'axios';
 
@@ -18,7 +19,8 @@ const Index = () => {
       } else {
         setCurrentUser(false);
       }
-    })
+    });
+    // return <Landing currentUser />
     if(currentUser){
       return (
         <section>
