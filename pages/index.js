@@ -1,7 +1,8 @@
 import Navbar from '../components/Navbar/Navbar';
-import Landing from '../components/Landing/Landing';
+// import Landing from '../components/Landing/Landing';
 import { useState } from 'react';
 import axios from 'axios';
+import Link from 'next/link';
 
 // importing app level SCSS
 import '../scss/styles.scss';
@@ -25,18 +26,25 @@ const Index = () => {
       return (
         <section>
           <h1>HangTrainer</h1>
+          <img src='/static/BoulderLogo.png' />
           <h2>Current User: {currentUser.toString()}</h2>
           <Navbar />
           <p>Welcome to HangTrainer, Sign up and start tracking your Hangs!</p>
-        </section>
-      );
+          </section>
+          );
     } else {
       return (
         <section>
           <h1>HangTrainer</h1>
-          <h2>Current User: {currentUser.toString()}</h2>
-          <Navbar />
+          <img src='/static/BoulderLogo.png'  />
           <p>Welcome to HangTrainer, Sign up and start tracking your Hangs!</p>
+          <Link href="/signIn">
+            <a title="Sign in">Sign in</a>
+          </Link>
+          <Link href="/signUp">
+            <a title="Sign up">Sign up</a>
+          </Link>
+          <h2>Current User: {currentUser.toString()}</h2>
         </section>
       );
     }
