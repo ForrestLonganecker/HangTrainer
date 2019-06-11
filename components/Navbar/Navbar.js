@@ -46,24 +46,31 @@ class Navbar extends Component {
         <mark className="badge">Hang on!</mark>
         <section>
           <Link href="/">
-            <a title="HangTrainer Home">Home</a>
+            <a title="HangTrainer Home"><img src="/static/BoulderLogo.png" /></a>
           </Link>
-          <Link href="/about">
+{/* 
+           <Link href="/about">
             <a title="About HangTrainer">About</a>
-          </Link>
+    </Link>
+    <Link href="/signUp">
+      <a title="Sign up">Sign up</a>
+    </Link>
+    <Link href="/signIn">
+      <a title="Sign in">Sign in</a>
+    </Link>
+  */}
           <Link href="/workouts">
             <a title="Public Workouts">Workouts</a>
-          </Link>
-          <Link href="/signUp">
-            <a title="Sign up">Sign up</a>
-          </Link>
-          <Link href="/signIn">
-            <a title="Sign in">Sign in</a>
           </Link>
           <Link href="/signOut">
             <a title="Sign in" onClick={this.handleSignOut}>Sign out</a>
           </Link>
         </section>
+        <style jsx>{`
+        img {
+          max-width: 50px;
+        }
+        `}</style>
       </nav>
     )
   }

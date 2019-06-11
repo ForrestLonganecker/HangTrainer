@@ -1,6 +1,6 @@
 module.exports = {
   index(req, res, next){
-    // console.log('{STATIC-CONTROLLER} REQ: ', req);
+    console.log('{STATIC-CONTROLLER} REQ: ', req.session);
     if(req.user){
       console.log('{STATIC-CONTROLLER} REQ.USER: ', req.user);
       res.send('USER SIGNED IN');
