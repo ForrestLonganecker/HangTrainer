@@ -14,7 +14,7 @@ const Index = () => {
   const [currentUser, setCurrentUser] = useState(false);
 
   const displayLanding = () => {
-    axios.get('http://localhost:3000/static/index')
+    axios.get('/static/index')
     .then(res => {
       console.log('{LANDING.JS} RES: ', res.data);
       if(res.data == 'USER SIGNED IN'){

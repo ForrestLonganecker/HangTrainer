@@ -59,7 +59,7 @@ const SignIn = () => {
   
         <input type="submit" value="Sign in" />
       </form>
-      <a href="http://localhost:3000/signUp">Sign Up</a>
+      <a href="/signUp">Sign Up</a>
     </section>
   )
 }
