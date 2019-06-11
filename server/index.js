@@ -2,12 +2,23 @@ const express = require('express');
 const next = require('next');
 
 // checks to see if we are in production environment:
-const PORT = process.env.PORT || 3000;
+const PORT = normalizePort(process.env.PORT || 3000);
 const dev = process.env.NODE_ENV !== 'production';
 
 // starts the next.js client-side app
 const app = next({ dev });
 const handle = app.getRequestHandler();
+
+function normalizePort(val) {
+  const port = parseInt(val, 10);
+  if(isNaN(port)) {
+    return val;
+  }
+  if(port >= 0) {
+    return port;
+  }
+  return false;
+}
 
 app
   .prepare()
