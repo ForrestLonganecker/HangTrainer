@@ -1,6 +1,10 @@
+// this page should only be viewable when logged in after signIn/signUp
+// user should be redirected to this page
+
 import { useState } from 'react';
 import axios from 'axios';
-import Link from 'next/link';
+import Router from 'next/router';
+import Navbar from '../components/Navbar/Navbar';
 
 // importing app level SCSS
 import '../scss/styles.scss';
@@ -12,7 +16,7 @@ const Index = () => {
   const displayLanding = () => {
     axios.get('http://localhost:3000/static/index')
     .then(res => {
-      console.log('{INDEX.JS} RES: ', res)
+      console.log('{LANDING.JS} RES: ', res.data);
       if(res.data == 'USER SIGNED IN'){
         setCurrentUser(true);
       } else {
@@ -20,19 +24,19 @@ const Index = () => {
       }
     });
     // return <Landing currentUser />
-    if(currentUser){
+    // if(currentUser){
       return (
         <section>
           <h1>HangTrainer</h1>
-          <img src='/static/BoulderLogo.png' />
-          <h2>Current User: {currentUser.toString()}</h2>
           <Navbar />
-          <p>Welcome to HangTrainer, Sign up and start tracking your Hangs!</p>
-          </section>
-          );
-    } else {
-      window.location('/');
-    }
+          <p>Welcome to HangTrainer, create your first workout and start Hanging!</p>
+          <h2>Current User: {currentUser.toString()}</h2>
+        </section>
+      );
+    // } else {
+    //   // reroute to signin if there is no user
+    //   // window.location.replace('/landing')
+    // }
   }
 
   return (

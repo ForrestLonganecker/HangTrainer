@@ -33,7 +33,7 @@ const SignUp = () => {
       // routes the client side back to /index page
       console.log('{SIGNUP PAGE} RES.DATA(req.user): ', res.data);
       if(res.status == 200){
-        window.location = '/';
+        window.location = '/landing';
       } else {
         console.log('{SIGNUP PAGE} ERROR WHEN CREATING USER: ', res.status)
       }
@@ -46,10 +46,11 @@ const SignUp = () => {
   
   return (
     <section>
-      <h1>Sign up</h1>
-      <Navbar />
-      <p>Sign up to start recording your hangs!</p>
-      {/* action/method need to be defined as fn above */}
+      <h1>HangTrainer</h1>
+      <img src='/static/BoulderLogo.png' />
+      <h2>Sign up</h2>
+      <p>Sign up and start keeping track of progress!</p>
+
       <form onSubmit={handleSignUp} htmlFor="user sign up form">
         <section>
           <label htmlFor="email entry">Email</label>
@@ -70,6 +71,7 @@ const SignUp = () => {
   
         <input type="submit" value="Sign up" />
       </form>
+      <a href="/">Sign in</a>
     </section>
   )
 }
