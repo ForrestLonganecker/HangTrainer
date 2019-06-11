@@ -2,7 +2,7 @@
   "name": "hang-trainer",
   "version": "1.0.0",
   "description": "Hangboard training app",
-  "main": "src/server.js",
+  "main": "src/server/index.js",
   "scripts": {
     "test": "export NODE_ENV=test && jasmine",
     "dev": "nodemon server/index.js",
