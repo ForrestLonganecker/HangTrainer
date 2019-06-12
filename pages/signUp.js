@@ -1,10 +1,6 @@
-import Navbar from '../components/Navbar/Navbar';
 import axios from 'axios';
 import { useState } from 'react';
-import authHelper from '../server/auth/helpers';
-
-// https://github.com/jimmylee/next-postgres/blob/3206c567e874c0438202fb84fab0f45809659f7c/components/CommentPreview.js#L45
-
+// import authHelper from '../server/auth/helpers';
 
 const SignUp = () => {
   // Set initial state of input fields

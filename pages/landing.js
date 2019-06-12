@@ -3,7 +3,6 @@
 
 import { useState } from 'react';
 import axios from 'axios';
-import Router from 'next/router';
 import Navbar from '../components/Navbar/Navbar';
 
 // importing app level SCSS

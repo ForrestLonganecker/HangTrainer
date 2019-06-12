@@ -1,10 +1,10 @@
 const request = require('request');
 const server = require('../../server/index');
-const base = 'http://localhost:3000/workouts';
+const base = 'http://localhost:3000/';
 
-describe('routes : workouts', () => {
+describe('routes : ', () => {
 
-  describe('GET /workouts', () => {
+  describe('GET /', () => {
     it('should return status code 200, and contain "HangTrainer"', (done) => {
       request.get(base, (err, res, body) => {
         console.log(res);

@@ -46,7 +46,7 @@ class Navbar extends Component {
         <mark className="badge">Hang on!</mark>
         <section>
           <Link href="/">
-            <a title="HangTrainer Home"><img src="/static/BoulderLogo.png" /></a>
+            <a className="logo-icon" title="HangTrainer Home"><img src="/static/BoulderLogo.png" /></a>
           </Link>
 {/* 
            <Link href="/about">
@@ -60,10 +60,10 @@ class Navbar extends Component {
     </Link>
   */}
           <Link href="/workouts">
-            <a title="Public Workouts">Workouts</a>
+            <a className="workouts-icon" title="Public Workouts">Workouts</a>
           </Link>
           <Link href="/signOut">
-            <a title="Sign in" onClick={this.handleSignOut}>Sign out</a>
+            <a className="user-settings-icon" title="Sign in" onClick={this.handleSignOut}>Sign out</a>
           </Link>
         </section>
         <style jsx>{`
