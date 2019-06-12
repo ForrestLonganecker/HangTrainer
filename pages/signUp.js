@@ -16,28 +16,33 @@ const SignUp = () => {
 
     let data = {
       email: email,
-      // password: hashedPassword,
       password: password,
+      // password: hashedPassword,
     }
 
     // console.log(data);
 
     // console.log(axios.post('/users/create', data ));
 
-    axios.post('/users/create', data )
-    .then((res) => {
-      // routes the client side back to /index page
-      console.log('{SIGNUP PAGE} RES.DATA(req.user): ', res.data);
-      if(res.status == 200){
-        window.location = '/landing';
-      } else {
-        console.log('{SIGNUP PAGE} ERROR WHEN CREATING USER: ', res.status)
-      }
-    })
-    // .catch((err) => {
-    //   console.log('{SIGNUP PAGE} ERR: ', err);
-    //   window.location = '/signUp';
-    // });
+    console.log(password, passwordConf);
+    if(password === passwordConf) {
+      axios.post('/users/create', data )
+      .then((res) => {
+        // routes the client side back to /index page
+        console.log('{SIGNUP PAGE} RES.DATA(req.user): ', res.data);
+        if(res.status == 200){
+          window.location = '/landing';
+        } else {
+          console.log('{SIGNUP PAGE} ERROR WHEN CREATING USER: ', res.status)
+        }
+      })
+      .catch((err) => {
+        console.log('{SIGNUP PAGE} ERR: ', err);
+        window.location = '/signUp';
+      });
+    } else {
+      console.log('PASSWORD/PASSWORDCONF DO NOT MATCH');
+    }
   }
   
   return (
