@@ -18,7 +18,7 @@ module.exports = {
         console.log('{USER CONTROLLER CREATE 3} IF ERR: ', err);
         // need to find a way to pass this to the front end
         // req.flash('error', err);
-
+        err.statusCode = 400; 
         res.send(err);
       } else {
         console.log('{USER CONTROLLER CREATE 4} ELSE AUTH: ', req.body);

@@ -7,6 +7,7 @@ const SignUp = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [passwordConf, setPasswordConf] = useState('');
+  const [error, setError] = useState('');
 
   const handleSignUp = (e) => {
     // prevents this script from running automatically, now will run only upon call
@@ -30,10 +31,12 @@ const SignUp = () => {
       .then((res) => {
         // routes the client side back to /index page
         console.log('{SIGNUP PAGE} RES.DATA(req.user): ', res.data);
-        if(res.status == 200){
-          window.location = '/landing';
-        } else {
+        if(res.data.statusCode == 400){
           console.log('{SIGNUP PAGE} ERROR WHEN CREATING USER: ', res.status)
+          setError('Error with email address, please try again or use a different email');
+          handleDisplayError();
+        } else {
+          window.location = '/landing';
         }
       })
       .catch((err) => {
@@ -41,7 +44,25 @@ const SignUp = () => {
         window.location = '/signUp';
       });
     } else {
+      setError('Password does not match password confirmation');
       console.log('PASSWORD/PASSWORDCONF DO NOT MATCH');
+      handleDisplayError();
+    }
+  }
+
+  const handleDisplayError = () => {
+    if(error){
+      return(
+        <section className="error">{error}
+        <style jsx>{`
+        .error {
+          background-color: red;
+          color: white;
+        } 
+        `}</style>
+        </section>
+
+      )
     }
   }
   
@@ -51,6 +72,8 @@ const SignUp = () => {
       <img src='/static/BoulderLogo.png' />
       <h2>Sign up</h2>
       <p>Sign up and start keeping track of progress!</p>
+
+      {handleDisplayError()}
 
       <form onSubmit={handleSignUp} htmlFor="user sign up form">
         <section>
