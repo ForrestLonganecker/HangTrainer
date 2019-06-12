@@ -3,6 +3,7 @@
 
 import { useState } from 'react';
 import axios from 'axios';
+import fetch from 'isomorphic-unfetch'
 import Navbar from '../components/Navbar/Navbar';
 
 // importing app level SCSS
@@ -16,32 +17,47 @@ const Index = () => {
     axios.get('/static/index')
     .then(res => {
       console.log('{LANDING.JS} RES: ', res.data);
-      if(res.data == 'USER SIGNED IN'){
+      if(res.data){
         setCurrentUser(true);
       } else {
         setCurrentUser(false);
       }
-    });
+    })
+    .catch((err) => {
+      setCurrentUser(false);
+      console.log('{LANDING.JS} ERR: ');
+    })
     // return <Landing currentUser />
-    // if(currentUser){
+    if(currentUser){
       return (
         <section>
           <h1>HangTrainer</h1>
           <Navbar />
           <p>Welcome to HangTrainer, create your first workout and start Hanging!</p>
           <h2>Current User: {currentUser.toString()}</h2>
+          </section>
+          );
+    } else {
+      return(
+        <section>
+          <h1>Sorry you must be logged-in to do that</h1>
+          <h2>Current User: {currentUser.toString()}</h2>
+          <a href='/'>Sign in</a>
         </section>
       );
-    // } else {
-    //   // reroute to signin if there is no user
-    //   // window.location.replace('/landing')
-    // }
+    }
   }
 
   return (
     displayLanding()  
   );
 }
+
+// Index.getInitialProps = async ({req}) => {
+//   const res = await fetch('http://localhost:3000/static/index');
+//   const json = await res.json();
+//   return { json }
+// }
 
 
 export default Index;

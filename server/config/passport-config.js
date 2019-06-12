@@ -13,9 +13,9 @@ module.exports = {
     }, (email, password, done) => {
       User.findOne({where: {email}})
       .then((user) => {
-        // console.log('{PASSPORT-CONFIG} USER.EMAIL: ', user.email);
+        console.log('{PASSPORT-CONFIG} USER.EMAIL: ', user.email);
         if(!user || !authHelper.comparePass(password, user.password)) {
-          // console.log('{PASSPORT-CONFIG} !USER OR !AUTHHELPER.COMPAREPASS', !user, !authHelper.comparePass(password, user.password));
+          console.log('{PASSPORT-CONFIG} !USER OR !AUTHHELPER.COMPAREPASS', !user, !authHelper.comparePass(password, user.password));
           // console.log('USER.email: ', user.email);
           // console.log('PASSWORD FROM CLIENT: ', password);
           // console.log('FROM DBUSER.PASSWORD: ', user.password);
@@ -33,9 +33,9 @@ module.exports = {
     });
     
     passport.deserializeUser((id, callback) => {
-      console.log('{PASSPORT-CONFIG} USER DESERIALIZED: ', id);
       User.findByPk(id)
       .then((user) => {
+        console.log('{PASSPORT-CONFIG} USER DESERIALIZED: ', id);
         callback(null, user);
       })
       .catch((err) => {
