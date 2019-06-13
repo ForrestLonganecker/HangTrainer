@@ -45,20 +45,14 @@ class Navbar extends Component {
       <nav>
         <mark className="badge">Hang on!</mark>
         <section>
-          <Link href="/">
+          <Link href="/landing">
             <a className="logo-icon" title="HangTrainer Home"><img src="/static/BoulderLogo.png" /></a>
           </Link>
 {/* 
            <Link href="/about">
             <a title="About HangTrainer">About</a>
-    </Link>
-    <Link href="/signUp">
-      <a title="Sign up">Sign up</a>
-    </Link>
-    <Link href="/signIn">
-      <a title="Sign in">Sign in</a>
-    </Link>
-  */}
+           </Link>
+*/}
           <Link href="/workouts">
             <a className="workouts-icon" title="Public Workouts">Workouts</a>
           </Link>
