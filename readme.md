@@ -41,6 +41,6 @@ Bootstrap the database:
 
 To run:
 
-- `$ npm run dev`
+- `$ nodemon server/index.js`
 
 ---
