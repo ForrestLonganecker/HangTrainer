@@ -1,5 +1,4 @@
 import axios from 'axios';
-import Router from 'next/router';
 import { useState } from 'react';
 // import authHelper from '../server/auth/helpers';
 
@@ -7,6 +6,7 @@ const SignIn = () => {
   // Set initial state of input fields
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
 
   const handleSignIn = (e) => {
     // prevents this script from running automatically, now will run only upon call
@@ -31,12 +31,31 @@ const SignIn = () => {
         window.location = '/landing';
       } else {
         console.log('SOMETHING WENT WTRONG: ', res.statusCode)
+        setError('Incorrect email or password, please try again.');
+        handleDisplayError();
       }
+    })
+    .catch((err) => {
+      setError('Incorrect email or password, please try again.');
+      handleDisplayError();
     });
-    // .catch((err) => {
-    //   console.log('{SIGNUP PAGE} ERR: ', err);
-    //   window.location = '/signIn';
-    // });
+
+  }
+
+  const handleDisplayError = () => {
+    if(error){
+      return(
+        <section className="error">{error}
+        <style jsx>{`
+        .error {
+          background-color: red;
+          color: white;
+        } 
+        `}</style>
+        </section>
+
+      )
+    }
   }
   
   return (
@@ -45,6 +64,8 @@ const SignIn = () => {
       <img src='/static/BoulderLogo.png' />
       <h2>Sign in</h2>
       <p>Welcome back! Keep up the great work!</p>
+
+      {handleDisplayError()}
 
       <form onSubmit={handleSignIn} htmlFor="user sign in form">
         <section>

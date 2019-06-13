@@ -36,7 +36,7 @@ module.exports = {
       if(!req.user){
         // if error(no user logged in)
         console.log('{USERCONTROLLER - SIGN IN} IF !REQ.USER: ', res.statusCode);
-        res.send(res);
+        res.send(req.user);
       } else {
         // if successful pass the cookie to front end
         console.log('{USERCONTROLLER - SIGN IN} AUTHENTION SUCCESS: ', res.statusCode);
