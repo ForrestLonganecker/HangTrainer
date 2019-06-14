@@ -2,8 +2,19 @@ const workoutQueries = require('../db/queries.workouts.js');
 
 module.exports = {
   index(req, res, next){
-    // when I change this to 'send' from 'end' Navbar.js does not register styling
-    return res.send('Work it!! from the express server!')
+    res.send('Work it!! from the express server!')
+  },
+  getMyWorkouts(req, res, next){
+    workoutQueries.getAllOwn(req.user.id, (err, workouts) => {
+      if(err){
+        console.log('{WORKOUT CONTROLLER} if/err: ', err);
+        err.statusCode = 400;
+        res.send(err);
+      } else {
+        console.log('{WORKOUT CONTROLLER} ELSE GET/SUCCESS: ', workouts);
+        res.send(workouts);
+      }
+    });
   },
   create(req, res, next){
 

@@ -44,17 +44,17 @@ describe('routes : workouts', () => {
   });
 
   describe('GET /workouts', () => {
-    fit('should return status code 200, and contain "HangTrainer"', (done) => {
+    fit('should return an object with all current user workouts', (done) => {
       request.get(base, (err, res, body) => {
         console.log(res);
-        // expect(res).toBe(200);
-        expect(body).toContain('HangTrainer');
+        expect(res.data.name).toBe('Easy');
         expect(err).toBeNull();
         console.log(err);
         done();
       });
     });
   });
+
 
   describe('POST /workouts/create', () => {
     it('should create a workout with the assigned user, name, description', (done) => {

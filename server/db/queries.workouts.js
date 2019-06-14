@@ -15,5 +15,16 @@ module.exports = {
       console.log('{QUERIES.WORKOUT} CREATE WORKOUT ERR: ', err);
       callback(err);
     });
+  },
+  getAllOwn(userId, callback){
+    return Workout.findAll({where: {userId: userId}})
+    .then((workouts) => {
+      console.log('{QUERIES.WORKOUT} FOUND WORKOUTS: ', workouts);
+      callback(null, workouts);
+    })
+    .catch((err) => {
+      console.log('{QUERIES.WORKOUT} GETALL WORKOUTS ERROR: ', err);
+      callback(err);
+    });
   }
 }

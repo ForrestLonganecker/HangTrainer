@@ -14,6 +14,7 @@ const Workouts = () => {
   const addToState = (addOn) => {
     setMyWorkouts([...myWorkouts, addOn]);
     handleDisplayWorkouts();
+    displayWorkoutList();
   }
 
   const handleCreateWorkout = (e) => {
@@ -81,17 +82,29 @@ const Workouts = () => {
     setDisplayCreator(!displayCreator);
   }
 
+  const displayWorkoutList = () => {
+    if(myWorkouts){
+
+      let workoutList = myWorkouts.map((workout, key) => {
+        <li key={workout.id}>
+          <h4>{workout.name}</h4>
+          <h3>{workout.notes}</h3>
+        </li>
+      });
+
+      return(
+        <ul>
+          {workoutList}
+        </ul>
+      );
+    };
+  };
+
   const handleDisplayWorkouts = () => {
     if(displayWorkouts){
+      console.log('{DISPLAY-WORKOUTS} IF DISPLAYWORKOUTS: ', myWorkouts)
       return(
-        <section>
-        { myWorkouts.forEach(workout => {
-          <section>
-            <h4>{workout.name}</h4>
-            <h3>{workout.notes}</h3>
-          </section>
-        }) }
-        </section>
+        displayWorkoutList()
       );
     }
   }
@@ -130,10 +143,10 @@ const Workouts = () => {
 
       {handleDisplayError()}
 
-      <button onClick={e => toggleDisplayWorkouts(e)}>{displayWorkoutsButton()}</button>
+      <button onClick={e => toggleDisplayWorkouts(e)} >{ displayWorkoutsButton() }</button>
       {handleDisplayWorkouts()}
 
-      <button onClick={e => toggleDisplayCreator(e)}>{displayCreateButton()}</button>
+      <button onClick={e => toggleDisplayCreator(e)} >{ displayCreateButton() }</button>
       {displayCreateWorkout()}
 
     </div>

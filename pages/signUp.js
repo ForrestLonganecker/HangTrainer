@@ -1,6 +1,5 @@
 import axios from 'axios';
 import { useState } from 'react';
-// import authHelper from '../server/auth/helpers';
 
 const SignUp = () => {
   // Set initial state of input fields
@@ -13,26 +12,15 @@ const SignUp = () => {
     // prevents this script from running automatically, now will run only upon call
     e.preventDefault();
 
-    // let hashedPassword = authHelper.encryptPass(password);
-
     let data = {
       email: email,
       password: password,
-      // password: hashedPassword,
     };
 
-    // console.log(data);
-
-    // console.log(axios.post('/users/create', data ));
-
-    console.log(password, passwordConf);
     if(password === passwordConf) {
       axios.post('/users/create', data )
       .then((res) => {
-        // routes the client side back to /index page
-        console.log('{SIGNUP PAGE} RES.DATA(req.user): ', res.data);
         if(res.data.statusCode == 400){
-          console.log('{SIGNUP PAGE} ERROR WHEN CREATING USER: ', res.status)
           setError('Error with email address, please try again or use a different email');
           handleDisplayError();
         } else {
@@ -40,7 +28,6 @@ const SignUp = () => {
         }
       })
       .catch((err) => {
-        console.log('{SIGNUP PAGE} ERR: ', err);
         window.location = '/signUp';
       });
     } else {
