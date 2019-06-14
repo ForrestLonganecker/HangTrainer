@@ -6,15 +6,14 @@ module.exports = {
     return res.send('Work it!! from the express server!')
   },
   create(req, res, next){
-    console.log('{WORKOUT-CONTROLLER} CREATE REQ.USER: ', req.user);
 
     let newWorkout = {
       name: req.body.name,
+      notes: req.body.notes,
       userId: req.user.id
     };
 
-    // append optional notes
-    if(req.body.notes) newWorkout.notes = req.body.notes;
+    console.log('{WORKOUT-CONTROLLER} CREATE NEWWORKOUT: ', newWorkout);
 
     workoutQueries.create(newWorkout, (err, workout) => {
       if(err){
@@ -23,7 +22,7 @@ module.exports = {
         err.statusCode = 400;
         res.send(err);
       } else {
-        console.log("{WORKOUT-CONTROLLER} CREATE ELSE/WORKOUT: ", workout)
+        console.log("{WORKOUT-CONTROLLER} CREATE ELSE/WORKOUT: ", workout.dataValues)
         res.send(workout);
       }
     })

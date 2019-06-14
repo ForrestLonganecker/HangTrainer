@@ -19,7 +19,7 @@ const SignUp = () => {
       email: email,
       password: password,
       // password: hashedPassword,
-    }
+    };
 
     // console.log(data);
 

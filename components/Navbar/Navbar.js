@@ -1,29 +1,14 @@
-import React, { Component } from 'react';
 import Link from 'next/link';
 import axios from 'axios';
 
 // importing component level SCSS
 import './Navbar.scss';
 
-class Navbar extends Component {
-  constructor(props) {
-    super(props)
-    this.props = props
-  }
+const Navbar = () => {
 
-  displayUser(){
-    if(currentUser){
-      return(currentUser.email);
-    } else {
-      return('Sign up and Hang ON!');
-    }
-  }
-
-    handleSignOut = (e) => {
+    const handleSignOut = (e) => {
     // prevents this script from running automatically, now will run only upon call
     e.preventDefault();
-
-    // console.log(axios.get('/users/signOut'));
 
     axios.get('/users/signOut')
     .then((res) => {
@@ -34,40 +19,34 @@ class Navbar extends Component {
         console.log('SOMETHING WENT WRONG: ', res.status);
       }
     });
-    // .catch((err) => {
-    //   console.log('{SIGNUP PAGE} ERR: ', err);
-    //   // window.location = '/';
-    // });
   }
 
-  render() {
-    return (
-      <nav>
-        <mark className="badge">Hang on!</mark>
-        <section>
-          <Link href="/landing">
-            <a className="logo-icon" title="HangTrainer Home"><img src="/static/BoulderLogo.png" /></a>
-          </Link>
+  return (
+    <nav>
+      <mark className="badge">Hang on!</mark>
+      <section>
+        <Link href="/landing">
+          <a className="logo-icon" title="HangTrainer Home"><img src="/static/BoulderLogo.png" /></a>
+        </Link>
 {/* 
-           <Link href="/about">
-            <a title="About HangTrainer">About</a>
-           </Link>
+          <Link href="/about">
+          <a title="About HangTrainer">About</a>
+          </Link>
 */}
-          <Link href="/workouts">
-            <a className="workouts-icon" title="Public Workouts">Workouts</a>
-          </Link>
-          <Link href="/signOut">
-            <a className="user-settings-icon" title="Sign in" onClick={this.handleSignOut}>Sign out</a>
-          </Link>
-        </section>
-        <style jsx>{`
-        img {
-          max-width: 50px;
-        }
-        `}</style>
-      </nav>
-    )
-  }
+        <Link href="/workouts">
+          <a className="workouts-icon" title="Public Workouts">Workouts</a>
+        </Link>
+        <Link href="/signOut">
+          <a className="user-settings-icon" title="Sign in" onClick={e => handleSignOut(e)}>Sign out</a>
+        </Link>
+      </section>
+      <style jsx>{`
+      img {
+        max-width: 50px;
+      }
+      `}</style>
+    </nav>
+  )
 }
 
 export default Navbar;

@@ -35,8 +35,8 @@ const Index = () => {
           <Navbar />
           <p>Welcome to HangTrainer, create your first workout and start Hanging!</p>
           <h2>Current User: {currentUser.toString()}</h2>
-          </section>
-          );
+        </section>
+      );
     } else {
       return(
         <section>

@@ -1,14 +1,14 @@
 const Workout = require('./models').Workout;
 
 module.exports = {
-  createWorkout(newWorkout, callback){
+  create(newWorkout, callback){
     return Workout.create({
       name: newWorkout.name,
       notes: newWorkout.notes,
       userId: newWorkout.userId
     })
     .then((workout) => {
-      console.log('{QUERIES.WORKOUT} CREATE WORKOUT: ', workout);
+      console.log('{QUERIES.WORKOUT} CREATE WORKOUT: ', workout.dataValues);
       callback(null, workout);
     })
     .catch((err) => {
