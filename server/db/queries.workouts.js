@@ -8,11 +8,11 @@ module.exports = {
       userId: newWorkout.userId
     })
     .then((workout) => {
-      console.log('{QUERIES.WORKOUT} CREATE WORKOUT: ', workout.dataValues);
+      // console.log('{QUERIES.WORKOUT} CREATE WORKOUT: ', workout.dataValues);
       callback(null, workout);
     })
     .catch((err) => {
-      console.log('{QUERIES.WORKOUT} CREATE WORKOUT ERR: ', err);
+      // console.log('{QUERIES.WORKOUT} CREATE WORKOUT ERR: ', err);
       callback(err);
     });
   },

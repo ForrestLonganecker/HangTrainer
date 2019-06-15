@@ -2,24 +2,29 @@ import { useState } from 'react';
 import axios from 'axios';
 import Navbar from '../components/Navbar/Navbar';
 
-const Workouts = () => {
+
+// next: create a getAllOwn call with axios to populate a state variable with,
+// then: map those variable out in a list that is viewable
+
+
+
+
+const Workouts = ({ workouts }) => {
 
   const [error, setError] = useState('');
   const [displayWorkouts, setDisplayWorkouts] = useState(false);
   const [displayCreator, setDisplayCreator] = useState(true);
   const [newWorkoutName, setNewWorkoutName] = useState('');
   const [newWorkoutNotes, setNewWorkoutNotes] = useState('');
-  const [myWorkouts, setMyWorkouts] = useState([]);
+  // const [myWorkouts, setMyWorkouts] = useState([]);
 
-  const addToState = (addOn) => {
-    setMyWorkouts([...myWorkouts, addOn]);
-    handleDisplayWorkouts();
-    displayWorkoutList();
-  }
+  // const addToState = (addOn) => {
+  //   // how to add items to state that is an array, [...stateArray, addItem]
+  //   setMyWorkouts([...myWorkouts, addOn]);
+  // }
 
   const handleCreateWorkout = (e) => {
     e.preventDefault();
-    console.log('{WORKOUT PAGE} NEWWORKOUTINFO', newWorkoutName, newWorkoutNotes);
 
     let data = {
       name: newWorkoutName,
@@ -33,15 +38,13 @@ const Workouts = () => {
           setError('ERROR: something went wrong, please try again');
           handleDisplayError();
         } else {
-          console.log('{WORKOUT PAGE} SUCCESS RES.DATA: ', res.data);
-          console.log('{WORKOUT PAGE} SUCCESS myWorkouts: ', myWorkouts);
-          addToState(res.data);
+          // addToState(res.data);
+          // reset create form fields
           setNewWorkoutName('');
           setNewWorkoutNotes('');
         }
       })
       .catch((err) => {
-        console.log('{WORKOUT PAGE} ERR: ', err);
         setError('ERROR: something went wrong, please try again');
         handleDisplayError();
       })
@@ -83,26 +86,22 @@ const Workouts = () => {
   }
 
   const displayWorkoutList = () => {
-    if(myWorkouts){
+    const workoutList = workouts.map((workout, key) =>
+      <li key={workout.id}>
+        <h4>{workout.name}</h4>
+        <h3>{workout.notes}</h3>
+      </li>
+    );
 
-      let workoutList = myWorkouts.map((workout, key) => {
-        <li key={workout.id}>
-          <h4>{workout.name}</h4>
-          <h3>{workout.notes}</h3>
-        </li>
-      });
-
-      return(
-        <ul>
-          {workoutList}
-        </ul>
-      );
-    };
+    return(
+      <ul>
+        {workoutList}
+      </ul>
+    );
   };
 
   const handleDisplayWorkouts = () => {
     if(displayWorkouts){
-      console.log('{DISPLAY-WORKOUTS} IF DISPLAYWORKOUTS: ', myWorkouts)
       return(
         displayWorkoutList()
       );
@@ -135,6 +134,8 @@ const Workouts = () => {
     }
   }
 
+
+
   return (
     <div>
       <h1>HangTrainer</h1>
@@ -151,6 +152,15 @@ const Workouts = () => {
 
     </div>
   );
+}
+
+Workouts.getInitialProps = async ({req}) => {
+  console.log('{WORKOUTS PAGE} GET INITIAL PROPS REQ:', req)
+  const res = await axios.get('/workouts/myWorkouts');
+  console.log('{WORKOUTS PAGE} GET INITIAL PROPS RES:', res)
+  const data = await res.data;
+  console.log('{WORKOUTS PAGE} GET INITIAL PROPS DATA:', data)
+  return { workouts: data }
 }
 
 export default Workouts;
