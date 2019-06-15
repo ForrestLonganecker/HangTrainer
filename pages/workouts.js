@@ -39,6 +39,7 @@ const Workouts = ({ workouts }) => {
           handleDisplayError();
         } else {
           // addToState(res.data);
+          workouts = workouts.push(res.data);
           // reset create form fields
           setNewWorkoutName('');
           setNewWorkoutNotes('');
