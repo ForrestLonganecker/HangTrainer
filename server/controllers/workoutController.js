@@ -1,10 +1,10 @@
 const workoutQueries = require('../db/queries.workouts.js');
 
 module.exports = {
-  index(req, res, next){
-    res.send('Work it!! from the express server!')
+  index(req, res){
+    res.send('Work it!! from the express server!');
   },
-  getMyWorkouts(req, res, next){
+  getMyWorkouts(req, res){
     workoutQueries.getAllOwn(req.user.id, (err, workouts) => {
       if(err){
         console.log('{WORKOUT CONTROLLER} if/err: ', err);
@@ -16,7 +16,7 @@ module.exports = {
       }
     });
   },
-  create(req, res, next){
+  create(req, res){
 
     let newWorkout = {
       name: req.body.name,
@@ -28,17 +28,17 @@ module.exports = {
 
     workoutQueries.create(newWorkout, (err, workout) => {
       if(err){
-        console.log("{WORKOUT-CONTROLLER} CREATE IF/ERR: ", err)
+        console.log("{WORKOUT-CONTROLLER} CREATE IF/ERR: ", err);
         
         err.statusCode = 400;
         res.send(err);
       } else {
-        console.log("{WORKOUT-CONTROLLER} CREATE ELSE/WORKOUT: ", workout.dataValues)
+        console.log("{WORKOUT-CONTROLLER} CREATE ELSE/WORKOUT: ", workout.dataValues);
         res.send(workout);
       }
-    })
+    });
   },
-  delete(req, res, next){
+  delete(req, res){
     console.log('{WORKOUT CONTROLLER} REQ.BODY', req.body);
     if(req.user){
       const options = {
@@ -59,8 +59,9 @@ module.exports = {
       });
     } else {
       console.log('{WORKOUT CONTROLLER} NO REQ USER');
+      let err;
       err.statusCode = 400;
-      res.send(err)
-    };
+      res.send(err);
+    }
   },
-}
+};

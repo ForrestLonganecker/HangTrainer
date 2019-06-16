@@ -33,7 +33,7 @@ module.exports = {
 
       if(workout.userId === options.userId){
         workout.destroy()
-        .then((res) => {
+        .then(() => {
           callback(null, workout);
         })
         .catch((err) => {
@@ -47,4 +47,4 @@ module.exports = {
       callback(err);
     });
   },
-}
+};

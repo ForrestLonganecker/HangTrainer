@@ -22,9 +22,9 @@ module.exports = {
           return done(null, false, {message: 'Invalid email or password'});
         }
         // this puts user object in req.session.passport.user = {id: ...}
-        console.log('{PASSPORT-CONFIG} USER AUTHENTICATED')
+        console.log('{PASSPORT-CONFIG} USER AUTHENTICATED');
         return done(null, user);
-      })
+      });
     }));
 
     passport.serializeUser((user, callback) => {
@@ -39,8 +39,8 @@ module.exports = {
         callback(null, user);
       })
       .catch((err) => {
-        callback(err, user);
-      })
+        callback(err);
+      });
     });
   }
-}
+};
