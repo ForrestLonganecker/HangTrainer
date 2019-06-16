@@ -32,7 +32,6 @@ const SignUp = () => {
       });
     } else {
       setError('Password does not match password confirmation');
-      console.log('PASSWORD/PASSWORDCONF DO NOT MATCH');
       handleDisplayError();
     }
   }
@@ -58,6 +57,7 @@ const SignUp = () => {
       <h1>HangTrainer</h1>
       <img src='/static/BoulderLogo.png' />
       <h2>Sign up</h2>
+
       <p>Sign up and start keeping track of progress!</p>
 
       {handleDisplayError()}

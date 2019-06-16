@@ -26,5 +26,25 @@ module.exports = {
       console.log('{QUERIES.WORKOUT} GETALL WORKOUTS ERROR: ', err);
       callback(err);
     });
-  }
+  },
+  destroy(options, callback){
+    return Workout.findByPk(options.workoutId)
+    .then((workout) => {
+
+      if(workout.userId === options.userId){
+        workout.destroy()
+        .then((res) => {
+          callback(null, workout);
+        })
+        .catch((err) => {
+          callback(err);
+        });
+      } else {
+        callback(401);
+      }
+    })
+    .catch((err) => {
+      callback(err);
+    });
+  },
 }

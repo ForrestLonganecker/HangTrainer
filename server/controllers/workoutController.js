@@ -38,4 +38,29 @@ module.exports = {
       }
     })
   },
+  delete(req, res, next){
+    console.log('{WORKOUT CONTROLLER} REQ.BODY', req.body);
+    if(req.user){
+      const options = {
+        workoutId: req.body.key,
+        userId: req.user.id
+      };
+      console.log('{WORKOUT CONTROLLER} DELETE OPTIONS', options);
+      
+      workoutQueries.destroy(options, (err, deletedWorkout) => {
+        if(err){
+          console.log('{WORKOUT CONTROLLER} DELETE IF/ERR', err);
+          err.statusCode = 400;
+          res.send(err);
+        } else {
+          console.log('{WORKOUT CONTROLLER} DELETE SUCCESS: ', deletedWorkout);
+          res.send(deletedWorkout);
+        }
+      });
+    } else {
+      console.log('{WORKOUT CONTROLLER} NO REQ USER');
+      err.statusCode = 400;
+      res.send(err)
+    };
+  },
 }

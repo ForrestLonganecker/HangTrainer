@@ -3,8 +3,8 @@ import axios from 'axios';
 import Navbar from '../components/Navbar/Navbar';
 
 
-// next: create a getAllOwn call with axios to populate a state variable with,
-// then: map those variable out in a list that is viewable
+// map workouts to an object in local state, so I can add/remove from specific
+// key rather than iterating through all.
 
 
 
@@ -90,7 +90,8 @@ const Workouts = ({ workouts }) => {
     const workoutList = workouts.map((workout, key) =>
       <li key={workout.id}>
         <h4>{workout.name}</h4>
-        <h3>{workout.notes}</h3>
+        <p>{workout.notes}</p>
+        <button onClick={e => handleDeleteWorkout(e, workout.id)}>Delete</button>
       </li>
     );
 
@@ -100,6 +101,34 @@ const Workouts = ({ workouts }) => {
       </ul>
     );
   };
+
+  const handleDeleteWorkout = (e, key) => {
+    e.preventDefault();
+
+    let data = {
+      key: key
+    };
+
+    axios.post('/workouts/delete', data)
+    .then((res) => {
+      if(res.data.statusCode == 400){
+        setError('Error deleting workout');
+        handleDisplayError();
+      } else {
+        console.log('{WORKOUTS PAGE} DELETE SUCCESS RES.DATA: ', res.data);
+        workouts = workouts.filter(workout => {
+          workout.id != res.data.id;
+        });
+        // need to trigger re-render of workoutlist when successful
+        // similar to create workout
+      }
+    })
+    .catch((err) =>{
+      console.log('{WORKOUT PAGE} CATCH ERR ON DELETE: ', err);
+      setError('Error deleting workout');
+      handleDisplayError();
+    })
+  }
 
   const handleDisplayWorkouts = () => {
     if(displayWorkouts){
