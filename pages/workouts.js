@@ -39,21 +39,24 @@ const Workouts = ({ workouts }) => {
           handleDisplayError();
         } else {
           // addToState(res.data);
+          console.log("{WORKOUTS PAGE} CREATE WORKOUTS SUCCESS WORKOUTS: ", typeof workouts)
           workouts = workouts.push(res.data);
+          console.log("{WORKOUTS PAGE} CREATE WORKOUTS SUCCESS WORKOUTS: ", typeof workouts)
           // reset create form fields
           setNewWorkoutName('');
           setNewWorkoutNotes('');
-        }
+        };
       })
       .catch((err) => {
+        console.log("{WORKOUTS CREATE} CATCH ERR: ", err)
         setError('ERROR: something went wrong, please try again');
         handleDisplayError();
-      })
+      });
     } else {
       setError('ERROR: workout must contain name');
       handleDisplayError();
     }
-  }
+  };
 
   const displayCreateWorkout = () => {
     if(displayCreator){
@@ -115,20 +118,22 @@ const Workouts = ({ workouts }) => {
         setError('Error deleting workout');
         handleDisplayError();
       } else {
-        console.log('{WORKOUTS PAGE} DELETE SUCCESS RES.DATA: ', res.data);
+        console.log('{WORKOUTS PAGE} DELETE SUCCESS RES.DATA.ID: ', res.data.id);
         workouts = workouts.filter(workout => {
+          console.log(workout.id, res.data.id);
           workout.id != res.data.id;
         });
+        console.log('{WORKOUTS PAGE} DELETE SUCCESS WORKOUTS: ', workouts)
         // need to trigger re-render of workoutlist when successful
         // similar to create workout
-      }
+      };
     })
     .catch((err) =>{
       console.log('{WORKOUT PAGE} CATCH ERR ON DELETE: ', err);
       setError('Error deleting workout');
       handleDisplayError();
-    })
-  }
+    });
+  };
 
   const handleDisplayWorkouts = () => {
     if(displayWorkouts){
@@ -136,7 +141,7 @@ const Workouts = ({ workouts }) => {
         displayWorkoutList()
       );
     }
-  }
+  };
 
   const displayWorkoutsButton = () => {
     return displayWorkouts ? 'Collapse workouts' : 'Show workouts';
