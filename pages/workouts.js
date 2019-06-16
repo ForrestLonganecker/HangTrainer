@@ -16,7 +16,7 @@ const Workouts = ({ workouts }) => {
   const [displayCreator, setDisplayCreator] = useState(true);
   const [newWorkoutName, setNewWorkoutName] = useState('');
   const [newWorkoutNotes, setNewWorkoutNotes] = useState('');
-  // const [myWorkouts, setMyWorkouts] = useState([]);
+  const [myWorkouts, setMyWorkouts] = useState(workouts);
 
   // const addToState = (addOn) => {
   //   // how to add items to state that is an array, [...stateArray, addItem]
@@ -39,9 +39,9 @@ const Workouts = ({ workouts }) => {
           handleDisplayError();
         } else {
           // addToState(res.data);
-          console.log("{WORKOUTS PAGE} CREATE WORKOUTS SUCCESS WORKOUTS: ", typeof workouts)
+          console.log("{WORKOUTS PAGE} CREATE WORKOUTS SUCCESS WORKOUTS: ", typeof workouts, workouts)
           workouts = workouts.push(res.data);
-          console.log("{WORKOUTS PAGE} CREATE WORKOUTS SUCCESS WORKOUTS: ", typeof workouts)
+          console.log("{WORKOUTS PAGE} CREATE WORKOUTS SUCCESS WORKOUTS: ", typeof workouts, workouts)
           // reset create form fields
           setNewWorkoutName('');
           setNewWorkoutNotes('');
@@ -90,7 +90,8 @@ const Workouts = ({ workouts }) => {
   }
 
   const displayWorkoutList = () => {
-    const workoutList = workouts.map((workout, key) =>
+    // myWorkouts not causing rerender, can be replaced with 'workouts'
+    const workoutList = myWorkouts.map((workout, key) =>
       <li key={workout.id}>
         <h4>{workout.name}</h4>
         <p>{workout.notes}</p>
@@ -119,10 +120,13 @@ const Workouts = ({ workouts }) => {
         handleDisplayError();
       } else {
         console.log('{WORKOUTS PAGE} DELETE SUCCESS RES.DATA.ID: ', res.data.id);
-        workouts = workouts.filter(workout => {
-          console.log(workout.id, res.data.id);
-          workout.id != res.data.id;
+        let updatedWorkouts = [];
+        workouts.forEach(workout => {
+          console.log(workout.id, res.data.id)
+          if(workout.id != res.data.id) updatedWorkouts.push(workout)
         });
+        console.log('{WORKOUTS PAGE} DELETE SUCCESS UPDATED WORKOUTS: ', updatedWorkouts)
+        workouts = updatedWorkouts;
         console.log('{WORKOUTS PAGE} DELETE SUCCESS WORKOUTS: ', workouts)
         // need to trigger re-render of workoutlist when successful
         // similar to create workout
