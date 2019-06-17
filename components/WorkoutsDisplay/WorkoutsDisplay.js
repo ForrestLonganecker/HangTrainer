@@ -3,7 +3,7 @@ import axios from 'axios';
 
 //  <WorkoutDisplay passError={passError} workouts={workouts} />
 
-const WorkoutsDisplay = ({ passError, workouts }) => {
+const WorkoutsDisplay = ({ passError, workouts, selectEditWorkout }) => {
   const [displayWorkouts, setDisplayWorkouts] = useState(false);
 
   const displayWorkoutList = () => {
@@ -13,6 +13,7 @@ const WorkoutsDisplay = ({ passError, workouts }) => {
         <h4>{workout.name}</h4>
         <p>{workout.notes}</p>
         <button onClick={e => handleDeleteWorkout(e, workout.id)}>Delete</button>
+        <button onClick={e => selectEditWorkout(e, workout)}>Edit</button>
       </li>
     );
 

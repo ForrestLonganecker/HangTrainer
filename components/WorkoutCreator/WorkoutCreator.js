@@ -35,7 +35,7 @@ const WorkoutCreator = ({ passError, workouts }) => {
       })
       .catch((err) => {
         console.log("{WORKOUTS CREATE} CATCH ERR: ", err);
-        passError('Error while submitting workout');
+        passError('Error while submitting workout create');
       });
     } else {
       passError('Error: workout must contain name');

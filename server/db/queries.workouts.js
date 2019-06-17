@@ -47,4 +47,25 @@ module.exports = {
       callback(err);
     });
   },
+  update(options, callback){
+    return Workout.findByPk(options.workoutId)
+    .then((workout) => {
+      if(workout.userId === options.userId){
+        Workout.update({
+          name: options.updatedName,
+          notes: options.updatedNotes
+        }, 
+          {where: {id: options.workoutId}}
+        )
+        .then((updatedWorkout) => {
+          callback(null, updatedWorkout);
+        })
+        .catch((err) => {
+          callback(err);
+        });
+      } else {
+        callback(401);
+      }
+    });
+  },
 };

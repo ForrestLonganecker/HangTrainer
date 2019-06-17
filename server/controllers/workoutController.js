@@ -64,4 +64,30 @@ module.exports = {
       res.send(err);
     }
   },
+  update(req, res){
+    if(req.user){
+      const options = {
+        userId: req.user.id,
+        workoutId: req.body.workoutId,
+        updatedName: req.body.updatedName,
+        updatedNotes: req.body.updatedNotes,
+        // create update functionality
+      };
+      workoutQueries.update(options, (err, updatedWorkout) => {
+        if(err){
+          console.log('{WORKOUT CONTROLLER} UPDATE IF/ERR: ', err);
+          err.statusCode = 400;
+          res.send(err);
+        } else {
+          console.log('{WORKOUT CONTROLLER} UPDATE ELSE/SUCCESS: ', updatedWorkout);
+          res.send(updatedWorkout);
+        }
+      });
+    } else {
+      console.log('{WORKOUT CONTROLLER} UPDATE NO REQ USER');
+      let err;
+      err.statusCode = 400;
+      res.send(err);
+    }
+  },
 };

@@ -5,12 +5,20 @@ import Navbar from '../components/Navbar/Navbar';
 import ErrorSplash from '../components/ErrorSplash/ErrorSplash';
 import WorkoutsDisplay from '../components/WorkoutsDisplay/WorkoutsDisplay';
 import WorkoutCreator from '../components/WorkoutCreator/WorkoutCreator';
+import WorkoutEditor from '../components/WorkoutEditor/WorkoutEditor';
 
 // map workouts to an object in local state, so I can add/remove from specific
 // key rather than iterating through all.
 
 const Workouts = ({ workouts }) => {
 
+  const [editingWorkout, setEditingWorkout] = useState();
+
+  const selectEditWorkout = (e, selectedWorkout) => {
+    e.preventDefault();
+    
+    setEditingWorkout(selectedWorkout);
+  };
 
   // this will be needed at page level for any page that may display an error
   // will need to pass down to children components:
@@ -46,9 +54,15 @@ const Workouts = ({ workouts }) => {
         workouts={workouts}
       />
 
+      <WorkoutEditor
+        passError={passError}
+        editingWorkout={editingWorkout}
+      />
+
       <WorkoutsDisplay
         passError={passError}
         workouts={workouts}
+        selectEditWorkout={selectEditWorkout}
       />
     </div>
   );
