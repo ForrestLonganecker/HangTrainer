@@ -39,16 +39,16 @@ const Workouts = ({ workouts }) => {
           handleDisplayError();
         } else {
           // addToState(res.data);
-          console.log("{WORKOUTS PAGE} CREATE WORKOUTS SUCCESS WORKOUTS: ", typeof workouts, workouts)
+          console.log("{WORKOUTS PAGE} CREATE WORKOUTS SUCCESS WORKOUTS: ", typeof workouts, workouts);
           workouts = workouts.push(res.data);
-          console.log("{WORKOUTS PAGE} CREATE WORKOUTS SUCCESS WORKOUTS: ", typeof workouts, workouts)
+          console.log("{WORKOUTS PAGE} CREATE WORKOUTS SUCCESS WORKOUTS: ", typeof workouts, workouts);
           // reset create form fields
           setNewWorkoutName('');
           setNewWorkoutNotes('');
-        };
+        }
       })
       .catch((err) => {
-        console.log("{WORKOUTS CREATE} CATCH ERR: ", err)
+        console.log("{WORKOUTS CREATE} CATCH ERR: ", err);
         setError('ERROR: something went wrong, please try again');
         handleDisplayError();
       });
@@ -77,21 +77,21 @@ const Workouts = ({ workouts }) => {
         </section>
       );
     }
-  }
+  };
 
   const displayCreateButton = () => {
     return displayCreator ? 'Close workout creator' : 'Open workout creator';
-  }
+  };
 
   const toggleDisplayCreator = (e) => {
     e.preventDefault();
 
     setDisplayCreator(!displayCreator);
-  }
+  };
 
   const displayWorkoutList = () => {
     // myWorkouts not causing rerender, can be replaced with 'workouts'
-    const workoutList = myWorkouts.map((workout, key) =>
+    const workoutList = myWorkouts.map((workout) =>
       <li key={workout.id}>
         <h4>{workout.name}</h4>
         <p>{workout.notes}</p>
@@ -122,15 +122,15 @@ const Workouts = ({ workouts }) => {
         console.log('{WORKOUTS PAGE} DELETE SUCCESS RES.DATA.ID: ', res.data.id);
         let updatedWorkouts = [];
         workouts.forEach(workout => {
-          console.log(workout.id, res.data.id)
-          if(workout.id != res.data.id) updatedWorkouts.push(workout)
+          console.log(workout.id, res.data.id);
+          if(workout.id != res.data.id) updatedWorkouts.push(workout);
         });
-        console.log('{WORKOUTS PAGE} DELETE SUCCESS UPDATED WORKOUTS: ', updatedWorkouts)
+        console.log('{WORKOUTS PAGE} DELETE SUCCESS UPDATED WORKOUTS: ', updatedWorkouts);
         workouts = updatedWorkouts;
-        console.log('{WORKOUTS PAGE} DELETE SUCCESS WORKOUTS: ', workouts)
+        console.log('{WORKOUTS PAGE} DELETE SUCCESS WORKOUTS: ', workouts);
         // need to trigger re-render of workoutlist when successful
         // similar to create workout
-      };
+      }
     })
     .catch((err) =>{
       console.log('{WORKOUT PAGE} CATCH ERR ON DELETE: ', err);
@@ -149,13 +149,13 @@ const Workouts = ({ workouts }) => {
 
   const displayWorkoutsButton = () => {
     return displayWorkouts ? 'Collapse workouts' : 'Show workouts';
-  }
+  };
 
   const toggleDisplayWorkouts = (e) => {
     e.preventDefault();
 
     setDisplayWorkouts(!displayWorkouts);
-  }
+  };
 
   const handleDisplayError = () => {
     if(error){
@@ -169,9 +169,9 @@ const Workouts = ({ workouts }) => {
         `}</style>
         </section>
 
-      )
+      );
     }
-  }
+  };
 
 
 
@@ -191,15 +191,15 @@ const Workouts = ({ workouts }) => {
 
     </div>
   );
-}
+};
 
 Workouts.getInitialProps = async ({req}) => {
-  console.log('{WORKOUTS PAGE} GET INITIAL PROPS REQ:', req)
+  console.log('{WORKOUTS PAGE} GET INITIAL PROPS REQ:', req);
   const res = await axios.get('/workouts/myWorkouts');
-  console.log('{WORKOUTS PAGE} GET INITIAL PROPS RES:', res)
+  console.log('{WORKOUTS PAGE} GET INITIAL PROPS RES:', res);
   const data = await res.data;
-  console.log('{WORKOUTS PAGE} GET INITIAL PROPS DATA:', data)
-  return { workouts: data }
-}
+  console.log('{WORKOUTS PAGE} GET INITIAL PROPS DATA:', data);
+  return { workouts: data };
+};
 
 export default Workouts;
