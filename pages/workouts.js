@@ -25,6 +25,10 @@ const Workouts = ({ workouts }) => {
   //   setMyWorkouts([...myWorkouts, addOn]);
   // }
 
+  const passError = (newError) => {
+    setError(newError);
+  };
+
   const handleCreateWorkout = (e) => {
     e.preventDefault();
 
@@ -91,42 +95,19 @@ const Workouts = ({ workouts }) => {
     setDisplayCreator(!displayCreator);
   };
 
-  // const handleDisplayError = () => {
-  //   if(error){
-  //     return(
-  //       <section className="error">{error}
-  //       <style jsx>{`
-  //       .error {
-  //         background-color: red;
-  //         color: white;
-  //       } 
-  //       `}</style>
-  //       </section>
-
-  //     );
-  //   }
-  // };
-
-
-
   return (
     <div>
       <h1>HangTrainer</h1>
       <Navbar />
       <h2>Workouts:</h2>
 
-      {/*handleDisplayError()*/}
-
       <ErrorSplash error={error} />
 
       <WorkoutsDisplay
-        displayWorkoutsCallback='Hello There!'
+        passError={passError}
         workouts={workouts}
       />
-{/*
-      <button onClick={e => toggleDisplayWorkouts(e)} >{ displayWorkoutsButton() }</button>
-      {handleDisplayWorkouts()}
-*/}
+
       <button onClick={e => toggleDisplayCreator(e)} >{ displayCreateButton() }</button>
       {displayCreateWorkout()}
 

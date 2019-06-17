@@ -1,5 +1,4 @@
-const ErrorSplash = ({error}) => {
-  // if(error){
+const ErrorSplash = ({ error }) => {
     return(
       <section className="error">
         {error}
@@ -11,7 +10,6 @@ const ErrorSplash = ({error}) => {
         `}</style>
       </section>
     );
-  // }
 };
 
 export default ErrorSplash;

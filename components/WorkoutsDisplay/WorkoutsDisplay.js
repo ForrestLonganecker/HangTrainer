@@ -3,7 +3,7 @@ import axios from 'axios';
 
 //  <WorkoutDisplay displayWorkoutsCallback={displayWorkoutsCallback} workouts={workouts} />
 
-const WorkoutsDisplay = ({ displayWorkoutsCallback, workouts }) => {
+const WorkoutsDisplay = ({ passError, workouts }) => {
   const [displayWorkouts, setDisplayWorkouts] = useState(false);
 
   const displayWorkoutList = () => {
@@ -36,6 +36,7 @@ const WorkoutsDisplay = ({ displayWorkoutsCallback, workouts }) => {
         // need to figure out how I want to make a callback work to update the error 
         // setError('Error deleting workout');
         // handleDisplayError();
+        passError('Error deleting workout');
         console.log('{WORKOUTS PAGE} DELETE ERR RES.DATA: ', res.data);
       } else {
         console.log('{WORKOUTS PAGE} DELETE SUCCESS RES.DATA.ID: ', res.data.id);
@@ -53,6 +54,7 @@ const WorkoutsDisplay = ({ displayWorkoutsCallback, workouts }) => {
     })
     .catch((err) =>{
       console.log('{WORKOUT PAGE} CATCH ERR ON DELETE: ', err);
+      passError('Error deleting workout');
       // need to figure out how I want to make a callback work to update the error 
       // setError('Error deleting workout');
       // handleDisplayError();
@@ -79,7 +81,6 @@ const WorkoutsDisplay = ({ displayWorkoutsCallback, workouts }) => {
 
   return (
     <div>
-    {displayWorkoutsCallback}
     <button onClick={e => toggleDisplayWorkouts(e)} >{ displayButtonText() }</button>
     {handleDisplayWorkouts()}
     </div>
