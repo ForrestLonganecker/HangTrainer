@@ -1,3 +1,5 @@
+// <ErrorSplash error={error} />
+
 const ErrorSplash = ({ error }) => {
     return(
       <section className="error">

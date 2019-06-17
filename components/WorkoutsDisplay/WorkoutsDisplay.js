@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import axios from 'axios';
 
-//  <WorkoutDisplay displayWorkoutsCallback={displayWorkoutsCallback} workouts={workouts} />
+//  <WorkoutDisplay passError={passError} workouts={workouts} />
 
 const WorkoutsDisplay = ({ passError, workouts }) => {
   const [displayWorkouts, setDisplayWorkouts] = useState(false);
@@ -33,11 +33,9 @@ const WorkoutsDisplay = ({ passError, workouts }) => {
     axios.post('/workouts/delete', data)
     .then((res) => {
       if(res.data.statusCode == 400){
-        // need to figure out how I want to make a callback work to update the error 
-        // setError('Error deleting workout');
-        // handleDisplayError();
-        passError('Error deleting workout');
         console.log('{WORKOUTS PAGE} DELETE ERR RES.DATA: ', res.data);
+        // passes error to the /page/workouts
+        passError('Error deleting workout');
       } else {
         console.log('{WORKOUTS PAGE} DELETE SUCCESS RES.DATA.ID: ', res.data.id);
         let updatedWorkouts = [];
@@ -55,9 +53,6 @@ const WorkoutsDisplay = ({ passError, workouts }) => {
     .catch((err) =>{
       console.log('{WORKOUT PAGE} CATCH ERR ON DELETE: ', err);
       passError('Error deleting workout');
-      // need to figure out how I want to make a callback work to update the error 
-      // setError('Error deleting workout');
-      // handleDisplayError();
     });
   };
 

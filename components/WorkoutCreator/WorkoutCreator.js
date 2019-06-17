@@ -1,46 +1,47 @@
 import { useState } from 'react';
 import axios from 'axios';
 
-const WorkoutCreator = (props) => {
+// <WorkoutCreator passError={passError} workouts={workouts} />
 
+const WorkoutCreator = ({ passError, workouts }) => {
 
+  const [displayCreator, setDisplayCreator] = useState(true);
+  const [newWorkoutName, setNewWorkoutName] = useState('');
+  const [newWorkoutNotes, setNewWorkoutNotes] = useState('');
 
 
   const handleCreateWorkout = (e) => {
     e.preventDefault();
-  
+
     let data = {
       name: newWorkoutName,
       notes: newWorkoutNotes
     };
-  
+
     if(newWorkoutName){
       axios.post('/workouts/create', data)
       .then((res) => {
         if(res.data.statusCode == 400){
-          setError('ERROR: something went wrong, please try again');
-          handleDisplayError();
+          // pass error to /page
+          passError('Error while creating a workout');
         } else {
-          // addToState(res.data);
-          console.log("{WORKOUTS PAGE} CREATE WORKOUTS SUCCESS WORKOUTS: ", typeof workouts)
+          console.log("{WORKOUTS PAGE} CREATE WORKOUTS SUCCESS WORKOUTS: ", typeof workouts, workouts);
           workouts = workouts.push(res.data);
-          console.log("{WORKOUTS PAGE} CREATE WORKOUTS SUCCESS WORKOUTS: ", typeof workouts)
+          console.log("{WORKOUTS PAGE} CREATE WORKOUTS SUCCESS WORKOUTS: ", typeof workouts, workouts);
           // reset create form fields
           setNewWorkoutName('');
           setNewWorkoutNotes('');
-        };
+        }
       })
       .catch((err) => {
-        console.log("{WORKOUTS CREATE} CATCH ERR: ", err)
-        setError('ERROR: something went wrong, please try again');
-        handleDisplayError();
+        console.log("{WORKOUTS CREATE} CATCH ERR: ", err);
+        passError('Error while submitting workout');
       });
     } else {
-      setError('ERROR: workout must contain name');
-      handleDisplayError();
+      passError('Error: workout must contain name');
     }
   };
-  
+
   const displayCreateWorkout = () => {
     if(displayCreator){
       return(
@@ -61,6 +62,23 @@ const WorkoutCreator = (props) => {
       );
     }
   };
+
+  const displayCreateButton = () => {
+    return displayCreator ? 'Close workout creator' : 'Open workout creator';
+  };
+
+  const toggleDisplayCreator = (e) => {
+    e.preventDefault();
+
+    setDisplayCreator(!displayCreator);
+  };
+
+  return(
+    <div>
+      <button onClick={e => toggleDisplayCreator(e)} >{ displayCreateButton() }</button>
+      {displayCreateWorkout()}
+    </div>
+  );
 };
 
 export default WorkoutCreator;
