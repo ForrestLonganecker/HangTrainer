@@ -9,92 +9,29 @@ import WorkoutCreator from '../components/WorkoutCreator/WorkoutCreator';
 // map workouts to an object in local state, so I can add/remove from specific
 // key rather than iterating through all.
 
-
-
-
 const Workouts = ({ workouts }) => {
 
-  // need errorCallback from children components such as displayWorkouts
 
+  // this will be needed at page level for any page that may display an error
+  // will need to pass down to children components:
   const [error, setError] = useState('');
-  // const [displayCreator, setDisplayCreator] = useState(true);
-  // const [newWorkoutName, setNewWorkoutName] = useState('');
-  // const [newWorkoutNotes, setNewWorkoutNotes] = useState('');
-
-  // const addToState = (addOn) => {
-  //   // how to add items to state that is an array, [...stateArray, addItem]
-  //   setMyWorkouts([...myWorkouts, addOn]);
-  // }
-
+  
   const passError = (newError) => {
     setError(newError);
   };
 
-  // const handleCreateWorkout = (e) => {
-  //   e.preventDefault();
+  // const PageComponent = ... return(
+  // <ChildComponent passError={passError} /> )
 
-  //   let data = {
-  //     name: newWorkoutName,
-  //     notes: newWorkoutNotes
-  //   };
+  // called in ChildComponent:
+  // const ChildComponent = ({ passError }) => {  
+  // passError('error string goes here') };
 
-  //   if(newWorkoutName){
-  //     axios.post('/workouts/create', data)
-  //     .then((res) => {
-  //       if(res.data.statusCode == 400){
-  //         setError('ERROR: something went wrong, please try again');
-  //         // handleDisplayError();
-  //       } else {
-  //         // addToState(res.data);
-  //         console.log("{WORKOUTS PAGE} CREATE WORKOUTS SUCCESS WORKOUTS: ", typeof workouts, workouts);
-  //         workouts = workouts.push(res.data);
-  //         console.log("{WORKOUTS PAGE} CREATE WORKOUTS SUCCESS WORKOUTS: ", typeof workouts, workouts);
-  //         // reset create form fields
-  //         setNewWorkoutName('');
-  //         setNewWorkoutNotes('');
-  //       }
-  //     })
-  //     .catch((err) => {
-  //       console.log("{WORKOUTS CREATE} CATCH ERR: ", err);
-  //       setError('ERROR: something went wrong, please try again');
-  //       // handleDisplayError();
-  //     });
-  //   } else {
-  //     setError('ERROR: workout must contain name');
-  //     // handleDisplayError();
-  //   }
-  // };
+  // how to add items to state that is an array, [...stateArray, addItem]
+  // const addToState = (addOn) => {
+  //   setMyWorkouts([...myWorkouts, addOn]);
+  // }
 
-  // const displayCreateWorkout = () => {
-  //   if(displayCreator){
-  //     return(
-  //       <section>
-  //         <label>Create a new workout</label>
-  //         <form onSubmit={handleCreateWorkout} htmlFor="create workout form">
-  //           <section>
-  //             <label htmlFor="name">Workout name:</label>
-  //             <input type="text" value={newWorkoutName} onChange={e => setNewWorkoutName(e.target.value)} />
-  //           </section>
-  //           <section>
-  //             <label htmlFor="notes">Workout notes:</label>
-  //             <input type="text" value={newWorkoutNotes} onChange={e => setNewWorkoutNotes(e.target.value)} />
-  //           </section>
-  //           <input type="submit" value="Create workout" />
-  //         </form>
-  //       </section>
-  //     );
-  //   }
-  // };
-
-  // const displayCreateButton = () => {
-  //   return displayCreator ? 'Close workout creator' : 'Open workout creator';
-  // };
-
-  // const toggleDisplayCreator = (e) => {
-  //   e.preventDefault();
-
-  //   setDisplayCreator(!displayCreator);
-  // };
 
   return (
     <div>
@@ -113,10 +50,6 @@ const Workouts = ({ workouts }) => {
         passError={passError}
         workouts={workouts}
       />
-{/*
-      <button onClick={e => toggleDisplayCreator(e)} >{ displayCreateButton() }</button>
-      {displayCreateWorkout()}
-*/}
     </div>
   );
 };
