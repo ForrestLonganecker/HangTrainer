@@ -19,7 +19,7 @@ const Navbar = () => {
         console.log('SOMETHING WENT WRONG: ', res.status);
       }
     });
-  }
+  };
 
   return (
     <nav>
@@ -46,7 +46,7 @@ const Navbar = () => {
       }
       `}</style>
     </nav>
-  )
-}
+  );
+};
 
 export default Navbar;
