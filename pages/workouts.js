@@ -2,6 +2,7 @@ import { useState } from 'react';
 import axios from 'axios';
 
 import Navbar from '../components/Navbar/Navbar';
+import ErrorSplash from '../components/ErrorSplash/ErrorSplash';
 import WorkoutsDisplay from '../components/WorkoutsDisplay/WorkoutsDisplay';
 
 // map workouts to an object in local state, so I can add/remove from specific
@@ -11,6 +12,8 @@ import WorkoutsDisplay from '../components/WorkoutsDisplay/WorkoutsDisplay';
 
 
 const Workouts = ({ workouts }) => {
+
+  // need errorCallback from children components such as displayWorkouts
 
   const [error, setError] = useState('');
   const [displayCreator, setDisplayCreator] = useState(true);
@@ -35,7 +38,7 @@ const Workouts = ({ workouts }) => {
       .then((res) => {
         if(res.data.statusCode == 400){
           setError('ERROR: something went wrong, please try again');
-          handleDisplayError();
+          // handleDisplayError();
         } else {
           // addToState(res.data);
           console.log("{WORKOUTS PAGE} CREATE WORKOUTS SUCCESS WORKOUTS: ", typeof workouts, workouts);
@@ -49,11 +52,11 @@ const Workouts = ({ workouts }) => {
       .catch((err) => {
         console.log("{WORKOUTS CREATE} CATCH ERR: ", err);
         setError('ERROR: something went wrong, please try again');
-        handleDisplayError();
+        // handleDisplayError();
       });
     } else {
       setError('ERROR: workout must contain name');
-      handleDisplayError();
+      // handleDisplayError();
     }
   };
 
@@ -88,21 +91,21 @@ const Workouts = ({ workouts }) => {
     setDisplayCreator(!displayCreator);
   };
 
-  const handleDisplayError = () => {
-    if(error){
-      return(
-        <section className="error">{error}
-        <style jsx>{`
-        .error {
-          background-color: red;
-          color: white;
-        } 
-        `}</style>
-        </section>
+  // const handleDisplayError = () => {
+  //   if(error){
+  //     return(
+  //       <section className="error">{error}
+  //       <style jsx>{`
+  //       .error {
+  //         background-color: red;
+  //         color: white;
+  //       } 
+  //       `}</style>
+  //       </section>
 
-      );
-    }
-  };
+  //     );
+  //   }
+  // };
 
 
 
@@ -112,7 +115,9 @@ const Workouts = ({ workouts }) => {
       <Navbar />
       <h2>Workouts:</h2>
 
-      {handleDisplayError()}
+      {/*handleDisplayError()*/}
+
+      <ErrorSplash error={error} />
 
       <WorkoutsDisplay
         displayWorkoutsCallback='Hello There!'
