@@ -13,11 +13,9 @@ import WorkoutsDisplay from '../components/WorkoutsDisplay/WorkoutsDisplay';
 const Workouts = ({ workouts }) => {
 
   const [error, setError] = useState('');
-  const [displayWorkouts, setDisplayWorkouts] = useState(false);
   const [displayCreator, setDisplayCreator] = useState(true);
   const [newWorkoutName, setNewWorkoutName] = useState('');
   const [newWorkoutNotes, setNewWorkoutNotes] = useState('');
-  const [myWorkouts, setMyWorkouts] = useState(workouts);
 
   // const addToState = (addOn) => {
   //   // how to add items to state that is an array, [...stateArray, addItem]
@@ -89,74 +87,6 @@ const Workouts = ({ workouts }) => {
 
     setDisplayCreator(!displayCreator);
   };
-
-  // const displayWorkoutList = () => {
-  //   // myWorkouts not causing rerender, can be replaced with 'workouts'
-  //   const workoutList = myWorkouts.map((workout) =>
-  //     <li key={workout.id}>
-  //       <h4>{workout.name}</h4>
-  //       <p>{workout.notes}</p>
-  //       <button onClick={e => handleDeleteWorkout(e, workout.id)}>Delete</button>
-  //     </li>
-  //   );
-
-  //   return(
-  //     <ul>
-  //       {workoutList}
-  //     </ul>
-  //   );
-  // };
-
-  // const handleDeleteWorkout = (e, key) => {
-  //   e.preventDefault();
-
-  //   let data = {
-  //     key: key
-  //   };
-
-  //   axios.post('/workouts/delete', data)
-  //   .then((res) => {
-  //     if(res.data.statusCode == 400){
-  //       setError('Error deleting workout');
-  //       handleDisplayError();
-  //     } else {
-  //       console.log('{WORKOUTS PAGE} DELETE SUCCESS RES.DATA.ID: ', res.data.id);
-  //       let updatedWorkouts = [];
-  //       workouts.forEach(workout => {
-  //         console.log(workout.id, res.data.id);
-  //         if(workout.id != res.data.id) updatedWorkouts.push(workout);
-  //       });
-  //       console.log('{WORKOUTS PAGE} DELETE SUCCESS UPDATED WORKOUTS: ', updatedWorkouts);
-  //       workouts = updatedWorkouts;
-  //       console.log('{WORKOUTS PAGE} DELETE SUCCESS WORKOUTS: ', workouts);
-  //       // need to trigger re-render of workoutlist when successful
-  //       // similar to create workout
-  //     }
-  //   })
-  //   .catch((err) =>{
-  //     console.log('{WORKOUT PAGE} CATCH ERR ON DELETE: ', err);
-  //     setError('Error deleting workout');
-  //     handleDisplayError();
-  //   });
-  // };
-
-  // const handleDisplayWorkouts = () => {
-  //   if(displayWorkouts){
-  //     return(
-  //       displayWorkoutList()
-  //     );
-  //   }
-  // };
-
-  // const displayWorkoutsButton = () => {
-  //   return displayWorkouts ? 'Collapse workouts' : 'Show workouts';
-  // };
-
-  // const toggleDisplayWorkouts = (e) => {
-  //   e.preventDefault();
-
-  //   setDisplayWorkouts(!displayWorkouts);
-  // };
 
   const handleDisplayError = () => {
     if(error){
