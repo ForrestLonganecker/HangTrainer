@@ -47,7 +47,8 @@ const WorkoutEditor = ({ editingWorkout, setEditingWorkout, passError }) => {
   const displayEditWorkout = (e, editingWorkout) => {
     
     if(editingWorkout){
-      e.preventDefault();
+      console.log('{EDITOR} EDITINGWORKOUT: ', editingWorkout);
+      // e.preventDefault();
 
       setEditName(editingWorkout.name);
       setEditNotes(editingWorkout.notes);
@@ -57,7 +58,7 @@ const WorkoutEditor = ({ editingWorkout, setEditingWorkout, passError }) => {
         <form onSubmit={handleUpdate} htmlFor="Update workout form">
           <h4>Edit: {currentWorkoutName}</h4>
           <input type="text" onChange={e => setEditName(e.target.value)} value={editingWorkout.name} />
-          <input type="text" onChange={e => setEditNotes(e.target.value)} value={editingWorkout.name} />
+          <input type="text" onChange={e => setEditNotes(e.target.value)} value={editingWorkout.notes} />
           <input type="submit" value="Update workout" />
         </form>
       );

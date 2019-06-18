@@ -7,24 +7,30 @@ const DropdownMenu = ({ setCurrentDisplay }) => {
   const toggleDropdownMenu = (e) => {
     e.preventDefault();
     setDisplayMenu(!displayMenu);
-    console.log('CLICKED', displayMenu);
   };
 
   const menu = () => {
     if(displayMenu){
       return(
-        <ul>
+        <div>
           <button onClick={setCurrentDisplay('create workout')} >Create Workout</button>
           <button onClick={setCurrentDisplay('show workouts')} >Browse Workouts</button>
-        </ul>
+        </div>
       );
+    } else {
+      null;
     }
   };
 
   return(
     <div>
       <div className="dropdownMenuToggle" onClick={toggleDropdownMenu}>Menu icon</div>
-      {menu}
+      {menu()}
+      <style jsx>{`
+        .dropdownMenuToggle {
+          border: solid;
+        }
+      `}</style>
     </div>
   );
 };

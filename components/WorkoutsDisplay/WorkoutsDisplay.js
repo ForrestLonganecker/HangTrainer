@@ -3,8 +3,11 @@ import axios from 'axios';
 
 //  <WorkoutDisplay passError={passError} workouts={workouts} />
 
-const WorkoutsDisplay = ({ passError, workouts, selectEditWorkout }) => {
+const WorkoutsDisplay = ({ passError, workouts, selectEditWorkout, setEditingWorkout, editingWorkout }) => {
   const [displayWorkouts, setDisplayWorkouts] = useState(false);
+
+
+  // add workout editor as child component of workoutdisplay
 
   const displayWorkoutList = () => {
     // myWorkouts not causing rerender, can be replaced with 'workouts'
@@ -13,7 +16,7 @@ const WorkoutsDisplay = ({ passError, workouts, selectEditWorkout }) => {
         <h4>{workout.name}</h4>
         <p>{workout.notes}</p>
         <button onClick={e => handleDeleteWorkout(e, workout.id)}>Delete</button>
-        <button onClick={e => selectEditWorkout(e, workout)}>Edit</button>
+        <button onClick={() => setEditingWorkout(editingWorkout => { console.log('CLIKED'); return {...editingWorkout, ...workout}; }) /*e => selectEditWorkout(e, workout)*/}>Edit</button>
       </li>
     );
 

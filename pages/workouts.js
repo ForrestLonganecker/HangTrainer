@@ -16,16 +16,16 @@ const Workouts = ({ workouts }) => {
   const [currentDisplay, setCurrentDisplay] = useState('workout creator');
   const [editingWorkout, setEditingWorkout] = useState({});
 
-  const selectEditWorkout = (e, selectedWorkout) => {
-    e.preventDefault();
-    console.log('{SELECT EDIT WORKOUOT} BUTTON PRESSED: ', selectedWorkout);
-    // how to map a new object with useState
-    setEditingWorkout(editingWorkout => {
-      return {...editingWorkout, ...selectedWorkout};
-    });
-    // Comes back with expected value after the second button press
-    console.log('{EDITING WORKOUT} AFTER BUTTON PRESS: ', editingWorkout);
-  };
+  // const selectEditWorkout = (e, selectedWorkout) => {
+  //   e.preventDefault();
+  //   console.log('{SELECT EDIT WORKOUOT} BUTTON PRESSED: ', selectedWorkout);
+  //   // how to map a new object with useState
+  //   setEditingWorkout(editingWorkout => {
+  //     return {...editingWorkout, ...selectedWorkout};
+  //   });
+  //   // Comes back with expected value after the second button press
+  //   console.log('{EDITING WORKOUT} AFTER BUTTON PRESS: ', editingWorkout);
+  // };
 
   // this will be needed at page level for any page that may display an error
   // will need to pass down to children components:
@@ -54,7 +54,9 @@ const Workouts = ({ workouts }) => {
       <Navbar />
       <h2>Workouts:</h2>
 
-      <DropdownMenu />
+      <DropdownMenu 
+        setCurrentDisplay={setCurrentDisplay}
+      />
     
       <ErrorSplash error={error} />
 
@@ -66,13 +68,13 @@ const Workouts = ({ workouts }) => {
       <WorkoutEditor
         passError={passError}
         editingWorkout={editingWorkout}
-        selectEditWorkout={selectEditWorkout}
       />
 
       <WorkoutsDisplay
         passError={passError}
         workouts={workouts}
-        selectEditWorkout={selectEditWorkout}
+        setEditingWorkout={setEditingWorkout}
+        editingWorkout={editingWorkout}
       />
     </div>
   );
