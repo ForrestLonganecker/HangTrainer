@@ -12,12 +12,23 @@ import WorkoutEditor from '../components/WorkoutEditor/WorkoutEditor';
 
 const Workouts = ({ workouts }) => {
 
-  const [editingWorkout, setEditingWorkout] = useState();
+  const [editingWorkout, setEditingWorkout] = useState({
+    id: 0,
+    name: '',
+    notes: '',
+    userId: 0,
+    createdAt: '',
+    updatedAt: ''
+  });
 
   const selectEditWorkout = (e, selectedWorkout) => {
     e.preventDefault();
-    
-    setEditingWorkout(selectedWorkout);
+    console.log('{SELECT EDIT WORKOUOT} BUTTON PRESSED: ', selectedWorkout);
+    setEditingWorkout(editingWorkout => {
+      return {... editingWorkout, ...selectedWorkout};
+    });
+    // Comes back with expected value after the second button press
+    console.log('{EDITING WORKOUT} AFTER BUTTON PRESS: ', editingWorkout);
   };
 
   // this will be needed at page level for any page that may display an error
