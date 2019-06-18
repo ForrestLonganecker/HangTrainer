@@ -3,7 +3,7 @@ import { useState } from 'react';
 
 // <WorkoutEditor editingWorkout={editingWorkout} passError={passError} />
 
-const WorkoutEditor = ({ editingWorkout, passError }) => {
+const WorkoutEditor = ({ editingWorkout, setEditingWorkout, passError }) => {
 
   const [editName, setEditName] = useState('');
   const [editNotes, setEditNotes] = useState('');
@@ -30,6 +30,7 @@ const WorkoutEditor = ({ editingWorkout, passError }) => {
         } else {
           console.log('{WORKOUTS UPDATE} ELSE SUCCESS: ', res.data);
           // need to figure out how to cause rerender of workoutDisplay component
+          setEditingWorkout({});
           setEditName('');
           setEditNotes('');
         }

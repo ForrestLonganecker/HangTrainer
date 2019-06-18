@@ -2,6 +2,7 @@ import { useState } from 'react';
 import axios from 'axios';
 
 import Navbar from '../components/Navbar/Navbar';
+import DropdownMenu from '../components/DropdownMenu/DropdownMenu';
 import ErrorSplash from '../components/ErrorSplash/ErrorSplash';
 import WorkoutsDisplay from '../components/WorkoutsDisplay/WorkoutsDisplay';
 import WorkoutCreator from '../components/WorkoutCreator/WorkoutCreator';
@@ -12,20 +13,15 @@ import WorkoutEditor from '../components/WorkoutEditor/WorkoutEditor';
 
 const Workouts = ({ workouts }) => {
 
-  const [editingWorkout, setEditingWorkout] = useState({
-    id: 0,
-    name: '',
-    notes: '',
-    userId: 0,
-    createdAt: '',
-    updatedAt: ''
-  });
+  const [currentDisplay, setCurrentDisplay] = useState('workout creator');
+  const [editingWorkout, setEditingWorkout] = useState({});
 
   const selectEditWorkout = (e, selectedWorkout) => {
     e.preventDefault();
     console.log('{SELECT EDIT WORKOUOT} BUTTON PRESSED: ', selectedWorkout);
+    // how to map a new object with useState
     setEditingWorkout(editingWorkout => {
-      return {... editingWorkout, ...selectedWorkout};
+      return {...editingWorkout, ...selectedWorkout};
     });
     // Comes back with expected value after the second button press
     console.log('{EDITING WORKOUT} AFTER BUTTON PRESS: ', editingWorkout);
@@ -58,6 +54,8 @@ const Workouts = ({ workouts }) => {
       <Navbar />
       <h2>Workouts:</h2>
 
+      <DropdownMenu />
+    
       <ErrorSplash error={error} />
 
       <WorkoutCreator 
@@ -68,6 +66,7 @@ const Workouts = ({ workouts }) => {
       <WorkoutEditor
         passError={passError}
         editingWorkout={editingWorkout}
+        selectEditWorkout={selectEditWorkout}
       />
 
       <WorkoutsDisplay
