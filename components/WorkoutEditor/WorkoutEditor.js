@@ -3,7 +3,7 @@ import { useState } from 'react';
 
 // <WorkoutEditor editingWorkout={editingWorkout} passError={passError} />
 
-const WorkoutEditor = ({ editingWorkout, setEditingWorkout, passError, workouts }) => {
+const WorkoutEditor = ({ editingWorkout, setEditingWorkout, passError }) => {
 
   const [editName, setEditName] = useState('');
   const [editNotes, setEditNotes] = useState('');
@@ -16,10 +16,12 @@ const WorkoutEditor = ({ editingWorkout, setEditingWorkout, passError, workouts 
     }
 
     let data = {
-      name: editName,
-      notes: editNotes,
+      updatedName: editName,
+      updatedNotes: editNotes,
       workoutId: editingWorkout.id
     };
+
+    console.log('{WORKOUT EDITOR} EDIT SUBMIT DATA: ', data);
 
     if(editName){
       axios.post('/workouts/update', data)
