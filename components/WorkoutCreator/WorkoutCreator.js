@@ -5,7 +5,7 @@ import axios from 'axios';
 
 const WorkoutCreator = ({ passError, workouts }) => {
 
-  const [displayCreator, setDisplayCreator] = useState(true);
+  // const [displayCreator, setDisplayCreator] = useState(true);
   const [newWorkoutName, setNewWorkoutName] = useState('');
   const [newWorkoutNotes, setNewWorkoutNotes] = useState('');
 
@@ -43,7 +43,7 @@ const WorkoutCreator = ({ passError, workouts }) => {
   };
 
   const displayCreateWorkout = () => {
-    if(displayCreator){
+    // if(displayCreator){
       return(
         <section>
           <label>Create a new workout</label>
@@ -60,22 +60,22 @@ const WorkoutCreator = ({ passError, workouts }) => {
           </form>
         </section>
       );
-    }
+    // }
   };
 
-  const displayCreateButton = () => {
-    return displayCreator ? 'Close workout creator' : 'Open workout creator';
-  };
+  // const displayCreateButton = () => {
+  //   return displayCreator ? 'Close workout creator' : 'Open workout creator';
+  // };
 
-  const toggleDisplayCreator = (e) => {
-    e.preventDefault();
+  // const toggleDisplayCreator = (e) => {
+  //   e.preventDefault();
 
-    setDisplayCreator(!displayCreator);
-  };
+  //   setDisplayCreator(!displayCreator);
+  // };
 
+  // <button onClick={e => toggleDisplayCreator(e)} >{ displayCreateButton() }</button>
   return(
     <div>
-      <button onClick={e => toggleDisplayCreator(e)} >{ displayCreateButton() }</button>
       {displayCreateWorkout()}
     </div>
   );

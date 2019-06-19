@@ -13,7 +13,7 @@ import WorkoutEditor from '../components/WorkoutEditor/WorkoutEditor';
 
 const Workouts = ({ workouts }) => {
 
-  const [currentDisplay, setCurrentDisplay] = useState('workout creator');
+  const [currentDisplay, setCurrentDisplay] = useState('landing');
   const [editingWorkout, setEditingWorkout] = useState({});
 
   // const selectEditWorkout = (e, selectedWorkout) => {
@@ -47,6 +47,48 @@ const Workouts = ({ workouts }) => {
   //   setMyWorkouts([...myWorkouts, addOn]);
   // }
 
+  const handleDisplay = () => {
+    
+    if(currentDisplay === 'landing'){
+      return(
+        <div className="workout-landing">
+          <button onClick={() => setCurrentDisplay('create workout')} >Create Workout</button>
+          <button onClick={() => setCurrentDisplay('show workouts')} >Browse Workouts</button>
+          <style jsx>{`
+            .workout-landing {
+              display: flex;
+              flex-direction: column;
+              margin-top: 10px;
+            },
+            .workout-landing > button {
+              margin-bottom: 10px;
+            }
+          `}</style>
+        </div>
+      );
+    }
+
+    if(currentDisplay === 'create workout'){
+      return(
+        <WorkoutCreator
+          passError={passError}
+          workouts={workouts}
+        />
+      );
+    }
+
+    if(currentDisplay === 'show workouts'){
+      return(
+        <WorkoutsDisplay
+          passError={passError}
+          workouts={workouts}
+          setEditingWorkout={setEditingWorkout}
+          editingWorkout={editingWorkout}
+        />
+      );
+    }
+  };
+
 
   return (
     <div>
@@ -60,22 +102,8 @@ const Workouts = ({ workouts }) => {
     
       <ErrorSplash error={error} />
 
-      <WorkoutCreator 
-        passError={passError}
-        workouts={workouts}
-      />
+      {handleDisplay()}
 
-      <WorkoutEditor
-        passError={passError}
-        editingWorkout={editingWorkout}
-      />
-
-      <WorkoutsDisplay
-        passError={passError}
-        workouts={workouts}
-        setEditingWorkout={setEditingWorkout}
-        editingWorkout={editingWorkout}
-      />
     </div>
   );
 };
@@ -90,3 +118,8 @@ Workouts.getInitialProps = async ({req}) => {
 };
 
 export default Workouts;
+
+// <WorkoutEditor
+// passError={passError}
+// editingWorkout={editingWorkout}
+// />

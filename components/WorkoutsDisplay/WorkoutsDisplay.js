@@ -3,13 +3,11 @@ import axios from 'axios';
 
 //  <WorkoutDisplay passError={passError} workouts={workouts} />
 
-const WorkoutsDisplay = ({ passError, workouts, selectEditWorkout, setEditingWorkout, editingWorkout }) => {
-  const [displayWorkouts, setDisplayWorkouts] = useState(false);
-
+const WorkoutsDisplay = ({ passError, workouts }) => {
 
   // add workout editor as child component of workoutdisplay
 
-  const displayWorkoutList = () => {
+  const handleDisplay = () => {
     // myWorkouts not causing rerender, can be replaced with 'workouts'
     const workoutList = workouts.map((workout) =>
       <li key={workout.id}>
@@ -60,28 +58,9 @@ const WorkoutsDisplay = ({ passError, workouts, selectEditWorkout, setEditingWor
     });
   };
 
-  const handleDisplayWorkouts = () => {
-    if(displayWorkouts){
-      return(
-        displayWorkoutList()
-      );
-    }
-  };
-
-  const displayButtonText = () => {
-    return displayWorkouts ? 'Collapse workouts' : 'Show workouts';
-  };
-
-  const toggleDisplayWorkouts = (e) => {
-    e.preventDefault();
-
-    setDisplayWorkouts(!displayWorkouts);
-  };
-
   return (
     <div>
-    <button onClick={e => toggleDisplayWorkouts(e)} >{ displayButtonText() }</button>
-    {handleDisplayWorkouts()}
+    {handleDisplay()}
     </div>
   );
 };

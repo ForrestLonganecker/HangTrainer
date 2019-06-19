@@ -69,7 +69,7 @@ const SignIn = ({ setCurrentDisplay }) => {
 
       {handleDisplayError()}
 
-      <form onSubmit={handleSignIn} htmlFor="user sign in form">
+      <form className="sign-in-form" onSubmit={handleSignIn} htmlFor="user sign in form">
         <input onChange={e => setEmail(e.target.value)} placeholder="Enter email address" />
         <input type="password" onChange={e => setPassword(e.target.value)} placeholder="Enter password" />
         <button type="submit">Log in</button>

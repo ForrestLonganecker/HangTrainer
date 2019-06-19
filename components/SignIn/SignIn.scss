@@ -20,21 +20,21 @@
   width: 100%;
 }
 
-form {
+.sign-in-form {
   display: flex;
   flex-direction: column;
   max-width: 80%;
   margin: auto;
 }
 
-form > input {
+.sign-in-form > input {
  border: solid;
  margin-bottom: 20px;
  height: 30px;
  background: white;
 }
 
-form > button {
+.sign-in-form > button {
   height: 30px;
   border: solid;
   margin: auto;

@@ -13,8 +13,8 @@ const DropdownMenu = ({ setCurrentDisplay }) => {
     if(displayMenu){
       return(
         <div>
-          <button onClick={setCurrentDisplay('create workout')} >Create Workout</button>
-          <button onClick={setCurrentDisplay('show workouts')} >Browse Workouts</button>
+          <button onClick={() => setCurrentDisplay('create workout')} >Create Workout</button>
+          <button onClick={() => setCurrentDisplay('show workouts')} >Browse Workouts</button>
         </div>
       );
     } else {
