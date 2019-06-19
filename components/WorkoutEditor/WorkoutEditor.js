@@ -8,8 +8,9 @@ const WorkoutEditor = ({ editingWorkout, setEditingWorkout, passError, workouts 
   const [editName, setEditName] = useState('');
   const [editNotes, setEditNotes] = useState('');
 
-  const handleUpdate = () => {
-
+  const handleUpdate = (e) => {
+    e.preventDefault();
+    
     if(!editName){
       setEditName(editingWorkout.name);
     }
@@ -28,9 +29,9 @@ const WorkoutEditor = ({ editingWorkout, setEditingWorkout, passError, workouts 
         } else {
           console.log('{WORKOUTS UPDATE} ELSE SUCCESS: ', res.data);
           // issue when submitting update on success it crashes front end
-          // setEditingWorkout({});
           setEditName('');
           setEditNotes('');
+          setEditingWorkout({});
         }
       })
       .catch((err) => {

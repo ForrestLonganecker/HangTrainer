@@ -4,6 +4,7 @@
 // <ErrorSplash error={error} />
 
 const ErrorSplash = ({ error }) => {
+  console.log('{ERROR SPLASH}: ', error);
     return(
       <section className="error">
         {error}

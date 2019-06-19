@@ -32,7 +32,7 @@ const WorkoutsDisplay = ({ passError, workouts }) => {
       return(
         <WorkoutEditor
           editingWorkout={editingWorkout}
-          resetEditingWorkout={resetEditingWorkout}
+          setEditingWorkout={setEditingWorkout}
           passError={passError}
           workouts={workouts}
         />

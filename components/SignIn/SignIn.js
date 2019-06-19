@@ -76,7 +76,7 @@ const SignIn = ({ setCurrentDisplay }) => {
       </form>
         
       <div className="links">
-        <input className="display-toggle" onClick={() => setCurrentDisplay('sign up')} value='Sign up' />
+        <input className="display-toggle" onClick={() => setCurrentDisplay('sign up')} defaultValue='Sign up' />
         <a className="forgot-password">Forgot your password?</a>
       </div>
     </div>
