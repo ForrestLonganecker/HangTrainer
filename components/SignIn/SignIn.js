@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { useState } from 'react';
-// import authHelper from '../server/auth/helpers';
+
+import "./SignIn.scss";
 
 const SignIn = ({ setCurrentDisplay }) => {
   // Set initial state of input fields
@@ -12,15 +13,12 @@ const SignIn = ({ setCurrentDisplay }) => {
     // prevents this script from running automatically, now will run only upon call
     e.preventDefault();
 
-    // let hashedPassword = authHelper.encryptPass(password);
 
     let data = {
       email: email,
       password: password,
-      // password: hashedPassword,
     };
 
-    // console.log(axios.post('/users/signIn', data ));
 
     axios.post('/users/signIn', data )
     .then((res) => {
@@ -49,6 +47,8 @@ const SignIn = ({ setCurrentDisplay }) => {
         <section className="error">{error}
         <style jsx>{`
         .error {
+          margin-top: 20px;
+          margin-bottom: 20px;
           background-color: red;
           color: white;
         } 
@@ -60,29 +60,25 @@ const SignIn = ({ setCurrentDisplay }) => {
   };
   
   return (
-    <section>
-      <h1>HangTrainer</h1>
-      <img src='/static/BoulderLogo.png' />
-      <h2>Sign in</h2>
-      <p>Welcome back! Keep up the great work!</p>
+    <div className="signin-up">
+      <h1 className="title">HangTrainer</h1>
+      <div className="logo-div">
+        <img className="logo-image" src='/static/BoulderLogo.png' />
+      </div>
 
       {handleDisplayError()}
 
       <form onSubmit={handleSignIn} htmlFor="user sign in form">
-        <section>
-          <label htmlFor="email entry">Email</label>
-          <input value={email} onChange={e => setEmail(e.target.value)} />
-        </section>
-  
-        <section>
-          <label htmlFor="password entry">Password</label>
-          <input type="password" onChange={e => setPassword(e.target.value)} />
-        </section>
-  
-        <input type="submit" value="Sign in" />
+        <input onChange={e => setEmail(e.target.value)} placeholder="Enter email address" />
+        <input type="password" onChange={e => setPassword(e.target.value)} placeholder="Enter password" />
+        <button type="submit">Log in</button>
       </form>
-      <input className="display-toggle" onClick={() => setCurrentDisplay('sign up')} value='Sign up' />
-    </section>
+        
+      <div className="links">
+        <input className="display-toggle" onClick={() => setCurrentDisplay('sign up')} value='Sign up' />
+        <a className="forgot-password">Forgot your password?</a>
+      </div>
+    </div>
   );
 };
 

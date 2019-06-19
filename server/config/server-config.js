@@ -26,6 +26,6 @@ module.exports = {
       res.locals.currentUser = req.user;
       // console.log('{FROM SERVER-CONFIG 2} RES.LOCALS.CURRENTUSER: ', res.locals.currentUser);
       next();
-    })
+    });
   }
-}
+};

@@ -2,11 +2,7 @@ const userQueries = require('../db/queries.users.js');
 const passport = require('passport');
 
 module.exports = {
-  // I believe this will actually just be handled through the front end via pages and <Link>
-  // signUp(req, res, next){
-  //   res.send('Sign up');
-  // },
-  create(req, res, next){
+  create(req, res){
     console.log('{USER CONTROLLER CREATE 1} REQ.BODY: ', req.body);
     let newUser = {
       email: req.body.email,
@@ -26,9 +22,9 @@ module.exports = {
           // need to find a way to pass this to the front end
           // req.flash('notice', 'You have successfully signed in!');
           res.send(req.user);
-        })
+        });
       }
-    })
+    });
   },
   signIn(req, res, next){
     console.log('{USER CONTROLLER - SIGN IN} REQ.BODY: ', req.body);

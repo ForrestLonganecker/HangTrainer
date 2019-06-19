@@ -9,11 +9,11 @@ export default class MyDocument extends Document {
       <html>
         <Head>
         </Head>
-        <body>
+        <body className="body">
           <Main />
           <NextScript />
         </body>
       </html>
-    )
+    );
   }
 }
