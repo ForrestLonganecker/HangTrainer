@@ -3,18 +3,16 @@ import { useState } from 'react';
 
 // <WorkoutEditor editingWorkout={editingWorkout} passError={passError} />
 
-const WorkoutEditor = ({ editingWorkout, setEditingWorkout, passError }) => {
+const WorkoutEditor = ({ editingWorkout, setEditingWorkout, passError, workouts }) => {
 
   const [editName, setEditName] = useState('');
   const [editNotes, setEditNotes] = useState('');
 
-  // if(editingWorkout){
-  //   setEditName(editingWorkout.name);
-  //   setEditNotes(editingWorkout.notes);
-  // }
+  const handleUpdate = () => {
 
-  const handleUpdate = (e) => {
-    e.preventDefault();
+    if(!editName){
+      setEditName(editingWorkout.name);
+    }
 
     let data = {
       name: editName,
@@ -29,8 +27,8 @@ const WorkoutEditor = ({ editingWorkout, setEditingWorkout, passError }) => {
           passError('Error while updating workout');
         } else {
           console.log('{WORKOUTS UPDATE} ELSE SUCCESS: ', res.data);
-          // need to figure out how to cause rerender of workoutDisplay component
-          setEditingWorkout({});
+          // issue when submitting update on success it crashes front end
+          // setEditingWorkout({});
           setEditName('');
           setEditNotes('');
         }
@@ -44,29 +42,17 @@ const WorkoutEditor = ({ editingWorkout, setEditingWorkout, passError }) => {
     }
   };
 
-  const displayEditWorkout = (e, editingWorkout) => {
-    
-    if(editingWorkout){
-      console.log('{EDITOR} EDITINGWORKOUT: ', editingWorkout);
-      // e.preventDefault();
+  const displayEditWorkout = () => {
 
-      setEditName(editingWorkout.name);
-      setEditNotes(editingWorkout.notes);
-
-      let currentWorkoutName = editingWorkout.name;
-      return(
-        <form onSubmit={handleUpdate} htmlFor="Update workout form">
-          <h4>Edit: {currentWorkoutName}</h4>
-          <input type="text" onChange={e => setEditName(e.target.value)} value={editingWorkout.name} />
-          <input type="text" onChange={e => setEditNotes(e.target.value)} value={editingWorkout.notes} />
-          <input type="submit" value="Update workout" />
-        </form>
-      );
-    } else {
-      return(
-        <div><style jsx>{`div { display: none; }`}</style></div>
-      );
-    }
+    let currentWorkoutName = editingWorkout.name;
+    return(
+      <form onSubmit={handleUpdate} htmlFor="Update workout form">
+        <h4>Edit: {currentWorkoutName}</h4>
+        <input type="text" onChange={e => setEditName(e.target.value)} defaultValue={editingWorkout.name} />
+        <input type="text" onChange={e => setEditNotes(e.target.value)} defaultValue={editingWorkout.notes} />
+        <input type="submit" value="Update workout" />
+      </form>
+    );
   };
 
   return(

@@ -19,11 +19,11 @@ module.exports = {
   getAllOwn(userId, callback){
     return Workout.findAll({where: {userId: userId}})
     .then((workouts) => {
-      console.log('{QUERIES.WORKOUT} FOUND WORKOUTS: ', workouts);
+      // console.log('{QUERIES.WORKOUT} FOUND WORKOUTS: ', workouts);
       callback(null, workouts);
     })
     .catch((err) => {
-      console.log('{QUERIES.WORKOUT} GETALL WORKOUTS ERROR: ', err);
+      // console.log('{QUERIES.WORKOUT} GETALL WORKOUTS ERROR: ', err);
       callback(err);
     });
   },
@@ -50,6 +50,7 @@ module.exports = {
   update(options, callback){
     return Workout.findByPk(options.workoutId)
     .then((workout) => {
+      console.log('{QUERY WORKOUTS} THEN WORKOUT: ', workout);
       if(workout.userId === options.userId){
         Workout.update({
           name: options.updatedName,
@@ -58,12 +59,15 @@ module.exports = {
           {where: {id: options.workoutId}}
         )
         .then((updatedWorkout) => {
+          console.log('{QUERY WORKOUTS} UPDATED WORKOUT: ', updatedWorkout);
           callback(null, updatedWorkout);
         })
         .catch((err) => {
+          console.log('{QUERY WORKOUTS} ERR WHILE UPDATING WORKOUT: ', err);
           callback(err);
         });
       } else {
+        console.log('{QUERY WORKOUTS} WORKOUT NOT FOUND');
         callback(401);
       }
     });

@@ -1,14 +1,8 @@
-// this page should only be viewable when logged in after signIn/signUp
-// user should be redirected to this page
+// This page should serve as a message board letting users know about new features
 
 import { useState } from 'react';
 import axios from 'axios';
-import fetch from 'isomorphic-unfetch'
 import Navbar from '../components/Navbar/Navbar';
-
-// importing app level SCSS
-import '../scss/styles.scss';
-
 
 const Index = () => {
   const [currentUser, setCurrentUser] = useState(false);
@@ -26,8 +20,8 @@ const Index = () => {
     .catch((err) => {
       setCurrentUser(false);
       console.log('{LANDING.JS} ERR: ');
-    })
-    // return <Landing currentUser />
+    });
+
     if(currentUser){
       return (
         <section>
@@ -46,12 +40,12 @@ const Index = () => {
         </section>
       );
     }
-  }
+  };
 
   return (
     displayLanding()  
   );
-}
+};
 
 // Index.getInitialProps = async ({req}) => {
 //   const res = await fetch('http://localhost:3000/static/index');

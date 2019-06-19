@@ -1,28 +1,51 @@
 import { useState } from 'react';
 import axios from 'axios';
 
+import WorkoutEditor from '../WorkoutEditor/WorkoutEditor';
+
 //  <WorkoutDisplay passError={passError} workouts={workouts} />
 
 const WorkoutsDisplay = ({ passError, workouts }) => {
 
   // add workout editor as child component of workoutdisplay
+  const [editingWorkout, setEditingWorkout] = useState({});
+
+  const resetEditingWorkout = (e) => {
+    e.preventDefault();
+    setEditingWorkout({});
+  };
 
   const handleDisplay = () => {
-    // myWorkouts not causing rerender, can be replaced with 'workouts'
     const workoutList = workouts.map((workout) =>
       <li key={workout.id}>
         <h4>{workout.name}</h4>
         <p>{workout.notes}</p>
         <button onClick={e => handleDeleteWorkout(e, workout.id)}>Delete</button>
-        <button onClick={() => setEditingWorkout(editingWorkout => { console.log('CLIKED'); return {...editingWorkout, ...workout}; }) /*e => selectEditWorkout(e, workout)*/}>Edit</button>
+        <button onClick={() => setEditingWorkout(editingWorkout => { return {...editingWorkout, ...workout}; })}>Edit</button>
       </li>
     );
 
-    return(
-      <ul>
-        {workoutList}
-      </ul>
-    );
+    console.log('{WORKOUTS DISPLAY} HANDLE-DISPLAY EDITINGWORKOUT: ', editingWorkout);
+
+    if(editingWorkout.id){
+      console.log('{WORKOUT DISPLAY} IF EDITING WORKOUT: ', editingWorkout);
+      return(
+        <WorkoutEditor
+          editingWorkout={editingWorkout}
+          resetEditingWorkout={resetEditingWorkout}
+          passError={passError}
+          workouts={workouts}
+        />
+      );
+    }
+    if(!editingWorkout.id){
+      console.log('{WORKOUT DISPLAY} NO EDITING WORKOUT: ', editingWorkout);
+      return(
+        <ul>
+          {workoutList}
+        </ul>
+      );
+    }
   };
 
   const handleDeleteWorkout = (e, key) => {

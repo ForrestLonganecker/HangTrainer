@@ -43,37 +43,24 @@ const WorkoutCreator = ({ passError, workouts }) => {
   };
 
   const displayCreateWorkout = () => {
-    // if(displayCreator){
-      return(
-        <section>
-          <label>Create a new workout</label>
-          <form onSubmit={handleCreateWorkout} htmlFor="create workout form">
-            <section>
-              <label htmlFor="name">Workout name:</label>
-              <input type="text" value={newWorkoutName} onChange={e => setNewWorkoutName(e.target.value)} />
-            </section>
-            <section>
-              <label htmlFor="notes">Workout notes:</label>
-              <input type="text" value={newWorkoutNotes} onChange={e => setNewWorkoutNotes(e.target.value)} />
-            </section>
-            <input type="submit" value="Create workout" />
-          </form>
-        </section>
-      );
-    // }
+    return(
+      <section>
+        <label>Create a new workout</label>
+        <form onSubmit={handleCreateWorkout} htmlFor="create workout form">
+          <section>
+            <label htmlFor="name">Workout name:</label>
+            <input type="text" value={newWorkoutName} onChange={e => setNewWorkoutName(e.target.value)} />
+          </section>
+          <section>
+            <label htmlFor="notes">Workout notes:</label>
+            <input type="text" value={newWorkoutNotes} onChange={e => setNewWorkoutNotes(e.target.value)} />
+          </section>
+          <input type="submit" value="Create workout" />
+        </form>
+      </section>
+    );
   };
 
-  // const displayCreateButton = () => {
-  //   return displayCreator ? 'Close workout creator' : 'Open workout creator';
-  // };
-
-  // const toggleDisplayCreator = (e) => {
-  //   e.preventDefault();
-
-  //   setDisplayCreator(!displayCreator);
-  // };
-
-  // <button onClick={e => toggleDisplayCreator(e)} >{ displayCreateButton() }</button>
   return(
     <div>
       {displayCreateWorkout()}
