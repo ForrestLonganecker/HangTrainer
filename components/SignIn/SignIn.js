@@ -51,6 +51,7 @@ const SignIn = ({ setCurrentDisplay }) => {
           margin-bottom: 20px;
           background-color: red;
           color: white;
+          text-align: center;
         } 
         `}</style>
         </section>

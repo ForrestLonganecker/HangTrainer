@@ -1,5 +1,6 @@
 .signin-up {
   max-width: 900px;
+  margin: auto;
 }
 
 .title {
@@ -55,6 +56,7 @@ form > button {
   max-width: 80%;
   display: flex;
   margin: auto;
+  margin-bottom: 10px;
   justify-content: space-between;
   align-items: center;
   // flex-wrap: wrap-reverse;
