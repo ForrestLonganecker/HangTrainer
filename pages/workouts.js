@@ -15,17 +15,6 @@ const Workouts = ({ workouts }) => {
   const [currentDisplay, setCurrentDisplay] = useState('landing');
   const [editingWorkout, setEditingWorkout] = useState({});
 
-  // const selectEditWorkout = (e, selectedWorkout) => {
-  //   e.preventDefault();
-  //   console.log('{SELECT EDIT WORKOUOT} BUTTON PRESSED: ', selectedWorkout);
-  //   // how to map a new object with useState
-  //   setEditingWorkout(editingWorkout => {
-  //     return {...editingWorkout, ...selectedWorkout};
-  //   });
-  //   // Comes back with expected value after the second button press
-  //   console.log('{EDITING WORKOUT} AFTER BUTTON PRESS: ', editingWorkout);
-  // };
-
   // this will be needed at page level for any page that may display an error
   // will need to pass down to children components:
   const [error, setError] = useState('');
@@ -45,6 +34,18 @@ const Workouts = ({ workouts }) => {
   // const addToState = (addOn) => {
   //   setMyWorkouts([...myWorkouts, addOn]);
   // }
+
+  // how to replace object state value
+  // const selectEditWorkout = (e, selectedWorkout) => {
+  //   e.preventDefault();
+  //   console.log('{SELECT EDIT WORKOUOT} BUTTON PRESSED: ', selectedWorkout);
+  //   // how to map a new object with useState
+  //   setEditingWorkout(editingWorkout => {
+  //     return {...editingWorkout, ...selectedWorkout};
+  //   });
+  //   // Comes back with expected value after the second button press
+  //   console.log('{EDITING WORKOUT} AFTER BUTTON PRESS: ', editingWorkout);
+  // };
 
   const handleDisplay = () => {
     
