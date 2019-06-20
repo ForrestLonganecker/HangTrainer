@@ -50,7 +50,7 @@ module.exports = {
   update(options, callback){
     return Workout.findByPk(options.workoutId)
     .then((workout) => {
-      console.log('{QUERY WORKOUTS} THEN WORKOUT: ', workout);
+      // console.log('{QUERY WORKOUTS} THEN WORKOUT: ', workout);
       if(workout.userId === options.userId){
         Workout.update({
           name: options.updatedName,
@@ -59,15 +59,15 @@ module.exports = {
           {where: {id: options.workoutId}}
         )
         .then((updatedWorkout) => {
-          console.log('{QUERY WORKOUTS} UPDATED WORKOUT: ', updatedWorkout);
+          // console.log('{QUERY WORKOUTS} UPDATED WORKOUT: ', updatedWorkout);
           callback(null, updatedWorkout);
         })
         .catch((err) => {
-          console.log('{QUERY WORKOUTS} ERR WHILE UPDATING WORKOUT: ', err);
+          // console.log('{QUERY WORKOUTS} ERR WHILE UPDATING WORKOUT: ', err);
           callback(err);
         });
       } else {
-        console.log('{QUERY WORKOUTS} WORKOUT NOT FOUND');
+        // console.log('{QUERY WORKOUTS} WORKOUT NOT FOUND');
         callback(401);
       }
     });

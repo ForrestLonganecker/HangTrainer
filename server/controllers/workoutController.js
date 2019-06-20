@@ -66,7 +66,7 @@ module.exports = {
   },
   update(req, res){
     if(req.user){
-      console.log('{WORKOUT CONTROLLER} UPDATE REQ.BODY: ', req.body)
+      // console.log('{WORKOUT CONTROLLER} UPDATE REQ.BODY: ', req.body);
       const options = {
         userId: req.user.id,
         workoutId: req.body.workoutId,
@@ -74,19 +74,19 @@ module.exports = {
         updatedNotes: req.body.updatedNotes,
         // create update functionality
       };
-      console.log('{WORKOUT CONTROLLER} UPDATE OPTIONS BEFORE QUERY: ', options);
+      // console.log('{WORKOUT CONTROLLER} UPDATE OPTIONS BEFORE QUERY: ', options);
       workoutQueries.update(options, (err, updatedWorkout) => {
         if(err){
-          console.log('{WORKOUT CONTROLLER} UPDATE IF/ERR: ', err);
+          // console.log('{WORKOUT CONTROLLER} UPDATE IF/ERR: ', err);
           err.statusCode = 400;
           res.send(err);
         } else {
-          console.log('{WORKOUT CONTROLLER} UPDATE ELSE/SUCCESS: ', updatedWorkout);
+          // console.log('{WORKOUT CONTROLLER} UPDATE ELSE/SUCCESS: ', updatedWorkout);
           res.send(updatedWorkout);
         }
       });
     } else {
-      console.log('{WORKOUT CONTROLLER} UPDATE NO REQ USER');
+      // console.log('{WORKOUT CONTROLLER} UPDATE NO REQ USER');
       let err;
       err.statusCode = 400;
       res.send(err);

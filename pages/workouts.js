@@ -6,7 +6,6 @@ import DropdownMenu from '../components/DropdownMenu/DropdownMenu';
 import ErrorSplash from '../components/ErrorSplash/ErrorSplash';
 import WorkoutsDisplay from '../components/WorkoutsDisplay/WorkoutsDisplay';
 import WorkoutCreator from '../components/WorkoutCreator/WorkoutCreator';
-import WorkoutEditor from '../components/WorkoutEditor/WorkoutEditor';
 
 // map workouts to an object in local state, so I can add/remove from specific
 // key rather than iterating through all.
@@ -118,8 +117,3 @@ Workouts.getInitialProps = async ({req}) => {
 };
 
 export default Workouts;
-
-// <WorkoutEditor
-// passError={passError}
-// editingWorkout={editingWorkout}
-// />

@@ -7,13 +7,7 @@ import WorkoutEditor from '../WorkoutEditor/WorkoutEditor';
 
 const WorkoutsDisplay = ({ passError, workouts }) => {
 
-  // add workout editor as child component of workoutdisplay
   const [editingWorkout, setEditingWorkout] = useState({});
-
-  const resetEditingWorkout = (e) => {
-    e.preventDefault();
-    setEditingWorkout({});
-  };
 
   const handleDisplay = () => {
     const workoutList = workouts.map((workout) =>
@@ -71,8 +65,6 @@ const WorkoutsDisplay = ({ passError, workouts }) => {
         console.log('{WORKOUTS PAGE} DELETE SUCCESS UPDATED WORKOUTS: ', updatedWorkouts);
         workouts = updatedWorkouts;
         console.log('{WORKOUTS PAGE} DELETE SUCCESS WORKOUTS: ', workouts);
-        // need to trigger re-render of workoutlist when successful
-        // similar to create workout
       }
     })
     .catch((err) =>{
