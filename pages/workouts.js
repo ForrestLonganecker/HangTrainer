@@ -1,12 +1,13 @@
 import { useState } from 'react';
 import axios from 'axios';
 
-import Navbar from '../components/Navbar/Navbar';
+import WorkoutNavbar from '../components/WorkoutNavbar/WorkoutNavbar';
 import DropdownMenu from '../components/DropdownMenu/DropdownMenu';
 import ErrorSplash from '../components/ErrorSplash/ErrorSplash';
 import WorkoutsDisplay from '../components/WorkoutsDisplay/WorkoutsDisplay';
 import WorkoutCreator from '../components/WorkoutCreator/WorkoutCreator';
 
+import '../scss/workouts.scss';
 // map workouts to an object in local state, so I can add/remove from specific
 // key rather than iterating through all.
 
@@ -91,8 +92,8 @@ const Workouts = ({ workouts }) => {
 
 
   return (
-    <div>
-      <Navbar />
+    <div className="workouts-container">
+      <WorkoutNavbar />
       <h2>Workouts:</h2>
 
       <DropdownMenu 

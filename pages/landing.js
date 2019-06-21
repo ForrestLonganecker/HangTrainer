@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 import axios from 'axios';
-import Navbar from '../components/Navbar/Navbar';
 import Landing from '../components/Landing/Landing';
 
 const Index = () => {

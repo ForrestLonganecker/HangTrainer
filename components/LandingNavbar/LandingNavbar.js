@@ -2,9 +2,9 @@ import Link from 'next/link';
 import axios from 'axios';
 
 // importing component level SCSS
-import './Navbar.scss';
+import './LandingNavbar.scss';
 
-const Navbar = () => {
+const LandingNavbar = () => {
 
     const handleSignOut = (e) => {
     // prevents this script from running automatically, now will run only upon call
@@ -37,4 +37,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default LandingNavbar;

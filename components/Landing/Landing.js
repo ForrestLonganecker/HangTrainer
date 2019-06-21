@@ -1,12 +1,12 @@
-import Navbar from '../Navbar/Navbar';
+import LandingNavbar from '../LandingNavbar/LandingNavbar';
 
-import './Landing.scss'
+import './Landing.scss';
 
 const Landing = () => {
 
   return (
     <div className="landing">
-      <Navbar />
+      <LandingNavbar />
       <p className="landing-welcome">Welcome to HangTrainer, create your first workout and start Hanging!</p>
 
       <section className="update-container">
