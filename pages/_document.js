@@ -8,6 +8,7 @@ export default class MyDocument extends Document {
     return (
       <html>
         <Head>
+        <script src="https://kit.fontawesome.com/4a506047cc.js"></script>
         </Head>
         <body className="body">
           <Main />

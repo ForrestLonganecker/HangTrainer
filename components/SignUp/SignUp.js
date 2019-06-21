@@ -1,6 +1,8 @@
 import axios from 'axios';
 import { useState } from 'react';
 
+import './SignUp.scss';
+
 const SignUp = ({ setCurrentDisplay }) => {
   // Set initial state of input fields
   const [email, setEmail] = useState('');
@@ -54,37 +56,25 @@ const SignUp = ({ setCurrentDisplay }) => {
   };
   
   return (
-    <section>
-      <h1>HangTrainer</h1>
-      <img src='/static/BoulderLogo.png' />
-      <h2>Sign up</h2>
+    <div className="sign-up">
+      <h1 className="title">HangTrainer</h1>
 
-      <p>Sign up and start keeping track of progress!</p>
+      <div className="logo-div">
+        <img className="logo-image" src='/static/BoulderLogo.png' />
+      </div>
 
       {handleDisplayError()}
 
-      <form onSubmit={handleSignUp} htmlFor="user sign up form">
-        <section>
-          <label htmlFor="email entry">Email</label>
-          <input type="text" onChange={e => setEmail(e.target.value)} />
-          <small>email address must be a valid address</small>
-        </section>
+      <form className="sign-up-form" onSubmit={handleSignUp} htmlFor="user sign up form">
+        <input className="sign-up-input" type="text" onChange={e => setEmail(e.target.value)} />
+        <input className="sign-up-input" type="password" onChange={e => setPassword(e.target.value)} />  
+        <input className="sign-up-input" type="password" onChange={e => setPasswordConf(e.target.value)} />
   
-        <section>
-          <label htmlFor="password entry">Password</label>
-          <input type="password" onChange={e => setPassword(e.target.value)} />
-          <small>password must match confirmation below</small>
-        </section>
-  
-        <section>
-          <label htmlFor="password confirmation entry">Password confirmation</label>
-          <input type="password" onChange={e => setPasswordConf(e.target.value)} />
-        </section>
-  
-        <input type="submit" value="Sign up" />
+        <button className="sign-up-button" type="submit" >Sign up</button>
+
+        <button className="sign-up-toggle" onClick={() => setCurrentDisplay('sign in')} >Log in</button>
       </form>
-      <input className="display-toggle" onClick={() => setCurrentDisplay('sign in')} value='Sign in' />
-    </section>
+    </div>
   );
 };
 

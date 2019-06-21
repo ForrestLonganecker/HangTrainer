@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import axios from 'axios';
 import Navbar from '../components/Navbar/Navbar';
+import Landing from '../components/Landing/Landing';
 
 const Index = () => {
   const [currentUser, setCurrentUser] = useState(false);
@@ -24,20 +25,15 @@ const Index = () => {
 
     if(currentUser){
       return (
-        <section>
-          <h1>HangTrainer</h1>
-          <Navbar />
-          <p>Welcome to HangTrainer, create your first workout and start Hanging!</p>
-          <h2>Current User: {currentUser.toString()}</h2>
-        </section>
+        <Landing />
       );
     } else {
       return(
-        <section>
+        <div className="no-user">
           <h1>Sorry you must be logged-in to do that</h1>
           <h2>Current User: {currentUser.toString()}</h2>
           <a href='/'>Sign in</a>
-        </section>
+        </div>
       );
     }
   };

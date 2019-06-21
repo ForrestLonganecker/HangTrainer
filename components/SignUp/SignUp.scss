@@ -1,4 +1,4 @@
-.sign-in {
+.sign-up {
   max-width: 900px;
   margin: auto;
 }
@@ -20,21 +20,21 @@
   width: 100%;
 }
 
-.sign-in-form {
+.sign-up-form {
   display: flex;
   flex-direction: column;
   max-width: 80%;
   margin: auto;
 }
 
-.sign-in-input {
- border: solid;
- margin-bottom: 20px;
- height: 30px;
- background: white;
+.sign-up-input {
+  border: solid;
+  margin-bottom: 20px;
+  height: 30px;
+  background: white;
 }
 
-.log-in-button {
+.sign-up-button {
   height: 30px;
   border: solid;
   margin: auto;
@@ -52,22 +52,15 @@
   padding-left: 10px;
 }
 
-.links {
-  max-width: 80%;
-  display: flex;
-  margin: auto;
-  margin-bottom: 10px;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.display-toggle {
-  text-align: center;
-  width: 40%;
+.sign-up-toggle {
   height: 30px;
   border: solid;
+  margin: auto;
+  margin-bottom: 20px;
+  min-width: 80%;
   border-radius: 3px;
   border-color: black;
-  background-color: rgb(90, 90, 90);  color: white;
+  background-color: rgb(90, 90, 90);
+  color: white;
   font-size: 18px;
 }

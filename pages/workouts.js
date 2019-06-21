@@ -92,7 +92,6 @@ const Workouts = ({ workouts }) => {
 
   return (
     <div>
-      <h1>HangTrainer</h1>
       <Navbar />
       <h2>Workouts:</h2>
 

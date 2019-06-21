@@ -22,29 +22,17 @@ const Navbar = () => {
   };
 
   return (
-    <nav>
-      <mark className="badge">Hang on!</mark>
-      <section>
-        <Link href="/landing">
-          <a className="logo-icon" title="HangTrainer Home"><img src="/static/BoulderLogo.png" /></a>
-        </Link>
-{/* 
-          <Link href="/about">
-          <a title="About HangTrainer">About</a>
-          </Link>
-*/}
-        <Link href="/workouts">
-          <a className="workouts-icon" title="Public Workouts">Workouts</a>
-        </Link>
-        <Link href="/signOut">
-          <a className="user-settings-icon" title="Sign in" onClick={e => handleSignOut(e)}>Sign out</a>
-        </Link>
-      </section>
-      <style jsx>{`
-      img {
-        max-width: 50px;
-      }
-      `}</style>
+    <nav className="nav">
+      <Link href="/landing">
+        <a className="landing-link" title="HangTrainer Home"><img className="logo-icon" src="/static/BoulderLogo.png" /></a>
+      </Link>
+      <h1 className="title">HangTrainer</h1>
+      <Link href="/workouts">
+        <a className="workouts-icon" title="Public Workouts"><i className="fas fa-dumbbell"></i></a>
+      </Link>
+      <Link href="/signOut">
+        <a className="sign-out-icon" title="Sign out" onClick={e => handleSignOut(e)}><i className="fas fa-sign-out-alt"></i></a>
+      </Link>
     </nav>
   );
 };

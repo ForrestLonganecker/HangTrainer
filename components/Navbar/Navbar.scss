@@ -1,22 +1,19 @@
-// Easily apply styles at a component level with sass
-// $green : green;
+.nav {
+  max-width: 90%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin: auto;
+}
 
-// mark {
-//   border-radius: 10px;
-//   background-color: lightblue;
-// }
+.logo-icon {
+  max-width: 50px;
+}
 
-// nav {
-//   padding: 10px;
-// }
+.workouts-icon {
+  margin-right: 5%;
+}
 
-// a {
-//   text-decoration: none;
-//   color: $green;
-//   padding: 5px;
-// }
-
-// a > img {
-//   max-width: 50px;
-//   margin-right: auto;
-// }
+.title {
+  margin: 15%;
+}
