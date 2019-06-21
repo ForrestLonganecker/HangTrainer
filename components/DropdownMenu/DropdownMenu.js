@@ -1,6 +1,8 @@
 import { useState } from 'react';
 
-const DropdownMenu = ({ setCurrentDisplay }) => {
+import './DropdownMenu.scss';
+
+const DropdownMenu = ({ setCurrentDisplay, icon }) => {
   
   const [displayMenu, setDisplayMenu] = useState(false);
 
@@ -12,7 +14,7 @@ const DropdownMenu = ({ setCurrentDisplay }) => {
   const menu = () => {
     if(displayMenu){
       return(
-        <div>
+        <div className="drop-down">
           <button onClick={() => setCurrentDisplay('create workout')} >Create Workout</button>
           <button onClick={() => setCurrentDisplay('show workouts')} >Browse Workouts</button>
         </div>
@@ -24,7 +26,7 @@ const DropdownMenu = ({ setCurrentDisplay }) => {
 
   return(
     <div>
-      <div className="dropdownMenuToggle" onClick={toggleDropdownMenu}>Menu icon</div>
+      <div className="dropdownMenuToggle" onClick={toggleDropdownMenu}>{icon}</div>
       {menu()}
       <style jsx>{`
         .dropdownMenuToggle {

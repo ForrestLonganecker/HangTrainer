@@ -94,11 +94,15 @@ const Workouts = ({ workouts }) => {
   return (
     <div className="workouts-container">
       <WorkoutNavbar />
-      <h2>Workouts:</h2>
 
-      <DropdownMenu 
-        setCurrentDisplay={setCurrentDisplay}
-      />
+      <div className="workout-banner">
+        <h2>Workouts:</h2>
+
+        <DropdownMenu 
+          setCurrentDisplay={setCurrentDisplay}
+          icon={<i className="fas fa-dumbbell"></i>}
+        />
+      </div>
     
       <ErrorSplash error={error} />
 
