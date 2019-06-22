@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { useState } from 'react';
+import Router from 'next/router';
 
 import "./SignIn.scss";
 
@@ -26,7 +27,8 @@ const SignIn = ({ setCurrentDisplay }) => {
       // routes the client side back to /index page
       if(res.status == 200){
         console.log('{INDEX} SUCCESS, ROUTING TO /LANDING: ', res.status);
-        window.location = '/landing';
+        // window.location = '/landing';
+        Router.push('/landing');
       } else {
         console.log('SOMETHING WENT WTRONG: ', res.statusCode)
         setError('Incorrect email or password, please try again.');

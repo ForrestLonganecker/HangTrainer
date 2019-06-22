@@ -7,26 +7,26 @@ import Landing from '../components/Landing/Landing';
 
 import '../scss/styles.scss';
 
-const Index = () => {
-  const [currentUser, setCurrentUser] = useState(false);
+const LandingPage = ({ user }) => {
+  const [currentUser, setCurrentUser] = useState(user);
 
   const displayLanding = () => {
-   axios.get('/static/index')
-    .then(res => {
-      console.log('{LANDING.JS} RES: ', res.data);
-      if(res.data){
-        setCurrentUser(true);
-      } else {
-        setCurrentUser(false);
-      }
-    })
-    .catch((err) => {
-      setCurrentUser(false);
-      console.log('{LANDING.JS} ERR: ');
-    });
+  //  axios.get('/static/index')
+  //   .then(res => {
+  //     console.log('{LANDING.JS} RES: ', res.data);
+  //     if(res.data){
+  //       setCurrentUser(true);
+  //     } else {
+  //       setCurrentUser(false);
+  //     }
+  //   })
+  //   .catch((err) => {
+  //     setCurrentUser(false);
+  //     console.log('{LANDING.JS} ERR: ');
+  //   });
 
     // isAuthenticated
-    if(currentUser){
+    if(currentUser.id){
       return (
         <Landing />
       );
@@ -46,11 +46,14 @@ const Index = () => {
   );
 };
 
-// Index.getInitialProps = async ({req}) => {
-//   const res = await fetch('http://localhost:3000/static/index');
-//   const json = await res.json();
-//   return { json }
-// }
+LandingPage.getInitialProps = async ({req}) => {
+  console.log('{LANDING PAGE} GET INITIAL PROPS REQ: ');
+  const res = await axios.get('/static/index');
+  console.log('{LANDING PAGE} GET INITIAL PROPS RES: ', res.data);
+  const data = await res.data;
+  console.log('{LANDING PAGE} GET INITIAL PROPS DATA: ');
+  return { user: data };
+};
 
 
-export default Index;
+export default LandingPage;
