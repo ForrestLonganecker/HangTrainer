@@ -98,8 +98,9 @@ const Workouts = ({ workouts }) => {
         <h2>Workouts:</h2>
 
         <DropdownMenu 
-        currentDisplay={currentDisplay}
+          currentDisplay={currentDisplay}
           setCurrentDisplay={setCurrentDisplay}
+          setEditingWorkout={setEditingWorkout}
           icon={<i className="fas fa-dumbbell"></i>}
         />
       </div>

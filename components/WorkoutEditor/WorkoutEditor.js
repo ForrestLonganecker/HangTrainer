@@ -107,7 +107,10 @@ const WorkoutEditor = ({ editingWorkout, setEditingWorkout, passError, setUserWo
             <input className="name-input" type="text" onChange={e => setEditName(e.target.value)} defaultValue={editingWorkout.name}/>
           </div>
           <textarea type="text" onChange={e => setEditNotes(e.target.value)} defaultValue={editingWorkout.notes}/>
-          <button type="submit" >Update workout</button>
+          <div className="form-buttons">
+            <button className="cancel-edit-button" onClick={() => setEditingWorkout({})} >Cancel</button>
+            <button className="submit-edit-button" type="submit" >Update workout</button>
+          </div>
         </form>
       </section>
 

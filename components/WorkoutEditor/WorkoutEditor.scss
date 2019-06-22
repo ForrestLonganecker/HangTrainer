@@ -70,16 +70,34 @@
       font-size: 18px;
     }
 
-    button {
-      height: 30px;
-      border: solid;
-      width: 80%;
-      border-radius: 3px;
-      border-color: black;
-      background-color: rgb(24, 123, 236);
-      color: white;
-      font-size: 18px;
-      margin-left: 30px;
+    .form-buttons {
+      width: 90%;
+      display: flex;
+      margin-top: 5px;
+
+      .submit-edit-button {
+        height: 30px;
+        border: solid;
+        width: 40%;
+        border-radius: 3px;
+        border-color: black;
+        background-color: rgb(24, 123, 236);
+        color: white;
+        font-size: 18px;
+        margin-left: 30px;
+      }
+
+      .cancel-edit-button {
+        height: 30px;
+        border: solid;
+        width: 40%;
+        border-radius: 3px;
+        border-color: black;
+        background-color: grey;
+        color: white;
+        font-size: 18px;
+        margin-left: 30px;
+      }
     }
   }
 }
