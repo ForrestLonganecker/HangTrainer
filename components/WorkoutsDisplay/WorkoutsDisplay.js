@@ -3,6 +3,7 @@ import axios from 'axios';
 
 import WorkoutEditor from '../WorkoutEditor/WorkoutEditor';
 
+import './WorkoutDisplay.scss';
 //  <WorkoutDisplay passError={passError} workouts={workouts} />
 
 const WorkoutsDisplay = ({ passError, setUserWorkouts, userWorkouts }) => {
@@ -13,11 +14,12 @@ const WorkoutsDisplay = ({ passError, setUserWorkouts, userWorkouts }) => {
   const handleDisplay = () => {
     console.log('{WORKOUT DISPLAY} USER WORKOUTS PRE MAP: ', userWorkouts);
     const workoutList = userWorkouts.map((workout) =>
-      <li key={workout.id}>
-        <h4>{workout.name}</h4>
-        <p>{workout.notes}</p>
-        <button onClick={e => handleDeleteWorkout(e, workout.id)}>Delete</button>
-        <button onClick={() => setEditingWorkout(editingWorkout => { return {...editingWorkout, ...workout}; })}>Edit</button>
+      <li className="workout-list-item" key={workout.id}>
+        <h4 className="workout-name">{workout.name}</h4>
+        <div className="list-item-button-container">
+          <button className="list-item-button" onClick={e => handleDeleteWorkout(e, workout.id)}>Delete</button>
+          <button className="list-item-button" onClick={() => setEditingWorkout(editingWorkout => { return {...editingWorkout, ...workout}; })}>Edit</button>
+        </div>
       </li>
     );
 
@@ -38,7 +40,7 @@ const WorkoutsDisplay = ({ passError, setUserWorkouts, userWorkouts }) => {
     if(!editingWorkout.id){
       console.log('{WORKOUT DISPLAY} NO EDITING WORKOUT: ', editingWorkout);
       return(
-        <ul>
+        <ul className="workout-list">
           {workoutList}
         </ul>
       );
@@ -73,9 +75,7 @@ const WorkoutsDisplay = ({ passError, setUserWorkouts, userWorkouts }) => {
   };
 
   return (
-    <div>
-    {handleDisplay()}
-    </div>
+    handleDisplay()
   );
 };
 

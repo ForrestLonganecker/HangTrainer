@@ -1,0 +1,58 @@
+.workout-list {
+  overflow-y: scroll;
+  max-height: 250px;
+  max-width: 90%;
+  border: solid;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: auto;
+  padding: 0;
+
+  /* Handle */
+  &::-webkit-scrollbar-thumb {
+    background: rgb(24, 123, 236);
+  }
+
+  /* width */
+  &::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  &::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+  }
+  
+  .workout-list-item {
+    width: 100%;
+    display: flex;
+    border-bottom: 1px grey solid;
+    list-style: none;
+    margin: auto;
+
+
+    .workout-name {
+      width: 70%;
+      padding-left: 45%;
+    }
+
+    .list-item-button-container {
+      margin-left: auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      margin-bottom: 5px;
+
+      .list-item-button {
+        border: solid;
+        border-radius: 3px;
+        border-color: black;
+        background-color: rgb(24, 123, 236);
+        color: white;
+        margin-top: 2px;
+        margin-bottom: 2px;
+      }
+    }
+  }
+}
