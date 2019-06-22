@@ -55,7 +55,7 @@ const WorkoutCreator = ({ passError, setUserWorkouts, userWorkouts }) => {
             <p className="grip-type">type</p>
             <p className="weight-added">weight</p>
           </div>
-          <ul className="hold-scroll-container">
+          <ul className="hold-scroll-container" onClick={() => alert("This feature is comming soon!")}>
             <li className="hold-selection">
               <p>1</p>
               <p>IMR</p>
