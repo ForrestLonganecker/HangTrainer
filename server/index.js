@@ -41,6 +41,10 @@ app
     //   app.render(req, res, actualPage, queryParams);
     // });
 
+    server.get('/workouts', (req, res) => {
+      app.render(req, res, '/workouts');
+    });
+
     server.get("*", (req, res) => {
       return handle(req, res);
     });

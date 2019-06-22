@@ -1,16 +1,24 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 
 import WorkoutEditor from '../WorkoutEditor/WorkoutEditor';
 
 //  <WorkoutDisplay passError={passError} workouts={workouts} />
 
-const WorkoutsDisplay = ({ passError, workouts }) => {
+const WorkoutsDisplay = ({ passError, workouts, userWorkouts }) => {
 
   const [editingWorkout, setEditingWorkout] = useState({});
+  const [displayWorkouts, setDisplayWorkouts] = useState(userWorkouts);
+
+  useEffect(() => {
+    console.log(displayWorkouts, userWorkouts);
+    setDisplayWorkouts(userWorkouts);
+    console.log(displayWorkouts, userWorkouts);
+  }, [userWorkouts]);
 
   const handleDisplay = () => {
-    const workoutList = workouts.map((workout) =>
+    console.log('{WORKOUT DISPLAY} USER WORKOUTS PRE MAP: ', displayWorkouts);
+    const workoutList = displayWorkouts.map((workout) =>
       <li key={workout.id}>
         <h4>{workout.name}</h4>
         <p>{workout.notes}</p>
@@ -57,13 +65,12 @@ const WorkoutsDisplay = ({ passError, workouts }) => {
         passError('Error deleting workout');
       } else {
         console.log('{WORKOUTS PAGE} DELETE SUCCESS RES.DATA.ID: ', res.data.id);
-        let updatedWorkouts = [];
-        workouts.forEach(workout => {
-          console.log(workout.id, res.data.id);
-          if(workout.id != res.data.id) updatedWorkouts.push(workout);
-        });
+        let updatedWorkouts = workouts.filter(workout => workout.id != res.data.id);
         console.log('{WORKOUTS PAGE} DELETE SUCCESS UPDATED WORKOUTS: ', updatedWorkouts);
-        workouts = updatedWorkouts;
+        console.log('{WORKOUTS PAGE} DELETE SUCCESS WORKOUTS: ', workouts);
+        workouts = {...workouts => (
+          {...workouts,  ...updatedWorkouts})
+        };
         console.log('{WORKOUTS PAGE} DELETE SUCCESS WORKOUTS: ', workouts);
       }
     })

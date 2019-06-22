@@ -1,4 +1,23 @@
+.dropdown-container {
+  display: flex;
+}
+
 .drop-down {
   display: flex;
-  flex-direction: column;
+  // margin-right: 5px;
+  // border: solid;
+}
+
+.drop-down-button {
+  margin-right: 5px;
+  border: solid;
+  border-radius: 3px;
+  border-color: black;
+  background-color: rgb(24, 123, 236);
+  color: white;
+}
+
+.dropdown-menu-toggle {
+  display: flex;
+  align-items: center;
 }

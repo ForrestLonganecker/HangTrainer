@@ -1,3 +1,7 @@
+* {
+  font-family: 'Nunito', sans-serif;
+}
+
 .workouts-container {
   max-width: 900px;
   margin: auto;
@@ -7,4 +11,26 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.workout-landing {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+  margin: auto;
+  width: 70%
+}
+
+.workout-landing-button {
+  height: 30px;
+  border: solid;
+  margin: auto;
+  margin-bottom: 40%;
+  min-width: 80%;
+  border-radius: 3px;
+  border-color: black;
+  background-color: rgb(24, 123, 236);
+  color: white;
+  font-size: 18px;
 }

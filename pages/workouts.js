@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 
 import WorkoutNavbar from '../components/WorkoutNavbar/WorkoutNavbar';
@@ -13,8 +13,17 @@ import '../scss/workouts.scss';
 
 const Workouts = ({ workouts }) => {
 
+  const [userWorkouts, setUserWorkouts] = useState(workouts);
   const [currentDisplay, setCurrentDisplay] = useState('landing');
   const [editingWorkout, setEditingWorkout] = useState({});
+
+  useEffect(() => {
+    console.log('{USE EFFECT} USER WORKOUTS: ', userWorkouts);
+  }, [userWorkouts]);
+
+  // const updateUserWorkouts = (previousState, newState) => {
+  //   setUserWorkouts(newState)
+  // }
 
   // this will be needed at page level for any page that may display an error
   // will need to pass down to children components:
@@ -53,18 +62,8 @@ const Workouts = ({ workouts }) => {
     if(currentDisplay === 'landing'){
       return(
         <div className="workout-landing">
-          <button onClick={() => setCurrentDisplay('create workout')} >Create Workout</button>
-          <button onClick={() => setCurrentDisplay('show workouts')} >Browse Workouts</button>
-          <style jsx>{`
-            .workout-landing {
-              display: flex;
-              flex-direction: column;
-              margin-top: 10px;
-            },
-            .workout-landing > button {
-              margin-bottom: 10px;
-            }
-          `}</style>
+          <button className="workout-landing-button" onClick={() => setCurrentDisplay('create workout')} >Create Workout</button>
+          <button className="workout-landing-button" onClick={() => setCurrentDisplay('show workouts')} >Browse Workouts</button>
         </div>
       );
     }
@@ -73,6 +72,8 @@ const Workouts = ({ workouts }) => {
       return(
         <WorkoutCreator
           passError={passError}
+          setUserWorkouts={setUserWorkouts}
+          userWorkouts={userWorkouts}
           workouts={workouts}
         />
       );
@@ -83,6 +84,7 @@ const Workouts = ({ workouts }) => {
         <WorkoutsDisplay
           passError={passError}
           workouts={workouts}
+          userWorkouts={userWorkouts}
           setEditingWorkout={setEditingWorkout}
           editingWorkout={editingWorkout}
         />
@@ -113,11 +115,11 @@ const Workouts = ({ workouts }) => {
 };
 
 Workouts.getInitialProps = async ({req}) => {
-  console.log('{WORKOUTS PAGE} GET INITIAL PROPS REQ:', req);
+  console.log('{WORKOUTS PAGE} GET INITIAL PROPS REQ:'/*, req*/);
   const res = await axios.get('/workouts/myWorkouts');
-  console.log('{WORKOUTS PAGE} GET INITIAL PROPS RES:', res);
+  console.log('{WORKOUTS PAGE} GET INITIAL PROPS RES:'/*, res*/);
   const data = await res.data;
-  console.log('{WORKOUTS PAGE} GET INITIAL PROPS DATA:', data);
+  console.log('{WORKOUTS PAGE} GET INITIAL PROPS DATA:'/*, data*/);
   return { workouts: data };
 };
 

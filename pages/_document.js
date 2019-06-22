@@ -9,6 +9,8 @@ export default class MyDocument extends Document {
       <html>
         <Head>
         <script src="https://kit.fontawesome.com/4a506047cc.js"></script>
+        <link href="https://fonts.googleapis.com/css?family=Nunito&display=swap" rel="stylesheet"></link>
+        <link href="https://fonts.googleapis.com/css?family=Oswald&display=swap" rel="stylesheet"></link>
         </Head>
         <body className="body">
           <Main />

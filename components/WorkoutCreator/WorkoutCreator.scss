@@ -1,0 +1,88 @@
+.workout-create-container {
+  max-width: 90%;
+  margin: auto;
+
+  .hand-hold-container {
+    margin: auto;
+    max-width: 90%;
+
+    .hang-form-key {
+      display: flex;
+      justify-content: space-around;
+      max-width: 90%;
+      margin: auto;
+    }
+    
+    .hold-scroll-container {
+      max-width: 90%;
+      padding: 0;
+      margin: auto;
+      overflow-y: scroll;
+      max-height: 150px;
+      border: solid;
+
+      /* Handle */
+      &::-webkit-scrollbar-thumb {
+        background: rgb(24, 123, 236);
+      }
+
+      /* width */
+      &::-webkit-scrollbar {
+        width: 10px;
+      }
+      
+      /* Track */
+      &::-webkit-scrollbar-track {
+        background: #f1f1f1; 
+      }
+      
+      .hold-selection {
+        margin: auto;
+        display: flex;
+        justify-content: space-around;
+        border-bottom: 1px grey solid;
+      }
+    }
+  }
+
+  .workout-create-form {
+    margin: auto;
+    margin-top: 20px;
+    width: 100%;
+
+    .name-input {
+      width: 100%;
+      border: solid;
+      margin-bottom: 20px;
+      height: 30px;
+      background: white;
+      font-size: 18px;
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 80px;
+      border: solid;
+      font-size: 18px;
+    }
+
+    button {
+      height: 30px;
+      border: solid;
+      width: 80%;
+      border-radius: 3px;
+      border-color: black;
+      background-color: rgb(24, 123, 236);
+      color: white;
+      font-size: 18px;
+      margin-left: 30px;
+    }
+  }
+}
+
+
+::placeholder {
+  font-size: 18px;
+  padding-left: 10px;
+  font-family: 'Nunito', sans-serif;
+}

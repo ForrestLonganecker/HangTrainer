@@ -15,8 +15,8 @@ const DropdownMenu = ({ setCurrentDisplay, icon }) => {
     if(displayMenu){
       return(
         <div className="drop-down">
-          <button onClick={() => setCurrentDisplay('create workout')} >Create Workout</button>
-          <button onClick={() => setCurrentDisplay('show workouts')} >Browse Workouts</button>
+          <button className="drop-down-button" onClick={() => setCurrentDisplay('create workout')} >Create Workout</button>
+          <button className="drop-down-button" onClick={() => setCurrentDisplay('show workouts')} >Browse Workouts</button>
         </div>
       );
     } else {
@@ -25,14 +25,9 @@ const DropdownMenu = ({ setCurrentDisplay, icon }) => {
   };
 
   return(
-    <div>
-      <div className="dropdownMenuToggle" onClick={toggleDropdownMenu}>{icon}</div>
+    <div className="dropdown-container"> 
       {menu()}
-      <style jsx>{`
-        .dropdownMenuToggle {
-          border: solid;
-        }
-      `}</style>
+      <div className="dropdown-menu-toggle" onClick={toggleDropdownMenu}>{icon}</div>
     </div>
   );
 };

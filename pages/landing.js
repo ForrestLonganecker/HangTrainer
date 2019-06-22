@@ -8,7 +8,7 @@ const Index = () => {
   const [currentUser, setCurrentUser] = useState(false);
 
   const displayLanding = () => {
-    axios.get('/static/index')
+   axios.get('/static/index')
     .then(res => {
       console.log('{LANDING.JS} RES: ', res.data);
       if(res.data){
@@ -22,6 +22,7 @@ const Index = () => {
       console.log('{LANDING.JS} ERR: ');
     });
 
+    // isAuthenticated
     if(currentUser){
       return (
         <Landing />
