@@ -20,7 +20,8 @@ const Workouts = ({ workouts }) => {
 
   useEffect(() => {
     console.log('{USE EFFECT} USER WORKOUTS: ', userWorkouts);
-  }, [userWorkouts]);
+    console.log('{USE EFFECT} CURRENT DISPLAY: ', currentDisplay);
+  }, [userWorkouts, currentDisplay]);
 
   // this will be needed at page level for any page that may display an error
   // will need to pass down to children components:
@@ -60,7 +61,7 @@ const Workouts = ({ workouts }) => {
       return(
         <div className="workout-landing">
           <button className="workout-landing-button" onClick={() => setCurrentDisplay('create workout')} >Create Workout</button>
-          <button className="workout-landing-button" onClick={() => setCurrentDisplay('show workouts')} >Browse Workouts</button>
+          <button className="workout-landing-button" onClick={() => setCurrentDisplay('browse workouts')} >Browse Workouts</button>
         </div>
       );
     }
@@ -75,7 +76,7 @@ const Workouts = ({ workouts }) => {
       );
     }
 
-    if(currentDisplay === 'show workouts'){
+    if(currentDisplay === 'browse workouts'){
       return(
         <WorkoutsDisplay
           passError={passError}

@@ -13,15 +13,18 @@ const WorkoutsDisplay = ({ passError, setUserWorkouts, userWorkouts }) => {
 
   const handleDisplay = () => {
     console.log('{WORKOUT DISPLAY} USER WORKOUTS PRE MAP: ', userWorkouts);
-    const workoutList = userWorkouts.map((workout) =>
-      <li className="workout-list-item" key={workout.id}>
-        <h4 className="workout-name">{workout.name}</h4>
-        <div className="list-item-button-container">
-          <button className="list-item-button" onClick={e => handleDeleteWorkout(e, workout.id)}>Delete</button>
-          <button className="list-item-button" onClick={() => setEditingWorkout(editingWorkout => { return {...editingWorkout, ...workout}; })}>Edit</button>
-        </div>
-      </li>
-    );
+    const workoutList = userWorkouts.map((workout) => {
+      console.log('{WORKOUT DISPLAY} IN.MAP: ', workout.name);
+      return (
+        <li className="workout-list-item" key={workout.id}>
+          <h4 className="workout-name">{workout.name}</h4>
+          <div className="list-item-button-container">
+            <button className="list-item-button" onClick={e => handleDeleteWorkout(e, workout.id)}>Delete</button>
+            <button className="list-item-button" onClick={() => setEditingWorkout(editingWorkout => { return {...editingWorkout, ...workout}; })}>Edit</button>
+          </div>
+        </li>
+      );
+    });
 
     console.log('{WORKOUTS DISPLAY} HANDLE-DISPLAY EDITINGWORKOUT: ', editingWorkout);
 
