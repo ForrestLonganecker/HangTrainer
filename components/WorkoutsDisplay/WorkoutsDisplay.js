@@ -5,20 +5,14 @@ import WorkoutEditor from '../WorkoutEditor/WorkoutEditor';
 
 //  <WorkoutDisplay passError={passError} workouts={workouts} />
 
-const WorkoutsDisplay = ({ passError, workouts, userWorkouts }) => {
+const WorkoutsDisplay = ({ passError, setUserWorkouts, userWorkouts }) => {
 
   const [editingWorkout, setEditingWorkout] = useState({});
-  const [displayWorkouts, setDisplayWorkouts] = useState(userWorkouts);
 
-  useEffect(() => {
-    console.log(displayWorkouts, userWorkouts);
-    setDisplayWorkouts(userWorkouts);
-    console.log(displayWorkouts, userWorkouts);
-  }, [userWorkouts]);
 
   const handleDisplay = () => {
     console.log('{WORKOUT DISPLAY} USER WORKOUTS PRE MAP: ', displayWorkouts);
-    const workoutList = displayWorkouts.map((workout) =>
+    const workoutList = userWorkouts.map((workout) =>
       <li key={workout.id}>
         <h4>{workout.name}</h4>
         <p>{workout.notes}</p>

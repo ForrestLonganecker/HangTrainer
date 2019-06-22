@@ -5,7 +5,7 @@ import './WorkoutCreator.scss';
 
 // <WorkoutCreator passError={passError} workouts={workouts} />
 
-const WorkoutCreator = ({ passError, workouts, setUserWorkouts, userWorkouts }) => {
+const WorkoutCreator = ({ passError, setUserWorkouts, userWorkouts }) => {
 
   // const [displayCreator, setDisplayCreator] = useState(true);
   const [newWorkoutName, setNewWorkoutName] = useState('');
@@ -27,11 +27,8 @@ const WorkoutCreator = ({ passError, workouts, setUserWorkouts, userWorkouts }) 
           // pass error to /page
           passError('Error while creating a workout');
         } else {
-          console.log("{WORKOUTS PAGE} CREATE WORKOUTS SUCCESS WORKOUTS: ", typeof workouts, workouts);
-          // workouts = workouts.push(res.data);
-          setUserWorkouts(userWorkouts => userWorkouts + res.data);
+          setUserWorkouts(userWorkouts => [...userWorkouts, res.data]);
           console.log("{WORKOUTS PAGE} CREATE WORKOUTS SUCCESS WORKOUTS: ", typeof userWorkouts, userWorkouts);
-          console.log("{WORKOUTS PAGE} CREATE WORKOUTS SUCCESS WORKOUTS: ", typeof workouts, workouts);
           // reset create form fields
           setNewWorkoutName('');
           setNewWorkoutNotes('');

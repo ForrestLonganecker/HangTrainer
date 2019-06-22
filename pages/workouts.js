@@ -21,10 +21,6 @@ const Workouts = ({ workouts }) => {
     console.log('{USE EFFECT} USER WORKOUTS: ', userWorkouts);
   }, [userWorkouts]);
 
-  // const updateUserWorkouts = (previousState, newState) => {
-  //   setUserWorkouts(newState)
-  // }
-
   // this will be needed at page level for any page that may display an error
   // will need to pass down to children components:
   const [error, setError] = useState('');
@@ -42,7 +38,7 @@ const Workouts = ({ workouts }) => {
 
   // how to add items to state that is an array, [...stateArray, addItem]
   // const addToState = (addOn) => {
-  //   setMyWorkouts([...myWorkouts, addOn]);
+  //   setMyWorkouts(myWorkouts => [...myWorkouts, addOn]);
   // }
 
   // how to replace object state value
@@ -74,7 +70,6 @@ const Workouts = ({ workouts }) => {
           passError={passError}
           setUserWorkouts={setUserWorkouts}
           userWorkouts={userWorkouts}
-          workouts={workouts}
         />
       );
     }
@@ -83,7 +78,7 @@ const Workouts = ({ workouts }) => {
       return(
         <WorkoutsDisplay
           passError={passError}
-          workouts={workouts}
+          setUserWorkouts={workouts}
           userWorkouts={userWorkouts}
           setEditingWorkout={setEditingWorkout}
           editingWorkout={editingWorkout}
