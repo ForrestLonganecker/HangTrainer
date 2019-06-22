@@ -3,6 +3,8 @@ import { useState } from 'react';
 import SignIn from '../components/SignIn/SignIn';
 import SignUp from '../components/SignUp/SignUp';
 
+import '../scss/styles.scss';
+
 // need to make a layout that allows for me to put error message component in
 // the right spot
 

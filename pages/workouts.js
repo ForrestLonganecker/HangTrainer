@@ -8,6 +8,7 @@ import WorkoutsDisplay from '../components/WorkoutsDisplay/WorkoutsDisplay';
 import WorkoutCreator from '../components/WorkoutCreator/WorkoutCreator';
 
 import '../scss/workouts.scss';
+import '../scss/styles.scss';
 // map workouts to an object in local state, so I can add/remove from specific
 // key rather than iterating through all.
 
@@ -96,6 +97,7 @@ const Workouts = ({ workouts }) => {
         <h2>Workouts:</h2>
 
         <DropdownMenu 
+        currentDisplay={currentDisplay}
           setCurrentDisplay={setCurrentDisplay}
           icon={<i className="fas fa-dumbbell"></i>}
         />

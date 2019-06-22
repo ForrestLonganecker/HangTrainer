@@ -28,7 +28,7 @@ const WorkoutNavbar = () => {
       </Link>
       <h1 className="title">HangTrainer</h1>
       <Link>
-        <a className="user-profile-icon" title="Public Workouts" onClick={() => alert('This feature is coming soon!')}><i className="fas fa-cog"></i></a>
+        <a className="user-profile-icon" title="User profile information" onClick={() => alert('This feature is coming soon!')}><i className="fas fa-cog"></i></a>
       </Link>
       <Link href="/signOut">
         <a className="sign-out-icon" title="Sign out" onClick={e => handleSignOut(e)}><i className="fas fa-sign-out-alt"></i></a>

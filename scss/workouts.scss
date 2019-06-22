@@ -1,7 +1,3 @@
-* {
-  font-family: 'Nunito', sans-serif;
-}
-
 .workouts-container {
   max-width: 900px;
   margin: auto;
@@ -11,13 +7,16 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  height: 35px;
   margin-bottom: 20px;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 .workout-landing {
   display: flex;
   flex-direction: column;
-  margin-top: 10px;
+  padding-top: 50px;
   margin: auto;
   width: 70%
 }

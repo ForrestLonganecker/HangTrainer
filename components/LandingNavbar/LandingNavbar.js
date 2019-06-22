@@ -28,7 +28,7 @@ const LandingNavbar = () => {
       </Link>
       <h1 className="title">HangTrainer</h1>
       <Link href="/workouts">
-        <a className="workouts-icon" title="Public Workouts"><i className="fas fa-dumbbell"></i></a>
+        <a className="workouts-icon" title="Workouts page"><i className="fas fa-dumbbell"></i></a>
       </Link>
       <Link href="/signOut">
         <a className="sign-out-icon" title="Sign out" onClick={e => handleSignOut(e)}><i className="fas fa-sign-out-alt"></i></a>

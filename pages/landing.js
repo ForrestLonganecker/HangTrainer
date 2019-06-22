@@ -2,7 +2,10 @@
 
 import { useState } from 'react';
 import axios from 'axios';
+
 import Landing from '../components/Landing/Landing';
+
+import '../scss/styles.scss';
 
 const Index = () => {
   const [currentUser, setCurrentUser] = useState(false);

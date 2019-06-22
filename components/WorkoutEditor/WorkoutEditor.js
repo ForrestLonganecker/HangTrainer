@@ -1,6 +1,8 @@
 import axios from 'axios';
 import { useState } from 'react';
 
+import './WorkoutEditor.scss';
+
 // <WorkoutEditor editingWorkout={editingWorkout} passError={passError} />
 
 const WorkoutEditor = ({ editingWorkout, setEditingWorkout, passError, setUserWorkouts, userWorkouts }) => {
@@ -61,14 +63,56 @@ const WorkoutEditor = ({ editingWorkout, setEditingWorkout, passError, setUserWo
 
   const displayEditWorkout = () => {
 
-    let currentWorkoutName = editingWorkout.name;
     return(
-      <form onSubmit={handleUpdate} htmlFor="Update workout form">
-        <h4>Edit: {currentWorkoutName}</h4>
-        <input type="text" onChange={e => setEditName(e.target.value)} defaultValue={editingWorkout.name} />
-        <input type="text" onChange={e => setEditNotes(e.target.value)} defaultValue={editingWorkout.notes} />
-        <input type="submit" value="Update workout" />
-      </form>
+      <section className="workout-edit-container">
+        <h4 className="edit-header">Edit: {editingWorkout.name}</h4>
+
+        <div className="hand-hold-container">
+          <label className="hang-label">Hangs:</label>
+          <div className="hang-form-key">
+            <p className="rep-number">#</p>
+            <p className="position">position</p>
+            <p className="grip-type">type</p>
+            <p className="weight-added">weight</p>
+          </div>
+          <ul className="hold-scroll-container">
+            <li className="hold-selection">
+              <p>1</p>
+              <p>IMR</p>
+              <p>20mm</p>
+              <p>20lbs</p>
+            </li>
+            <li className="hold-selection">
+              <p>2</p>
+              <p>MR</p>
+              <p>30mm</p>
+              <p>0lbs</p>
+            </li>
+            <li className="hold-selection">
+              <p>3</p>
+              <p>4F</p>
+              <p>10mm</p>
+              <p>25lbs</p>
+            </li>
+            <li className="hold-selection">
+              <p>4</p>
+              <p>Jug</p>
+              <p>30mm</p>
+              <p>900lbs</p>
+            </li>
+          </ul>
+        </div>
+        <form className="workout-edit-form" onSubmit={handleUpdate} htmlFor="update workout form">
+          <div className="edit-name-container">
+            <input className="name-input" type="text" onChange={e => setEditName(e.target.value)} defaultValue={editingWorkout.name}/>
+          </div>
+          <textarea type="text" onChange={e => setEditNotes(e.target.value)} defaultValue={editingWorkout.notes}/>
+          <button type="submit" >Update workout</button>
+        </form>
+      </section>
+
+
+
     );
   };
 

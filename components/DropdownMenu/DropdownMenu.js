@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import './DropdownMenu.scss';
 
-const DropdownMenu = ({ setCurrentDisplay, icon }) => {
+const DropdownMenu = ({ currentDisplay, setCurrentDisplay, icon }) => {
   
   const [displayMenu, setDisplayMenu] = useState(false);
 
@@ -16,11 +16,15 @@ const DropdownMenu = ({ setCurrentDisplay, icon }) => {
       return(
         <div className="drop-down">
           <button className="drop-down-button" onClick={() => setCurrentDisplay('create workout')} >Create Workout</button>
-          <button className="drop-down-button" onClick={() => setCurrentDisplay('show workouts')} >Browse Workouts</button>
+          <button className="drop-down-button" onClick={() => setCurrentDisplay('browse workouts')} >Browse Workouts</button>
         </div>
       );
     } else {
-      null;
+      return (
+        <div className="drop-down">
+          <p className="drop-down-label">{currentDisplay}</p>
+        </div>
+      );
     }
   };
 
