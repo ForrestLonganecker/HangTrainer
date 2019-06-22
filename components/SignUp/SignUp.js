@@ -67,7 +67,7 @@ const SignUp = ({ setCurrentDisplay }) => {
 
       <form className="sign-up-form" onSubmit={handleSignUp} htmlFor="user sign up form">
         <input className="sign-up-input" type="text" onChange={e => setEmail(e.target.value)} placeholder="Enter email address"/>
-        <input className="sign-up-input" type="password" onChange={e => setPassword(e.target.value)} placeholder="Enter Password"/>  
+        <input className="sign-up-input" type="password" onChange={e => setPassword(e.target.value)} placeholder="Enter password"/>  
         <input className="sign-up-input" type="password" onChange={e => setPasswordConf(e.target.value)} placeholder="Password confirmation"/>
   
         <button className="sign-up-button" type="submit" >Sign up</button>
