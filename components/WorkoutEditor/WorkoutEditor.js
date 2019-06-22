@@ -3,7 +3,7 @@ import { useState } from 'react';
 
 // <WorkoutEditor editingWorkout={editingWorkout} passError={passError} />
 
-const WorkoutEditor = ({ editingWorkout, setEditingWorkout, passError }) => {
+const WorkoutEditor = ({ editingWorkout, setEditingWorkout, passError, setUserWorkouts, userWorkouts }) => {
 
   const [editName, setEditName] = useState('');
   const [editNotes, setEditNotes] = useState('');
@@ -31,6 +31,20 @@ const WorkoutEditor = ({ editingWorkout, setEditingWorkout, passError }) => {
         } else {
           console.log('{WORKOUTS UPDATE} ELSE SUCCESS: ', res.data);
           // issue when submitting update on success it crashes front end
+          let updatedWorkouts = userWorkouts.map(workout => {
+            console.log('{UPDATEDWORKOUT.MAP} WORKOUT: ', workout);
+            if(workout.id === editingWorkout.id) {
+              console.log('{IF ID === ID} WORKOUT: ', workout);
+              return workout = {...workout, name: editName, notes: editNotes};
+            } else {
+              return workout;
+            }
+          });
+          console.log('{WORKOUTS UPDATE} BEFORE UPDATE: ', userWorkouts);
+          console.log('{WORKOUTS UPDATE} UPDATED WORKOUTS: ', updatedWorkouts);
+          setUserWorkouts(updatedWorkouts);
+          console.log('{WORKOUTS UPDATE} AFTER UPDATE: ', userWorkouts);
+
           setEditName('');
           setEditNotes('');
           setEditingWorkout({});

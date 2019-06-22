@@ -11,7 +11,7 @@ const WorkoutsDisplay = ({ passError, setUserWorkouts, userWorkouts }) => {
 
 
   const handleDisplay = () => {
-    console.log('{WORKOUT DISPLAY} USER WORKOUTS PRE MAP: ', displayWorkouts);
+    console.log('{WORKOUT DISPLAY} USER WORKOUTS PRE MAP: ', userWorkouts);
     const workoutList = userWorkouts.map((workout) =>
       <li key={workout.id}>
         <h4>{workout.name}</h4>
@@ -30,7 +30,8 @@ const WorkoutsDisplay = ({ passError, setUserWorkouts, userWorkouts }) => {
           editingWorkout={editingWorkout}
           setEditingWorkout={setEditingWorkout}
           passError={passError}
-          workouts={workouts}
+          userWorkouts={userWorkouts}
+          setUserWorkouts={setUserWorkouts}
         />
       );
     }
@@ -58,14 +59,11 @@ const WorkoutsDisplay = ({ passError, setUserWorkouts, userWorkouts }) => {
         // passes error to the /page/workouts
         passError('Error deleting workout');
       } else {
-        console.log('{WORKOUTS PAGE} DELETE SUCCESS RES.DATA.ID: ', res.data.id);
-        let updatedWorkouts = workouts.filter(workout => workout.id != res.data.id);
+        console.log('{WORKOUTS PAGE} DELETE BEFORE UPDATE: ', userWorkouts);
+        let updatedWorkouts = userWorkouts.filter(workout => workout.id != res.data.id);
         console.log('{WORKOUTS PAGE} DELETE SUCCESS UPDATED WORKOUTS: ', updatedWorkouts);
-        console.log('{WORKOUTS PAGE} DELETE SUCCESS WORKOUTS: ', workouts);
-        workouts = {...workouts => (
-          {...workouts,  ...updatedWorkouts})
-        };
-        console.log('{WORKOUTS PAGE} DELETE SUCCESS WORKOUTS: ', workouts);
+        setUserWorkouts(updatedWorkouts);
+        console.log('{WORKOUTS PAGE} DELETE AFTER UPDATE: ', userWorkouts);
       }
     })
     .catch((err) =>{

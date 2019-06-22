@@ -78,7 +78,7 @@ const Workouts = ({ workouts }) => {
       return(
         <WorkoutsDisplay
           passError={passError}
-          setUserWorkouts={workouts}
+          setUserWorkouts={setUserWorkouts}
           userWorkouts={userWorkouts}
           setEditingWorkout={setEditingWorkout}
           editingWorkout={editingWorkout}
