@@ -1,9 +1,9 @@
 const workoutQueries = require('../db/queries.workouts.js');
 
 module.exports = {
-  index(req, res){
-    // res.send('Work it!! from the express server!');
-  },
+  // index(req, res){
+  //   // res.send('Work it!! from the express server!');
+  // },
   getMyWorkouts(req, res){
     console.log('{WORKOUT CONTROLLER} REQ.USER', req.user);
     workoutQueries.getAllOwn(req.user.id, (err, workouts) => {

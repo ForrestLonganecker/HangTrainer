@@ -50,20 +50,20 @@ app
     //   }
     // });
 
-    server.get('/landing', (req, res) => {
-      console.log('SERVER.GET/LANDING');
-      return app.render(req, res, '/landing', req.query);
-    });
+    // server.get('/landing', (req, res) => {
+    //   console.log('SERVER.GET/LANDING');
+    //   app.render(req, res, '/landing', req.query);
+    // });
 
     server.get("*", (req, res) => {
       // console.log('{SERVER/INDEX.JS} REQ: ', req.originalUrl);
       // console.log('{SERVER/INDEX.JS} RES: ');
-      return handle(req, res);
+      return handle(req, res, req.url);
     });
 
     server.listen(PORT, err => {
       if (err) throw err;
-      console.log(`server is listening on PORT: ${PORT}`)
+      console.log(`server is listening on PORT: ${PORT}`);
     });
 
   })
