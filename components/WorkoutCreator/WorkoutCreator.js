@@ -5,7 +5,7 @@ import './WorkoutCreator.scss';
 
 // <WorkoutCreator passError={passError} workouts={workouts} />
 
-const WorkoutCreator = ({ passError, setUserWorkouts, userWorkouts }) => {
+const WorkoutCreator = ({ /*passError,*/ setUserWorkouts, userWorkouts }) => {
 
   // const [displayCreator, setDisplayCreator] = useState(true);
   const [newWorkoutName, setNewWorkoutName] = useState('');
@@ -25,10 +25,11 @@ const WorkoutCreator = ({ passError, setUserWorkouts, userWorkouts }) => {
       .then((res) => {
         if(res.data.statusCode == 400){
           // pass error to /page
-          passError('Error while creating a workout');
+          // passError('Error while creating a workout');
+          alert('Error while creating a workout');
         } else {
           setUserWorkouts(userWorkouts => [...userWorkouts, res.data]);
-          console.log("{WORKOUTS PAGE} CREATE WORKOUTS SUCCESS WORKOUTS: ", typeof userWorkouts, userWorkouts);
+          // console.log("{WORKOUTS PAGE} CREATE WORKOUTS SUCCESS WORKOUTS: ", typeof userWorkouts, userWorkouts);
           // reset create form fields
           setNewWorkoutName('');
           setNewWorkoutNotes('');
@@ -36,10 +37,12 @@ const WorkoutCreator = ({ passError, setUserWorkouts, userWorkouts }) => {
       })
       .catch((err) => {
         console.log("{WORKOUTS CREATE} CATCH ERR: ", err);
-        passError('Error while submitting workout create');
+        // passError('Error while submitting workout create');
+        alert('Error while submitting workout create form');
       });
     } else {
-      passError('Error: workout must contain name');
+      // passError('Error: workout must contain name');
+      alert('Workout must contain name');
     }
   };
 

@@ -8,7 +8,7 @@ const SignIn = ({ setCurrentDisplay }) => {
   // Set initial state of input fields
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+  // const [error, setError] = useState('');
 
   const handleSignIn = (e) => {
     // prevents this script from running automatically, now will run only upon call
@@ -30,37 +30,39 @@ const SignIn = ({ setCurrentDisplay }) => {
         // window.location = '/landing';
         Router.push('/landing');
       } else {
-        console.log('SOMETHING WENT WTRONG: ', res.statusCode)
-        setError('Incorrect email or password, please try again.');
-        handleDisplayError();
+        alert('Incorrect email or password, please try again.');
+        // console.log('SOMETHING WENT WTRONG: ', res.statusCode)
+        // setError('Incorrect email or password, please try again.');
+        // handleDisplayError();
       }
     })
     .catch((err) => {
       console.log(err);
-      setError('Incorrect email or password, please try again.');
-      handleDisplayError();
+      alert('Incorrect email or password, please try again.');
+      // setError('Incorrect email or password, please try again.');
+      // handleDisplayError();
     });
 
   };
 
-  const handleDisplayError = () => {
-    if(error){
-      return(
-        <section className="error">{error}
-        <style jsx>{`
-        .error {
-          margin-top: 20px;
-          margin-bottom: 20px;
-          background-color: red;
-          color: white;
-          text-align: center;
-        } 
-        `}</style>
-        </section>
+  // const handleDisplayError = () => {
+  //   if(error){
+  //     return(
+  //       <section className="error">{error}
+  //       <style jsx>{`
+  //       .error {
+  //         margin-top: 20px;
+  //         margin-bottom: 20px;
+  //         background-color: red;
+  //         color: white;
+  //         text-align: center;
+  //       } 
+  //       `}</style>
+  //       </section>
 
-      );
-    }
-  };
+  //     );
+  //   }
+  // };
   
   return (
     <div className="sign-in">
@@ -69,7 +71,7 @@ const SignIn = ({ setCurrentDisplay }) => {
         <img className="logo-image" src='/static/BoulderLogo.png' />
       </div>
 
-      {handleDisplayError()}
+      {/*handleDisplayError()*/}
 
       <form className="sign-in-form" onSubmit={handleSignIn} htmlFor="user sign in form">
         <input className="sign-in-input" onChange={e => setEmail(e.target.value)} placeholder="Enter email address" />

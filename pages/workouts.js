@@ -125,7 +125,7 @@ const Workouts = (/*{ workouts }*/) => {
             />
           </div>
         
-          <ErrorSplash error={error} />
+          {/*<ErrorSplash error={error} />*/}
 
           {handleDisplay()}
 
@@ -140,28 +140,6 @@ const Workouts = (/*{ workouts }*/) => {
   return(
     displayWorkoutPage()
   );
-
-  // return (
-  //   <div className="workouts-container">
-  //     <WorkoutNavbar />
-
-  //     <div className="workout-banner">
-  //       <h2>Workouts:</h2>
-
-  //       <DropdownMenu 
-  //         currentDisplay={currentDisplay}
-  //         setCurrentDisplay={setCurrentDisplay}
-  //         setEditingWorkout={setEditingWorkout}
-  //         icon={<i className="fas fa-dumbbell"></i>}
-  //       />
-  //     </div>
-    
-  //     <ErrorSplash error={error} />
-
-  //     {handleDisplay()}
-
-  //   </div>
-  // );
 };
 
 // Workouts.getInitialProps = async ({req}) => {

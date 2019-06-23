@@ -35,13 +35,6 @@ const LandingPage = (/*{ user }*/) => {
       );
     } else {
       return null;
-      // (
-      //   <div className="no-user">
-      //     <h1>Sorry you must be logged-in to do that</h1>
-      //     <h2>Current User: {currentUser.toString()}</h2>
-      //     <a href='/'>Sign in</a>
-      //   </div>
-      // );
     }
   };
 

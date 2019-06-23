@@ -5,7 +5,7 @@ import './WorkoutEditor.scss';
 
 // <WorkoutEditor editingWorkout={editingWorkout} passError={passError} />
 
-const WorkoutEditor = ({ editingWorkout, setEditingWorkout, passError, setUserWorkouts, userWorkouts }) => {
+const WorkoutEditor = ({ editingWorkout, setEditingWorkout, /*passError,*/ setUserWorkouts, userWorkouts }) => {
 
   const [editName, setEditName] = useState('');
   const [editNotes, setEditNotes] = useState('');
@@ -29,7 +29,8 @@ const WorkoutEditor = ({ editingWorkout, setEditingWorkout, passError, setUserWo
       axios.post('/workouts/update', data)
       .then((res) => {
         if(res.data.statusCode == 400){
-          passError('Error while updating workout');
+          alert('Error while updating workout');
+          // passError('Error while updating workout');
         } else {
           console.log('{WORKOUTS UPDATE} ELSE SUCCESS: ', res.data);
           // issue when submitting update on success it crashes front end
@@ -53,11 +54,13 @@ const WorkoutEditor = ({ editingWorkout, setEditingWorkout, passError, setUserWo
         }
       })
       .catch((err) => {
-        console.log('{WORKOUTS UPDATE} CATCH ERR: ', err);
-        passError('Error while submitting workout update');
+        alert('Error while submitting workout update');
+        // console.log('{WORKOUTS UPDATE} CATCH ERR: ', err);
+        // passError('Error while submitting workout update');
       });
     } else {
-      passError('Error: workout must contain name');
+      alert('Error: workout must contain name');
+      // passError('Error: workout must contain name');
     }
   };
 

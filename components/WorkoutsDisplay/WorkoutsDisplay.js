@@ -6,7 +6,7 @@ import WorkoutEditor from '../WorkoutEditor/WorkoutEditor';
 import './WorkoutDisplay.scss';
 //  <WorkoutDisplay passError={passError} workouts={workouts} />
 
-const WorkoutsDisplay = ({ passError, setUserWorkouts, userWorkouts }) => {
+const WorkoutsDisplay = ({ /*passError,*/ setUserWorkouts, userWorkouts }) => {
 
   const [editingWorkout, setEditingWorkout] = useState({});
 
@@ -34,7 +34,6 @@ const WorkoutsDisplay = ({ passError, setUserWorkouts, userWorkouts }) => {
         <WorkoutEditor
           editingWorkout={editingWorkout}
           setEditingWorkout={setEditingWorkout}
-          passError={passError}
           userWorkouts={userWorkouts}
           setUserWorkouts={setUserWorkouts}
         />
@@ -60,20 +59,22 @@ const WorkoutsDisplay = ({ passError, setUserWorkouts, userWorkouts }) => {
     axios.post('/workouts/delete', data)
     .then((res) => {
       if(res.data.statusCode == 400){
-        console.log('{WORKOUTS PAGE} DELETE ERR RES.DATA: ', res.data);
+        // console.log('{WORKOUTS PAGE} DELETE ERR RES.DATA: ', res.data);
         // passes error to the /page/workouts
-        passError('Error deleting workout');
+        // passError('Error deleting workout');
+        alert('Error deleting workout');
       } else {
-        console.log('{WORKOUTS PAGE} DELETE BEFORE UPDATE: ', userWorkouts);
+        // console.log('{WORKOUTS PAGE} DELETE BEFORE UPDATE: ', userWorkouts);
         let updatedWorkouts = userWorkouts.filter(workout => workout.id != res.data.id);
-        console.log('{WORKOUTS PAGE} DELETE SUCCESS UPDATED WORKOUTS: ', updatedWorkouts);
+        // console.log('{WORKOUTS PAGE} DELETE SUCCESS UPDATED WORKOUTS: ', updatedWorkouts);
         setUserWorkouts(updatedWorkouts);
-        console.log('{WORKOUTS PAGE} DELETE AFTER UPDATE: ', userWorkouts);
+        // console.log('{WORKOUTS PAGE} DELETE AFTER UPDATE: ', userWorkouts);
       }
     })
     .catch((err) =>{
-      console.log('{WORKOUT PAGE} CATCH ERR ON DELETE: ', err);
-      passError('Error deleting workout');
+      // console.log('{WORKOUT PAGE} CATCH ERR ON DELETE: ', err);
+      // passError('Error deleting workout');
+      alert('Error while submiting delete workout');
     });
   };
 
