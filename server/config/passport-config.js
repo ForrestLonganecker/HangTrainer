@@ -28,7 +28,7 @@ module.exports = {
     }));
 
     passport.serializeUser((user, callback) => {
-      // console.log('{PASSPORT-CONFIG} USER SERIALIZED: ', user.id, user.email);
+      console.log('{PASSPORT-CONFIG} USER SERIALIZED: ', user.id, user.email);
       callback(null, user.id);
     });
     

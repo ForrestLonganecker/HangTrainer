@@ -21,7 +21,7 @@ const LandingPage = (/*{ user }*/) => {
         Router.push('/');
         // setCurrentUser(false);
       }
-    })
+    });
     // .catch((err) => {
     //   setCurrentUser(false);
     //   Router.push('/');

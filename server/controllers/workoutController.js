@@ -6,16 +6,25 @@ module.exports = {
   // },
   getMyWorkouts(req, res){
     console.log('{WORKOUT CONTROLLER} REQ.USER', req.user);
-    workoutQueries.getAllOwn(req.user.id, (err, workouts) => {
-      if(err){
-        // console.log('{WORKOUT CONTROLLER} if/err: ', err);
-        err.statusCode = 400;
-        res.send(err);
-      } else {
-        // console.log('{WORKOUT CONTROLLER} ELSE GET/SUCCESS: ', workouts);
-        res.send(workouts);
-      }
-    });
+    if(req.user){
+      workoutQueries.getAllOwn(req.user.id, (err, workouts) => {
+        if(err){
+          // console.log('{WORKOUT CONTROLLER} if/err: ', err);
+          err.statusCode = 400;
+          res.send(err);
+        } else {
+          let data = {
+            workouts: workouts,
+            isAuthenticated: true
+          };
+          // console.log('{WORKOUT CONTROLLER} ELSE GET/SUCCESS: ', workouts);
+          res.send(data);
+        }
+      });
+    } else {
+      let err = {statusCode: 400};
+      res.send(err);
+    }
   },
   create(req, res){
 
