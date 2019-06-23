@@ -52,6 +52,9 @@ LandingPage.getInitialProps = async ({req}) => {
   console.log('{LANDING PAGE} GET INITIAL PROPS RES: ', res.data);
   const data = await res.data;
   console.log('{LANDING PAGE} GET INITIAL PROPS DATA: ');
+
+  // change logic so that if !currentUser Router.push('/') else? 
+  // then pass data into page and render
   return { user: data };
 };
 

@@ -1,5 +1,6 @@
 const express = require('express');
 const next = require('next');
+const { parse } = require('url');
 
 // checks to see if we are in production environment:
 const PORT = normalizePort(process.env.PORT || 3000);
@@ -33,19 +34,30 @@ app
     serverConfig.init(server);
     routeConfig.init(server);
 
-    // cannot get dynamic routes to work
-    // 
-    // server.get('/refences/:id', (req, res) => {
-    //   let actualPage = '/reference';
-    //   let queryParams = { title: req.params.id };
-    //   app.render(req, res, actualPage, queryParams);
+
+    // server.get((req, res) => {
+    //   const parsedUrl = parse(req.url, true);
+    //   const { pathname, query } = parsedUrl;
+
+    //   if (pathname === '/') {
+    //     app.render(req, res, '/', query);
+    //   } else if (pathname === '/landing') {
+    //     app.render(req, res, '/landing', query);
+    //   } else if (pathname === '/workouts') {
+    //     app.render(req, res, '/workouts', query);
+    //   } else {
+    //     handle(req, res, parsedUrl);
+    //   }
     // });
 
-    server.get('/workouts', (req, res) => {
-      app.render(req, res, '/workouts');
+    server.get('/landing', (req, res) => {
+      console.log('SERVER.GET/LANDING');
+      return app.render(req, res, '/landing', req.query);
     });
 
     server.get("*", (req, res) => {
+      // console.log('{SERVER/INDEX.JS} REQ: ', req.originalUrl);
+      // console.log('{SERVER/INDEX.JS} RES: ');
       return handle(req, res);
     });
 
