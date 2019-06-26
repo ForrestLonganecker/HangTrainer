@@ -16,8 +16,8 @@ const SignIn = ({ setCurrentDisplay }) => {
 
 
     let data = {
-      email: email,
-      password: password,
+      email: email.trim().toLowerCase(),
+      password: password.trim(),
     };
 
 
