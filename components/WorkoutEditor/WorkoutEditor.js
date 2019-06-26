@@ -7,8 +7,8 @@ import './WorkoutEditor.scss';
 
 const WorkoutEditor = ({ editingWorkout, setEditingWorkout, /*passError,*/ setUserWorkouts, userWorkouts }) => {
 
-  const [editName, setEditName] = useState('');
-  const [editNotes, setEditNotes] = useState('');
+  const [editName, setEditName] = useState(editingWorkout.name);
+  const [editNotes, setEditNotes] = useState(editingWorkout.notes);
 
   const handleUpdate = (e) => {
     e.preventDefault();

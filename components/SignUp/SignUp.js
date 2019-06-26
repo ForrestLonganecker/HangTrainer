@@ -16,11 +16,11 @@ const SignUp = ({ setCurrentDisplay }) => {
     e.preventDefault();
 
     let data = {
-      email: email,
-      password: password,
+      email: email.trim().toLowerCase(),
+      password: password.trim(),
     };
 
-    if(password === passwordConf) {
+    if(password.trim() === passwordConf.trim()) {
       axios.post('/users/create', data )
       .then((res) => {
         if(res.data.statusCode == 400){
