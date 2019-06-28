@@ -7,11 +7,14 @@ module.exports = {
       email: req.body.email,
       password: req.body.password,
     };
+    console.log('NEWUSER: ', newUser);
     userQueries.createUser(newUser, (err, user) => {
       if(err){
+        console.log('ERROR');
         err.statusCode = 400; 
         res.send(err);
       } else {
+        console.log('SUCCESS');
         passport.authenticate('local')(req, res, () => {
           res.send(req.user);
         });
