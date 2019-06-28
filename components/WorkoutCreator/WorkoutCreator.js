@@ -3,11 +3,8 @@ import axios from 'axios';
 
 import './WorkoutCreator.scss';
 
-// <WorkoutCreator passError={passError} workouts={workouts} />
+const WorkoutCreator = ({ setUserWorkouts }) => {
 
-const WorkoutCreator = ({ /*passError,*/ setUserWorkouts, userWorkouts }) => {
-
-  // const [displayCreator, setDisplayCreator] = useState(true);
   const [newWorkoutName, setNewWorkoutName] = useState('');
   const [newWorkoutNotes, setNewWorkoutNotes] = useState('');
 
@@ -24,24 +21,18 @@ const WorkoutCreator = ({ /*passError,*/ setUserWorkouts, userWorkouts }) => {
       axios.post('/workouts/create', data)
       .then((res) => {
         if(res.data.statusCode == 400){
-          // pass error to /page
-          // passError('Error while creating a workout');
           alert('Error while creating a workout');
         } else {
+          // adds the new workout back into local state upon success
           setUserWorkouts(userWorkouts => [...userWorkouts, res.data]);
-          // console.log("{WORKOUTS PAGE} CREATE WORKOUTS SUCCESS WORKOUTS: ", typeof userWorkouts, userWorkouts);
-          // reset create form fields
           setNewWorkoutName('');
           setNewWorkoutNotes('');
         }
       })
       .catch((err) => {
-        console.log("{WORKOUTS CREATE} CATCH ERR: ", err);
-        // passError('Error while submitting workout create');
         alert('Error while submitting workout create form');
       });
     } else {
-      // passError('Error: workout must contain name');
       alert('Workout must contain name');
     }
   };

@@ -10,7 +10,6 @@ module.exports = {
       password: hashedPassword
     }) 
     .then((user) => {
-      console.log('{QUERIES.USER}: ', user);
       callback(null, user);
     })
     .catch((err) => {

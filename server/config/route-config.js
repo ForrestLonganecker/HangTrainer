@@ -11,4 +11,4 @@ module.exports = {
     server.use(userRoutes);
     server.use(staticRoutes);
   }
-}
+};

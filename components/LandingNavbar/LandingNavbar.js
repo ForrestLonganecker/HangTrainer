@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import axios from 'axios';
+import Router from 'next/router';
 
 // importing component level SCSS
 import './LandingNavbar.scss';
@@ -13,10 +14,9 @@ const LandingNavbar = () => {
     axios.get('/users/signOut')
     .then((res) => {
       if(res.status == 200){
-        window.location = '/';
-        console.log('YOU HAVE SIGNED OUT SUCCESSFULLY!');
+        Router.push('/landing');
       } else {
-        console.log('SOMETHING WENT WRONG: ', res.status);
+        alert('Something went wrong.');
       }
     });
   };

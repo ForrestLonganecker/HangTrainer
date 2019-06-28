@@ -1,20 +1,17 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import axios from 'axios';
 
 import WorkoutEditor from '../WorkoutEditor/WorkoutEditor';
 
 import './WorkoutDisplay.scss';
-//  <WorkoutDisplay passError={passError} workouts={workouts} />
 
-const WorkoutsDisplay = ({ /*passError,*/ setUserWorkouts, userWorkouts }) => {
+const WorkoutsDisplay = ({ setUserWorkouts, userWorkouts }) => {
 
   const [editingWorkout, setEditingWorkout] = useState({});
 
-
   const handleDisplay = () => {
-    console.log('{WORKOUT DISPLAY} USER WORKOUTS PRE MAP: ', userWorkouts);
+
     const workoutList = userWorkouts.map((workout) => {
-      console.log('{WORKOUT DISPLAY} IN.MAP: ', workout.name);
       return (
         <li className="workout-list-item" key={workout.id}>
           <h4 className="workout-name">{workout.name}</h4>
@@ -26,10 +23,8 @@ const WorkoutsDisplay = ({ /*passError,*/ setUserWorkouts, userWorkouts }) => {
       );
     });
 
-    console.log('{WORKOUTS DISPLAY} HANDLE-DISPLAY EDITINGWORKOUT: ', editingWorkout);
 
     if(editingWorkout.id){
-      console.log('{WORKOUT DISPLAY} IF EDITING WORKOUT: ', editingWorkout);
       return(
         <WorkoutEditor
           editingWorkout={editingWorkout}
@@ -40,7 +35,6 @@ const WorkoutsDisplay = ({ /*passError,*/ setUserWorkouts, userWorkouts }) => {
       );
     }
     if(!editingWorkout.id){
-      console.log('{WORKOUT DISPLAY} NO EDITING WORKOUT: ', editingWorkout);
       return(
         <ul className="workout-list">
           {workoutList}
@@ -59,21 +53,14 @@ const WorkoutsDisplay = ({ /*passError,*/ setUserWorkouts, userWorkouts }) => {
     axios.post('/workouts/delete', data)
     .then((res) => {
       if(res.data.statusCode == 400){
-        // console.log('{WORKOUTS PAGE} DELETE ERR RES.DATA: ', res.data);
-        // passes error to the /page/workouts
-        // passError('Error deleting workout');
         alert('Error deleting workout');
       } else {
-        // console.log('{WORKOUTS PAGE} DELETE BEFORE UPDATE: ', userWorkouts);
+        // updates local state upon success
         let updatedWorkouts = userWorkouts.filter(workout => workout.id != res.data.id);
-        // console.log('{WORKOUTS PAGE} DELETE SUCCESS UPDATED WORKOUTS: ', updatedWorkouts);
         setUserWorkouts(updatedWorkouts);
-        // console.log('{WORKOUTS PAGE} DELETE AFTER UPDATE: ', userWorkouts);
       }
     })
     .catch((err) =>{
-      // console.log('{WORKOUT PAGE} CATCH ERR ON DELETE: ', err);
-      // passError('Error deleting workout');
       alert('Error while submiting delete workout');
     });
   };

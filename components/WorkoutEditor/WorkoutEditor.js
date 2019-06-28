@@ -3,10 +3,10 @@ import { useState } from 'react';
 
 import './WorkoutEditor.scss';
 
-// <WorkoutEditor editingWorkout={editingWorkout} passError={passError} />
+// pull in props from parent component
+const WorkoutEditor = ({ editingWorkout, setEditingWorkout, setUserWorkouts, userWorkouts }) => {
 
-const WorkoutEditor = ({ editingWorkout, setEditingWorkout, /*passError,*/ setUserWorkouts, userWorkouts }) => {
-
+  // set initial state
   const [editName, setEditName] = useState(editingWorkout.name);
   const [editNotes, setEditNotes] = useState(editingWorkout.notes);
 
@@ -23,30 +23,21 @@ const WorkoutEditor = ({ editingWorkout, setEditingWorkout, /*passError,*/ setUs
       workoutId: editingWorkout.id
     };
 
-    console.log('{WORKOUT EDITOR} EDIT SUBMIT DATA: ', data);
-
     if(editName){
       axios.post('/workouts/update', data)
       .then((res) => {
         if(res.data.statusCode == 400){
           alert('Error while updating workout');
-          // passError('Error while updating workout');
         } else {
-          console.log('{WORKOUTS UPDATE} ELSE SUCCESS: ', res.data);
-          // issue when submitting update on success it crashes front end
+          // updates local state upon success
           let updatedWorkouts = userWorkouts.map(workout => {
-            console.log('{UPDATEDWORKOUT.MAP} WORKOUT: ', workout);
             if(workout.id === editingWorkout.id) {
-              console.log('{IF ID === ID} WORKOUT: ', workout);
               return workout = {...workout, name: editName, notes: editNotes};
             } else {
               return workout;
             }
           });
-          console.log('{WORKOUTS UPDATE} BEFORE UPDATE: ', userWorkouts);
-          console.log('{WORKOUTS UPDATE} UPDATED WORKOUTS: ', updatedWorkouts);
           setUserWorkouts(updatedWorkouts);
-          console.log('{WORKOUTS UPDATE} AFTER UPDATE: ', userWorkouts);
 
           setEditName('');
           setEditNotes('');
@@ -55,12 +46,9 @@ const WorkoutEditor = ({ editingWorkout, setEditingWorkout, /*passError,*/ setUs
       })
       .catch((err) => {
         alert('Error while submitting workout update');
-        // console.log('{WORKOUTS UPDATE} CATCH ERR: ', err);
-        // passError('Error while submitting workout update');
       });
     } else {
       alert('Error: workout must contain name');
-      // passError('Error: workout must contain name');
     }
   };
 
