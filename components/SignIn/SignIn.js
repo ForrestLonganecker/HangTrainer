@@ -40,7 +40,7 @@ const SignIn = ({ setCurrentDisplay }) => {
   
   return (
     <div className="sign-in">
-      <h1 className="title">HangTrainer</h1>
+      <h1 className="sign-title">HangTrainer</h1>
       <div className="logo-div">
         <img className="logo-image" src='/static/BoulderLogo.png' />
       </div>
