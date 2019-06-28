@@ -9,6 +9,7 @@ module.exports = {
     server.use(passport.session());
 
     passport.use(new LocalStrategy({
+      // overwrites default username field
       usernameField: 'email'
     }, (email, password, done) => {
       User.findOne({where: {email}})

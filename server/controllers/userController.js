@@ -18,7 +18,7 @@ module.exports = {
       }
     });
   },
-  signIn(req, res, next){
+  signIn(req, res){
     passport.authenticate('local')(req, res, () => {
       if(!req.user){
         // if error(no user logged in)
@@ -29,7 +29,7 @@ module.exports = {
       }
     });
   },
-  signOut(req, res, next){
+  signOut(req, res){
     if(req.user){
       req.logout();
       res.send('SUCCESSFULLY SIGNED OUT');

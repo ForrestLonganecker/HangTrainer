@@ -1,6 +1,5 @@
 const express = require('express');
 const next = require('next');
-const { parse } = require('url');
 
 // checks to see if we are in production environment:
 const PORT = normalizePort(process.env.PORT || 3000);
@@ -26,9 +25,9 @@ app
   .then(() => {
     const server = express();
     // imports middleware for the server-side app
-    const serverConfig = require('./config/server-config.js')
+    const serverConfig = require('./config/server-config.js');
     // imports all routes for the server-side app
-    const routeConfig = require('./config/route-config.js')
+    const routeConfig = require('./config/route-config.js');
 
     // initializes all imported routes + middleware
     serverConfig.init(server);

@@ -1,15 +1,10 @@
 const workoutQueries = require('../db/queries.workouts.js');
 
 module.exports = {
-  // index(req, res){
-  //   // res.send('Work it!! from the express server!');
-  // },
   getMyWorkouts(req, res){
-    console.log('{WORKOUT CONTROLLER} REQ.USER', req.user);
     if(req.user){
       workoutQueries.getAllOwn(req.user.id, (err, workouts) => {
         if(err){
-          // console.log('{WORKOUT CONTROLLER} if/err: ', err);
           err.statusCode = 400;
           res.send(err);
         } else {
@@ -17,7 +12,6 @@ module.exports = {
             workouts: workouts,
             isAuthenticated: true
           };
-          // console.log('{WORKOUT CONTROLLER} ELSE GET/SUCCESS: ', workouts);
           res.send(data);
         }
       });
@@ -34,41 +28,31 @@ module.exports = {
       userId: req.user.id
     };
 
-    // console.log('{WORKOUT-CONTROLLER} CREATE NEWWORKOUT: ', newWorkout);
-
     workoutQueries.create(newWorkout, (err, workout) => {
-      if(err){
-        // console.log("{WORKOUT-CONTROLLER} CREATE IF/ERR: ", err);
-        
+      if(err){        
         err.statusCode = 400;
         res.send(err);
       } else {
-        // console.log("{WORKOUT-CONTROLLER} CREATE ELSE/WORKOUT: ", workout.dataValues);
         res.send(workout);
       }
     });
   },
   delete(req, res){
-    // console.log('{WORKOUT CONTROLLER} REQ.BODY', req.body);
     if(req.user){
       const options = {
         workoutId: req.body.key,
         userId: req.user.id
       };
-      // console.log('{WORKOUT CONTROLLER} DELETE OPTIONS', options);
       
       workoutQueries.destroy(options, (err, deletedWorkout) => {
         if(err){
-          // console.log('{WORKOUT CONTROLLER} DELETE IF/ERR', err);
           err.statusCode = 400;
           res.send(err);
         } else {
-          // console.log('{WORKOUT CONTROLLER} DELETE SUCCESS: ', deletedWorkout);
           res.send(deletedWorkout);
         }
       });
     } else {
-      // console.log('{WORKOUT CONTROLLER} NO REQ USER');
       let err;
       err.statusCode = 400;
       res.send(err);
@@ -76,27 +60,21 @@ module.exports = {
   },
   update(req, res){
     if(req.user){
-      // console.log('{WORKOUT CONTROLLER} UPDATE REQ.BODY: ', req.body);
       const options = {
         userId: req.user.id,
         workoutId: req.body.workoutId,
         updatedName: req.body.updatedName,
         updatedNotes: req.body.updatedNotes,
-        // create update functionality
       };
-      // console.log('{WORKOUT CONTROLLER} UPDATE OPTIONS BEFORE QUERY: ', options);
       workoutQueries.update(options, (err, updatedWorkout) => {
         if(err){
-          // console.log('{WORKOUT CONTROLLER} UPDATE IF/ERR: ', err);
           err.statusCode = 400;
           res.send(err);
         } else {
-          // console.log('{WORKOUT CONTROLLER} UPDATE ELSE/SUCCESS: ', updatedWorkout);
           res.send(updatedWorkout);
         }
       });
     } else {
-      // console.log('{WORKOUT CONTROLLER} UPDATE NO REQ USER');
       let err;
       err.statusCode = 400;
       res.send(err);
