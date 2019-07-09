@@ -5,7 +5,7 @@
   "main": "src/server/index.js",
   "scripts": {
     "test": "export NODE_ENV=test && jasmine",
-    "dev": "nodemon server/index.js",
+    "dev": "node server/index.js",
     "build": "next build",
     "start": "NODE_ENV=production node server.js"
   },
