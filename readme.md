@@ -1,20 +1,14 @@
-##Welocome to my Hangboard training app!
+## Welocome to my Hangboard training app!  
+
+_If you would like to see the deployed version please follow the link below_  
+
+[HangTrainer demo](https://forrestlonganecker-hangtrainer.herokuapp.com/)
 
 ---
 
 To run:
 
-- Clone the repo
-
----
-
-Before running the application you will need to install:
-
-nodemon:
-`$ npm install --save-dev nodemon`
-
-morgan
-`$ npm install --save-dev morgan`
+__First clone the repo__
 
 ---
 
@@ -39,8 +33,20 @@ Bootstrap the database:
 
 ---
 
-To run:
+__To run:__
 
-- `$ nodemon server/index.js`
+- `$ npm run dev`
+
+---
+
+__To run tests:__
+
+Install jasmine:
+
+- `$ npm i --save-dev jasmine`
+
+Then:
+
+- `$ npm run test`
 
 ---
