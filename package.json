@@ -23,7 +23,7 @@
     "@types/next": "^8.0.5",
     "eslint": "^5.16.0",
     "eslint-plugin-react": "^7.13.0",
-    "eslint-plugin-react-hooks": "^1.6.0",
+    "eslint-plugin-react-hooks": "^3.0.0",
     "jasmine": "^3.4.0",
     "request": "^2.88.0"
   },
