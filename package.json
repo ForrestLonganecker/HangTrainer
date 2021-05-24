@@ -21,7 +21,7 @@
   "homepage": "https://github.com/ForrestLonganecker/HangTrainer#readme",
   "devDependencies": {
     "@types/next": "^8.0.5",
-    "eslint": "^5.16.0",
+    "eslint": "^7.27.0",
     "eslint-plugin-react": "^7.13.0",
     "eslint-plugin-react-hooks": "^1.6.0",
     "jasmine": "^3.4.0",
